@@ -95,3 +95,6 @@ Supported event type:
 `x Coordinate`(5 digits): The x coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "01234" for this.
 
 `y Coordinate`(5 digits): The y coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "24321" for this.
+
+## Contact
+Mail: jiz176@pitt.edu
