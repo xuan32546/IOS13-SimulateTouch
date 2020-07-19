@@ -10,8 +10,57 @@ Jailbroken device required
 
 ## Installation
 1. Open Cydia - Sources - Edit - Add - http://47.114.83.227 ("http" instead of "https"!!! Please double check this.)
-2. Install ZJXTouchSimulation tweak
+2. Install ***"ZJXTouchSimulation"*** tweak
 3. Done
+
+## Code Example
+`Python Version`
+```Python
+import socket
+
+# event types
+TOUCH_UP = 0
+TOUCH_DOWN = 1
+TOUCH_MOVE = 2
+SET_SCREEN_SIZE = 9
+
+# you can copy and paste this method to your code
+def formatSocketData(type, index, x, y):
+    return '{}{:02d}{:05d}{:05d}'.format(type, index, int(x*10), int(y*10))
+
+s = socket.socket()
+s.connect(("127.0.0.1", 6000))  # connect to the tweak
+s.send(formatSocketData(SET_SCREEN_SIZE, 0, 2732, 2048).encode())  # tell the tweak that the screen size is 2732x2048 (your screen size might differ). This should be send to the tweak every time you kill the SpringBoard
+s.send(formatSocketData(TOUCH_DOWN, 7, 300, 400).encode())  # tell the tweak to touch (300, 400) on the screen with touch index "7"
+s.close()
+```
+
+Actually the touch is performed by only one line: 
+```Python 
+s.send(formatSocketData(TOUCH_DOWN, 7, 300, 400).encode()) 
+```
+Neat and easy. 
+
+Perform Touch Move
+```Python
+s.send(formatSocketData(TOUCH_MOVE, 7, 800, 400).encode())  # tell the tweak to move our finger "7" to (800, 400)
+```
+
+Perform Touch Up
+```Python
+s.send(formatSocketData(TOUCH_UP, 7, 800, 400).encode())  # tell the tweak to touch up our finger "7" at (800, 400)
+```
+
+Combining them
+```Python
+s.send(formatSocketData(TOUCH_DOWN, 7, 300, 400).encode())
+time.sleep(1)
+s.send(formatSocketData(TOUCH_MOVE, 7, 800, 400).encode())
+time.sleep(1)
+s.send(formatSocketData(TOUCH_UP, 7, 800, 400).encode())
+```
+
+First the finger touches (300, 400), and then it moves to (800, 400), and then "leaves" the screen. All the touch events are performed with no latency.
 
 ## Usage
 1. After installation, the tweak will start listening at port 6000.
