@@ -2,6 +2,9 @@
 iOS 11.0 - 13.6 system level touch simulation iOS13模拟点击
 Jailbroken device required
 
+## Description
+This library enables you to simulate touch events on iOS 11.0 - 13.6 with just one line! All the source code will be release later.
+
 ## Features
 1. Multitouching supported (no other library you can find supports multitouching).
 2. Programmable. Control scripts can be programmed with all the programming language you desire.
@@ -88,3 +91,5 @@ Supported event type:
 `x Coordinate`(5 digits): The x coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "01234" for this.
 
 `y Coordinate`(5 digits): The y coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "24321" for this.
+
+## 
