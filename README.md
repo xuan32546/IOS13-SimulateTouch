@@ -21,6 +21,7 @@ This library enables you to simulate touch events on iOS 11.0 - 13.6 with just o
 `Python Version`
 ```Python
 import socket
+import time
 
 # event types
 TOUCH_UP = 0
@@ -34,7 +35,8 @@ def formatSocketData(type, index, x, y):
 
 s = socket.socket()
 s.connect(("127.0.0.1", 6000))  # connect to the tweak
-s.send(("1"+formatSocketData(SET_SCREEN_SIZE, 0, 2732, 2048)).encode())  # tell the tweak that the screen size is 2732x2048 (your screen size might differ). This should be send to the tweak every time you kill the SpringBoard
+s.send(("1"+formatSocketData(SET_SCREEN_SIZE, 0, 2732, 2048)).encode())  # tell the tweak that the screen size is 2732x2048 (your screen size might differ). This should be send to the tweak every time you kill the SpringBoard (just send once)
+time.sleep(1)  # sleep for 1 sec to get setting size process finish
 s.send(("1"+formatSocketData(TOUCH_DOWN, 7, 300, 400)).encode())  # tell the tweak to touch 300x400 on the screen
 # IMPORTANT: NOTE the "1" at the head of the data. This indicates the event count and CANNOT BE IGNORED.
 s.close()
