@@ -34,34 +34,35 @@ def formatSocketData(type, index, x, y):
 
 s = socket.socket()
 s.connect(("127.0.0.1", 6000))  # connect to the tweak
-s.send(formatSocketData(SET_SCREEN_SIZE, 0, 2732, 2048).encode())  # tell the tweak that the screen size is 2732x2048 (your screen size might differ). This should be send to the tweak every time you kill the SpringBoard
-s.send(formatSocketData(TOUCH_DOWN, 7, 300, 400).encode())  # tell the tweak to touch (300, 400) on the screen with touch index "7"
+s.send(("1"+formatSocketData(SET_SCREEN_SIZE, 0, 2732, 2048)).encode())  # tell the tweak that the screen size is 2732x2048 (your screen size might differ). This should be send to the tweak every time you kill the SpringBoard
+s.send(("1"+formatSocketData(TOUCH_DOWN, 7, 300, 400)).encode())  # tell the tweak to touch 300x400 on the screen
+# IMPORTANT: NOTE the "1" at the head of the data. This indicates the event count and CANNOT BE IGNORED.
 s.close()
 ```
 
 Actually the touch is performed by only one line: 
 ```Python 
-s.send(formatSocketData(TOUCH_DOWN, 7, 300, 400).encode()) 
+s.send(("1"+formatSocketData(TOUCH_DOWN, 7, 300, 400)).encode()) 
 ```
 Neat and easy. 
 
 Perform Touch Move
 ```Python
-s.send(formatSocketData(TOUCH_MOVE, 7, 800, 400).encode())  # tell the tweak to move our finger "7" to (800, 400)
+s.send(("1"+formatSocketData(TOUCH_MOVE, 7, 800, 400)).encode())  # tell the tweak to move our finger "7" to (800, 400)
 ```
 
 Perform Touch Up
 ```Python
-s.send(formatSocketData(TOUCH_UP, 7, 800, 400).encode())  # tell the tweak to touch up our finger "7" at (800, 400)
+s.send(("1"+formatSocketData(TOUCH_UP, 7, 800, 400)).encode())  # tell the tweak to touch up our finger "7" at (800, 400)
 ```
 
 Combining them
 ```Python
-s.send(formatSocketData(TOUCH_DOWN, 7, 300, 400).encode())
+s.send(("1"+formatSocketData(TOUCH_DOWN, 7, 300, 400)).encode())
 time.sleep(1)
-s.send(formatSocketData(TOUCH_MOVE, 7, 800, 400).encode())
+s.send(("1"+formatSocketData(TOUCH_MOVE, 7, 800, 400)).encode())
 time.sleep(1)
-s.send(formatSocketData(TOUCH_UP, 7, 800, 400).encode())
+s.send(("1"+formatSocketData(TOUCH_UP, 7, 800, 400)).encode())
 ```
 
 First the finger touches (300, 400), and then it moves to (800, 400), and then "leaves" the screen. All the touch events are performed with no latency.
@@ -92,5 +93,3 @@ Supported event type:
 `x Coordinate`(5 digits): The x coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "01234" for this.
 
 `y Coordinate`(5 digits): The y coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "24321" for this.
-
-## 
