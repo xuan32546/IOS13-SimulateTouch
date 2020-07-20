@@ -1,16 +1,16 @@
 # IOS13-SimulateTouch
-iOS 11.0 - 13.6 system level touch simulation iOS13模拟点击
+iOS 11.0 - 13.6 system-level touch simulation iOS13模拟点击
 
 Jailbroken device required
 
 ## Description
-This library enables you to simulate touch events on iOS 11.0 - 13.6 with just one line! All the source code will be release later.
+This library enables you to simulate touch events on iOS 11.0 - 13.6 with just one line! All the source code will be released later.
 
 ## Features
-1. Multitouching supported (no other library you can find supports multitouching).
-2. Programmable. Control scripts can be programmed with all the programming language you desire.
+1. Multitouch supported (no other library you can find supports multi touching).
+2. Programmable. Control scripts can be programmed with all the programming languages you desire.
 3. Instant controlling supported. The ios device can be controlled with no latency from other devices/computers.
-4. System level touch simulation (will not inject to any process).
+4. System-level touch simulation (will not inject to any process).
 
 ## Installation
 1. Open Cydia - Sources - Edit - Add - http://47.114.83.227 ("http" instead of "https"!!! Please double check this.)
@@ -85,16 +85,16 @@ Supported event type:
 
  | Event   | Flag | Description  |
 |:--------:|:-------------:|:------------:|
-| Touch Up      | 0      | Specify the event as a touch up event |
-| Touch Down    | 1      | Specify the event as a touch down event |
-| Touch Move    | 2      | Specify the event as a touch move event (move the finger) |
+| Touch Up      | 0      | Specify the event as a touch-up event |
+| Touch Down    | 1      | Specify the event as a touch-down event |
+| Touch Move    | 2      | Specify the event as a touch-move event (move the finger) |
 | Set Size      | 9      | Set screen size (required!! Will be explained below) |
 
 `Touch Index`(2 digits): Apple supports multitouch, so you have to specify the finger index when posting touching events. The range of finger index is 1-20 (0 is reserved, don't use 0 as finger index). 
 
-`x Coordinate`(5 digits): The x coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "01234" for this.
+`x Coordinate`(5 digits): The x coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for the decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "01234" for this.
 
-`y Coordinate`(5 digits): The y coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "24321" for this.
+`y Coordinate`(5 digits): The y coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for the decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "24321" for this.
 
 ## Contact
 Mail 1: jiz176@pitt.edu
