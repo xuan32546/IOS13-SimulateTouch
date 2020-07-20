@@ -69,12 +69,18 @@ s.send(("1"+formatSocketData(TOUCH_UP, 7, 800, 400)).encode())
 
 First the finger touches (300, 400), and then it moves to (800, 400), and then "leaves" the screen. All the touch events are performed with no latency.
 
+## Demo Usage - iOS Game Controller
+I write scripts using python to let myself play iOS games using the keyboard and mouse of my computer. Here are demos of Fortnite and PUBG Mobile.
+[![Watch the video](https://raw.githubusercontent.com/xuan32546/IOS13-SimulateTouch/master/img/pubg_mobile_demo.jpg)](https://youtu.be/XvvWHL6B3Tk)
+[![Watch the video](https://raw.githubusercontent.com/xuan32546/IOS13-SimulateTouch/master/img/fortnite_mobile_demo.jpg)](https://youtu.be/mCkTzQJ2lC8)
+
+
 ## Usage
 1. After installation, the tweak will start listening at port 6000.
 2. Use socket to send touch data field to the tweak
 
 data field should always be decimal digits, specified below
-![alt text](https://raw.githubusercontent.com/xuan32546/IOS13-SimulateTouch/master/img/event-data-digit.png)
+![event data img](https://raw.githubusercontent.com/xuan32546/IOS13-SimulateTouch/master/img/event-data-digit.png)
 
 `Event Count`(1 digit): Specify the count of the single events. If you have multiple events to send at the same time, just increase the event count and append events to the data.
 
