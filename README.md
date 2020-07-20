@@ -4,7 +4,7 @@ iOS 11.0 - 13.6 system-level touch simulation iOS13模拟点击
 Jailbroken device required
 
 ## Description
-This library enables you to simulate touch events on iOS 11.0 - 13.6 with just one line! All the source code will be released later.
+This library enables you to simulate touch events on iOS 11.0 - 13.6 with just one line of code! All the source code will be released later.
 
 ## Features
 1. Multitouch supported (no other library you can find supports multi touching).
