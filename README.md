@@ -1,5 +1,5 @@
 # IOS13-SimulateTouch
-iOS 11.0 - 13.6 system-level touch simulation iOS13模拟点击
+iOS 11.0 - 13.6 system-level touch simulation iOS13 simuate touch
 
 Jailbroken device required
 
