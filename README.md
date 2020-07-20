@@ -3,6 +3,13 @@ iOS 11.0 - 13.6 system-level touch simulation iOS13模拟点击
 
 Jailbroken device required
 
+## About Open Source
+The reason that I haven't release the source is that I wrote the code while doing iOS reverse engineering, so the code is like a mess. It is bad structured and unreadable now (and I don't want anyone to see bad code written by me). So I have to rewrite some parts of the source code to make it tidy and readable before releasing it. I don't have enough time for it so I can just post a release version for you guys to get it tested first. And during this time, I have to make sure that no one will make illegal things based on the library.
+
+But I can promise you that this repo is FREE and NOT for my own benefit. I will definitely release the source code shortly. Please star or watch this library to get notified when I post the source code.
+
+Sorry for the inconvenience.
+
 ## Description
 This library enables you to simulate touch events on iOS 11.0 - 13.6 with just one line of code! All the source code will be released later.
 
