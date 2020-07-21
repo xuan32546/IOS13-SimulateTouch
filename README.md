@@ -123,5 +123,5 @@ The touch coordinate does not depend on the orientation of your device. See pict
 ![coordinate_note img](https://raw.githubusercontent.com/xuan32546/IOS13-SimulateTouch/master/img/iOS-coordinate.png)
 
 ## Contact
-Mail 1: jiz176@pitt.edu
-Mail 2: 1023675508@qq.com
+Mail: jiz176@pitt.edu
+Discord: https://discord.gg/acSXfyz
