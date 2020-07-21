@@ -19,6 +19,15 @@ This library enables you to simulate touch events on iOS 11.0 - 13.6 with just o
 3. Instant controlling supported. The ios device can be controlled with no latency from other devices/computers.
 4. System-level touch simulation (will not inject to any process).
 
+## Upcoming Future Updates (ALL FREE & OPEN SOURCE!)
+1. Color picker. Get the color of a specified pixel.
+2. Touch recording. Record your touch event and play back.
+3. Script shop for users to download scripts made by others. Just like the App Store.
+4. Physical buttons Simulations.
+5. Image matching.
+6. Activator.
+7. Jailbreak detection bypass for games. (not sure whether I will release this. But if I do, I will never release source code for this part)
+
 ## Installation
 1. Open Cydia - Sources - Edit - Add - http://47.114.83.227 ("http" instead of "https"!!! Please double check this.)
 2. Install ***"ZJXTouchSimulation"*** tweak
@@ -108,6 +117,7 @@ Supported event type:
 `x Coordinate`(5 digits): The x coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for the decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "01234" for this.
 
 `y Coordinate`(5 digits): The y coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for the decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "24321" for this.
+
 
 ## Contact
 Mail 1: jiz176@pitt.edu
