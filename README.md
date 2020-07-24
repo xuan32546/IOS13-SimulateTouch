@@ -1,9 +1,11 @@
 # IOS13-SimulateTouch
-iOS 11.0 - 13.6 system-level touch simulation iOS13 simuate touch
+A touch event simulation library for iOS 11.0 - 13.6.
 
 Jailbroken device required
 
 Discord: https://discord.gg/acSXfyz
+
+Please give me a star! I will post updates on Github.
 ## About Open Source
 The reason that I haven't release the source is that I wrote the code while doing iOS reverse engineering, so the code is like a mess. It is bad structured and unreadable now (and I don't want anyone to see bad code written by me). So I have to rewrite some parts of the source code to make it tidy and readable before releasing it. I don't have enough time for it so I can just post a release version for you guys to get it tested first. And during this time, I have to make sure that no one will make illegal things based on the library.
 
