@@ -36,7 +36,7 @@ This library enables you to simulate touch events on iOS 11.0 - 13.6 with just o
 2. Install ***"ZJXTouchSimulation"*** tweak
 3. Done
 
-## Code Example
+## Code Example (expired. Will be updated soon)
 `Python Version`
 ```Python
 import socket
@@ -94,7 +94,7 @@ I write scripts using python to let myself play iOS games using the keyboard and
 [![Watch the video](https://raw.githubusercontent.com/xuan32546/IOS13-SimulateTouch/master/img/fortnite_mobile_demo.jpg)](https://youtu.be/mCkTzQJ2lC8)
 
 
-## Usage
+## Usage (expired. Will be updated soon)
 1. After installation, the tweak will start listening at port 6000.
 2. Use socket to send touch data field to the tweak
 
