@@ -245,6 +245,7 @@ What you have to do is:
 ![total data format](img/task_data_explanation.jpg)
 
 **The data consists of two parts, task ID part (2 digits) and task data part.**
+
 **** 
 ### Task ID format
 task id should be a 2-digit integer
@@ -301,6 +302,7 @@ The touch coordinate does not depend on the orientation of your device. See pict
 
 
 ***2. Application Running***
+
 Task data should be the the bundle identifier of app you want to run.
 
 For example, if you want to run "settings" app, the task data should be **"com.apple.Preferences"**. So the entire data that should be sent to the tweak is **"11com.apple.Preferences"** (11 is the task id).
@@ -308,11 +310,13 @@ For example, if you want to run "settings" app, the task data should be **"com.a
 **[appster](http://cydia.saurik.com/package/com.jake0oo0.appster/)** might help for finding bundle id.
 
 ***3. System Wide Alert Box Displaying***
+
 An alert box consists of title and content. The title and content you want to show should be splitted by two semicolons (";;"). The alert box is system wide.
 
 For example, if you want to emulate a "low battery" alert box to trick your friend, just send "12Low Battery;;10% of battery remaining". (12 is the task id)
 
 ***4. Shell Accessing as Root***
+
 You can access shell with root privileges by setting the task id to 13. The task data should be the shell command you want to execute. **Caution: executing shell command as root is powerful but dangerous.**
 
 For example, if you want to reboot your device, just send "13reboot". If you want to respring, send "13killall SpringBoard". (13 is the task id)
@@ -321,4 +325,5 @@ For example, if you want to reboot your device, just send "13reboot". If you wan
 ## Contact
 
 Mail: jiz176@pitt.edu
+
 Discord: https://discord.gg/acSXfyz
