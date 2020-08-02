@@ -6,7 +6,9 @@ Jailbroken device required. Application wide touch simulation library: [PTFakeTo
 
 Discord: https://discord.gg/acSXfyz
 
-Please give me a star! I will post updates on Github.
+Please give me a star!
+
+Read this in other languages（send email to me if you want to help to translate this page）: [简体中文版说明文档](README.zh-cn.md)
 
 ## About Open Source
 
@@ -229,11 +231,11 @@ def executeCommand(socket, command_to_run):
 
 ## Demo Usage - iOS Game Controller
 
-I write scripts using python to let myself play iOS games using the keyboard and mouse of my computer. Here are demos of Fortnite and PUBG Mobile.
+Here are demos of Fortnite and PUBG Mobile.
 [![Watch the video](img/pubg_mobile_demo.jpg)](https://youtu.be/XvvWHL6B3Tk)
 [![Watch the video](img/fortnite_mobile_demo.jpg)](https://youtu.be/mCkTzQJ2lC8)
 
-## Usage (expired. Will be updated soon)
+## Usage
 
 After installation, the tweak starts listening at port 6000.
 
@@ -303,6 +305,7 @@ The touch coordinate does not depend on the orientation of your device. See pict
 
 ***2. Application Running***
 
+
 Task data should be the the bundle identifier of app you want to run.
 
 For example, if you want to run "settings" app, the task data should be **"com.apple.Preferences"**. So the entire data that should be sent to the tweak is **"11com.apple.Preferences"** (11 is the task id).
@@ -311,11 +314,13 @@ For example, if you want to run "settings" app, the task data should be **"com.a
 
 ***3. System Wide Alert Box Displaying***
 
+
 An alert box consists of title and content. The title and content you want to show should be splitted by two semicolons (";;"). The alert box is system wide.
 
 For example, if you want to emulate a "low battery" alert box to trick your friend, just send "12Low Battery;;10% of battery remaining". (12 is the task id)
 
 ***4. Shell Accessing as Root***
+
 
 You can access shell with root privileges by setting the task id to 13. The task data should be the shell command you want to execute. **Caution: executing shell command as root is powerful but dangerous.**
 
