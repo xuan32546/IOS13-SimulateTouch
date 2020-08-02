@@ -233,7 +233,7 @@ I write scripts using python to let myself play iOS games using the keyboard and
 [![Watch the video](img/pubg_mobile_demo.jpg)](https://youtu.be/XvvWHL6B3Tk)
 [![Watch the video](img/fortnite_mobile_demo.jpg)](https://youtu.be/mCkTzQJ2lC8)
 
-## Usage (expired. Will be updated soon)
+## Usage
 
 After installation, the tweak starts listening at port 6000.
 
