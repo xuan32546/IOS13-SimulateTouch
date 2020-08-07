@@ -206,9 +206,11 @@ def executeCommand(socket, command_to_run):
 
 
 
-## 使用示例 - 电脑控制iOS设备玩游戏
+## 使用示例 - 远程控制模拟触摸 & 电脑控制iOS设备玩游戏
+**你可以通过本地脚本、电脑、甚至其他iOS设备来进行模拟触摸（为youtube链接，需要翻墙）**
+[![Watch the video](img/remote_control_demo.jpg)](https://youtu.be/gdSGO6rJIL4)
 
-使用键鼠控制iOS设备，模拟点击屏幕玩游戏。（为youtube链接，需要翻墙）
+**使用键鼠控制iOS设备，模拟点击屏幕玩游戏。（为youtube链接，需要翻墙）**
 [![Watch the video](img/pubg_mobile_demo.jpg)](https://youtu.be/XvvWHL6B3Tk)
 [![Watch the video](img/fortnite_mobile_demo.jpg)](https://youtu.be/mCkTzQJ2lC8)
 

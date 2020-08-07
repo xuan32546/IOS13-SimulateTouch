@@ -229,9 +229,11 @@ def executeCommand(socket, command_to_run):
     socket.send('13{}'.format(command_to_run).encode())
 ```
 
-## Demo Usage - iOS Game Controller
+## Demo Usage - Remote Controlling & iOS Game Controller
+**You can control your iOS device from local scripts, computers, or even other iOS devices!**
+[![Watch the video](img/remote_control_demo.jpg)](https://youtu.be/gdSGO6rJIL4)
 
-Here are demos of Fortnite and PUBG Mobile.
+**Here are demos of Fortnite and PUBG Mobile.**
 [![Watch the video](img/pubg_mobile_demo.jpg)](https://youtu.be/XvvWHL6B3Tk)
 [![Watch the video](img/fortnite_mobile_demo.jpg)](https://youtu.be/mCkTzQJ2lC8)
 
