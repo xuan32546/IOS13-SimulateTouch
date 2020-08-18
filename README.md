@@ -250,7 +250,7 @@ What you have to do is:
 
 **The data consists of two parts, task ID part (2 digits) and task data part.**
 
-**** 
+****
 ### Task ID format
 task id should be a 2-digit integer
 
@@ -274,7 +274,9 @@ Task id table:
 * [Application Running]()
 * [System Wide Alert Box Displaying]()
 * [Shell Accessing]()
-
+* [Crazy Tap]()
+* [Recording & Playing Back]()
+* [Run Script from Shell Output]() <------ This will be very useful.
 ***1. Touch Simulation***
 
 task data should always be decimal digits, specified below
@@ -327,6 +329,33 @@ For example, if you want to emulate a "low battery" alert box to trick your frie
 You can access shell with root privileges by setting the task id to 13. The task data should be the shell command you want to execute. **Caution: executing shell command as root is powerful but dangerous.**
 
 For example, if you want to reboot your device, just send "13reboot". If you want to respring, send "13killall SpringBoard". (13 is the task id)
+
+***5. Crazy Tap***
+
+
+This touch simulation tweak allows you to tap at most 200000+ times in a minute.
+
+The task id for crazy tap is 16. Just like the way you call functions, the data to be sent should consist of 5 parameters. Instead of using "," to seperate parameters (which you use in most of the programming languages), you should use ";;" to seperate parameters. So the data format should be: 16x;;y;;elapsetime;;countToStop;;sleepUTime.
+
+x: the x coordinate on the screen you want to tap.
+y: the y coordinate on the screen you want to tap.
+elapsetime: time to elapse (how many seconds you want it to tap)
+countToStop: the crazy time will stop as long as it clicks the {countToStop} times
+sleepUTime: how many microseconds you want it to sleep between taps. (clicks slower if you increase this value, vice versa)
+
+For example, if you want to click (400.3, 500.7) on the screen for 3 seconds, and sleep 1000 microseconds between taps, send "16400.3;;500.7;;3;;0;;1000". If you want to click (100.4, 200) on the screen for 1000 times, and sleep 1500 microseconds between taps, send "16100.4;;200;;0;1000;1500". If you want to click infinitely, send "16100.4;;200;;0;;0;;1500", and when you want to sleep, either call "notify_post("com.zjx.crazytap.stop");" if you are using objective-c, or send "60" to port 5999.
+
+**Caution: for most of the devices, you should NOT sleep less than 1500 microsconds between taps. Otherwise your device will stop responding to anything, thus there is no way to stop the tap (if you encounter this, try to respring or reboot).**
+
+***6. Recording & Playing Back***
+
+
+Comming Soon
+
+
+***7. Run Script from Shell Output**
+
+Comming Soon
 
 
 ## Contact
