@@ -1,0 +1,49 @@
+#line 1 "Common.xm"
+#include "Common.h"
+#include "Config.h"
+
+
+
+
+
+
+int getRandomNumberInt(int min, int max)
+{
+	min = abs(min);
+	max = abs(max);
+
+	if (max < min)
+	{
+		NSLog(@"### com.zjx.springboard: Max is less than min in getRandomNumberInt(). max: %d, min: %d", max, min);
+	}
+	return arc4random_uniform(abs(max-min)) + min;
+}
+
+
+
+
+
+
+
+float getRandomNumberFloat(float min, float max)
+{
+	min = abs(min);
+	max = abs(max);
+
+	if (max < min)
+	{
+		NSLog(@"### com.zjx.springboard: Max is less than min in getRandomNumberFloat(). max: %f, min: %f", max, min);
+	}
+
+	
+	return getRandomNumberInt((int)(min*10000), (int)(max*10000))/10000.0f;
+}
+
+
+
+
+NSString* getDocumentRoot()
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [NSString stringWithFormat:@"%@/" DOCUMENT_ROOT_FOLDER_NAME, [paths objectAtIndex:0]];
+}
