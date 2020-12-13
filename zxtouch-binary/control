@@ -1,0 +1,9 @@
+Package: com.zjx.zxtouch-binary
+Name: zxtouch-bin
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: no description
+Maintainer: Jason Z
+Author: Jason Z
+Section: System
+Tag: role::hacker
