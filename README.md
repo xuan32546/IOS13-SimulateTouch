@@ -12,11 +12,11 @@ Read this in other languages（send email to me if you want to help to translate
 
 ## About Open Source
 
-The source code of springboard part has been released! **I am looking for someone writting the GUI part (xcode + objective-c). If you are interested in it, please send email to jiz176@pitt.edu**
+The source code of springboard part has been released! **I am looking for someone writting the GUI part (xcode + objective-c). If you are interested in it, please send a email to jiz176@pitt.edu**
 
 ## Description
 
-This library enables you to simulate touch events on iOS 11.0 - 14 with just one line of code! All the source code will be released later.
+This library enables you to simulate touch events on iOS 11.0 - 14 with just one line of code! Currently, the repository is mainly for programmers. In the future, I will make it suitable for people who do not understand how to code.
 
 ## Features
 
@@ -46,9 +46,15 @@ This library enables you to simulate touch events on iOS 11.0 - 14 with just one
 
 ## Installation
 
+### Through Cydia:
 1. Open Cydia - Sources - Edit - Add - http://47.114.83.227 ("http" instead of "https"!!! Please double check this.)
 2. Install ***"ZJXTouchSimulation"*** tweak
 3. Done
+
+### Through Github (newest):
+1. Download **com.zjx.pccontrol_0.0.2_iphoneos-arm.deb** from **release**
+2. Copy the deb file to your iOS device
+3. SSH to your iOS device and install the deb file by typing "dpkg -i /PATH/TO/om.zjx.pccontrol_0.0.2_iphoneos-arm.deb"
 
 ## Code Example
 
@@ -226,13 +232,18 @@ def executeCommand(socket, command_to_run):
     socket.send('13{}'.format(command_to_run).encode())
 ```
 
-## Demo Usage - Remote Controlling & iOS Game Controller
-**You can control your iOS device from local scripts, computers, or even other iOS devices!**
+## Demo Usage
+**Remote Controlling:**
+You can control your iOS device from local scripts, computers, or even other iOS devices!
 [![Watch the video](img/remote_control_demo.jpg)](https://youtu.be/gdSGO6rJIL4)
 
-**Here are demos of Fortnite and PUBG Mobile.**
+**Instant Controlling:**
+Here is a demo of PUBG Mobile.
 [![Watch the video](img/pubg_mobile_demo.jpg)](https://youtu.be/XvvWHL6B3Tk)
-[![Watch the video](img/fortnite_mobile_demo.jpg)](https://youtu.be/mCkTzQJ2lC8)
+
+**Recording & Playback:**
+Record touch events and playback
+[![Watch the video](img/record_playback.jpg)](https://youtu.be/WeYMx4z8N2M)
 
 ## Usage
 
