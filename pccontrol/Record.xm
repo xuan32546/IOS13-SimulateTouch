@@ -5,6 +5,7 @@
 #include "Process.h"
 #include "Screen.h"
 #include "Window.h"
+#include "SocketServer.h"
 
 static Boolean isRecording = false;
 extern NSString *documentPath;
@@ -78,6 +79,9 @@ void startRecording()
     
     // start recording
     NSLog(@"com.zjx.springboard: start recording.");
+    
+    notifyClient((UInt8*)[scriptDirectory UTF8String]);
+
     isRecording = true;
 
     // show indicator

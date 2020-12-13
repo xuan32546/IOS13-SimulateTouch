@@ -8,7 +8,7 @@ TWEAK_NAME = pccontrol
 pccontrol_FILES = Tweak.xm SocketServer.xm Touch.xm Screen.xm Task.xm Process.xm AlertBox.xm Common.xm Record.xm Play.xm Window.xm
 pccontrol_CFLAGS = -Wno-error -Wno-module-import-in-extern-c
 pccontrol_FRAMEWORKS = UIKit
-pccontrol_ARCHS = arm64 arm64e
+pccontrol_ARCHS = arm64 arm64e armv7
 
 pccontrol_PRIVATE_FRAMEWORKS = IOKit
 pccontrol_LIBRARIES = substrate

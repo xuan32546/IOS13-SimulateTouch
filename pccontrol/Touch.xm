@@ -155,9 +155,9 @@ void performTouchFromRawData(UInt8 *eventData)
         appendChildEvent(parent, getTouchTypeFromDataArray(eventData, i), getTouchIndexFromDataArray(eventData, i), getTouchXFromDataArray(eventData, i), getTouchYFromDataArray(eventData, i));
     }
 
-    IOHIDEventSetIntegerValue(parent, 0xb0007, 0x23); // 设置parent的EventMask == 35
-    IOHIDEventSetIntegerValue(parent, 0xb0008, 0x1); // parent flags: 0xa0011 -> 0xb0011
-    IOHIDEventSetIntegerValue(parent, 0xb0009, 0x1); // 不知道设置哪里
+    IOHIDEventSetIntegerValue(parent, 0xb0007, 0x23);
+    IOHIDEventSetIntegerValue(parent, 0xb0008, 0x1);
+    IOHIDEventSetIntegerValue(parent, 0xb0009, 0x1);
 
     postIOHIDEvent(parent);
     CFRelease(parent);
