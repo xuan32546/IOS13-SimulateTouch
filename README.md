@@ -51,7 +51,7 @@ This library enables you to simulate touch events on iOS 11.0 - 14 with just one
 2. Install ***"ZJXTouchSimulation"*** tweak
 3. Done
 
-### Through Github (newest):
+### Through Github:
 1. Download **com.zjx.pccontrol_0.0.2_iphoneos-arm.deb** from **release**
 2. Copy the deb file to your iOS device
 3. SSH to your iOS device and install the deb file by typing "dpkg -i /PATH/TO/om.zjx.pccontrol_0.0.2_iphoneos-arm.deb"
