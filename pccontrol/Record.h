@@ -9,8 +9,9 @@
 
 #include <mach/mach_time.h>
 
-void startRecording();
+void startRecording(CFWriteStreamRef requestClient);
 void stopRecording();
 static void recordIOHIDEventCallback(void* target, void* refcon, IOHIDServiceRef service, IOHIDEventRef event);
+Boolean isRecordingStart();
 
 #endif

@@ -14,6 +14,6 @@ void processTask(UInt8 *buff);
 void socketServer();
 static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, void * clientCallBackInfo);
 static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
-int notifyClient(UInt8* msg);
+int notifyClient(UInt8* msg, CFWriteStreamRef client);
 
 #endif

@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  zxtouch
+
+  Created by Jason on 2020/12/31.
+  
+*/
+"prompt" = "Prompt";
+"showPopUpWindow" = "Double click volume down button in any application to show pop-up window.";

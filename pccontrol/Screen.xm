@@ -1,16 +1,20 @@
 #include "Screen.h"
 #include "Common.h"
-// device screen size
-CGFloat device_screen_width = 0;
-CGFloat device_screen_height = 0;
+
+static CGFloat device_screen_width = 0;
+static CGFloat device_screen_height = 0;
+
+@implementation Screen
+{
+    // device screen size
+}
+
 
 /*
 Get the size of the screen and set them.
 */
-void setScreenSize(CGFloat x, CGFloat y)
++ (void)setScreenSize:(CGFloat)x height:(CGFloat) y
 {
-    extern CGFloat device_screen_width;
-    extern CGFloat device_screen_height;
 	device_screen_width = x;
 	device_screen_height = y;
 
@@ -24,7 +28,7 @@ void setScreenSize(CGFloat x, CGFloat y)
 	}
 }
 
-int getScreenOrientation()
++ (int)getScreenOrientation
 {
     __block int screenOrientation = -1;
 
@@ -42,3 +46,27 @@ int getScreenOrientation()
 
     return screenOrientation;
 }
+
++ (CGFloat)getScreenWidth
+{
+    if (device_screen_width == 0)
+    {
+        NSLog(@"com.zjx.springboard: Cannot get screen width. Maybe you call [Screen getScreenWidth] before springboard getting the screen size.");
+    }
+    return device_screen_width;
+}
+
++ (CGFloat)getScreenHeight
+{
+    if (device_screen_height == 0)
+    {
+        NSLog(@"com.zjx.springboard: Cannot get screen height. Maybe you call [Screen getScreenHeight] before springboard getting the screen size.");
+    }
+    return device_screen_height;
+}
+
++ (CGFloat)getScale
+{    
+    return [[UIScreen mainScreen] scale];
+}
+@end

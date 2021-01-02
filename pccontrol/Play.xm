@@ -6,12 +6,12 @@ BOOL isPlaying = false;
 BOOL scriptPlayForceStop = false;
 UIWindow *_playIndicator;
 
-int playScript(UInt8* path)
+int playScript(UInt8* path, CFWriteStreamRef requestClient)
 {
     if (isPlaying)
     {
         NSLog(@"com.zjx.springboard: Unable to run the script. Another script is currently running.");
-        notifyClient((UInt8*)"-1 Unable to run the script. Another script is currently running.\n\r");
+        notifyClient((UInt8*)"-1 Unable to run the script. Another script is currently running.\n\r", requestClient);
         return -1;
     }
 
@@ -22,7 +22,7 @@ int playScript(UInt8* path)
     if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%s", path] isDirectory:&isDir] || !isDir)
     {
         NSLog(@"com.zjx.springboard: Unable to run the script. Path not found or it is not a directory.");
-        notifyClient((UInt8*)"-1 Unable to run the script. Path not found or it is not a directory.\n\r");
+        notifyClient((UInt8*)"-1 Unable to run the script. Path not found or it is not a directory.\n\r", requestClient);
         return -1;
     }
     // read info.plist into dictionary
@@ -30,7 +30,7 @@ int playScript(UInt8* path)
     if (![[NSFileManager defaultManager] fileExistsAtPath:infoFilePath isDirectory:&isDir])
     {
         NSLog(@"com.zjx.springboard: Unable to run the script. Info.plist not found.");
-        notifyClient((UInt8*)"-1 Unable to run the script. Info.plist not found.\n\r");
+        notifyClient((UInt8*)"-1 Unable to run the script. Info.plist not found.\n\r", requestClient);
         return -1;
     }
     NSDictionary *scriptInfo = [NSDictionary dictionaryWithContentsOfFile:infoFilePath];
@@ -62,15 +62,15 @@ int playScript(UInt8* path)
             // remove indicator
             dispatch_async(dispatch_get_main_queue(), ^{
                 _playIndicator.hidden = YES;
-                [_playIndicator release];
+                _playIndicator = nil;
             });
         }); 
 
 
     }
 
-    notifyClient((UInt8*)"0 Script currently playing.\n\r");
-
+    notifyClient((UInt8*)"0 Script currently playing.\n\r", requestClient);
+    NSLog(@"com.zjx.springboard: Script currently playing");
     return 0;
 }
 
@@ -83,6 +83,12 @@ void playFromRawFile(NSString* filePath, NSString* foregroundApp)
     bringAppForeground(foregroundApp);
     FILE *file = fopen([filePath UTF8String], "r");
 
+    if (!file)
+    {
+        NSLog(@"com.zjx.springboard: cannot open file, file: %d", file);
+        return;
+    }
+    
     char buffer[256];
     int taskType;
     int sleepTime;

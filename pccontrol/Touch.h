@@ -30,5 +30,6 @@ static void postIOHIDEvent(IOHIDEventRef event);
 static void setSenderIdCallback(void* target, void* refcon, IOHIDServiceRef service, IOHIDEventRef event);
 void startSetSenderIDCallBack();
 
+void initTouchGetScreenSize();
 
 #endif

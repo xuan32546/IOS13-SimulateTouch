@@ -4,8 +4,8 @@
 #include "Task.h"
 
 // device screen size
-extern CGFloat device_screen_width;
-extern CGFloat device_screen_height;
+static CGFloat device_screen_width = 0;
+static CGFloat device_screen_height = 0;
 
 IOHIDEventSystemClientRef ioHIDEventSystemForSenderID = NULL;
 
@@ -213,4 +213,11 @@ void startSetSenderIDCallBack()
     IOHIDEventSystemClientScheduleWithRunLoop(ioHIDEventSystemForSenderID, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDEventSystemClientRegisterEventCallback(ioHIDEventSystemForSenderID, (IOHIDEventSystemClientEventCallback)setSenderIdCallback, NULL, NULL);
     //NSLog(@"### com.zjx.springboard: screen width: %f, screen height: %f", device_screen_width, device_screen_height);
+}
+
+/*!!!!!!!!! Here, all the functions here will be moved to a class instance. This function is just for temporary use.*/
+void initTouchGetScreenSize()
+{
+    device_screen_width = [Screen getScreenWidth];
+    device_screen_height = [Screen getScreenHeight];
 }

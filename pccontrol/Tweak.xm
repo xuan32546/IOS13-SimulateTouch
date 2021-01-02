@@ -1,5 +1,6 @@
 
 #include "headers/BKUserEventTimer.h"
+#import <QuartzCore/QuartzCore.h>
 
 #include <UIKit/UIKit.h>
 #include <objc/runtime.h>
@@ -30,6 +31,8 @@
 #include "Common.h"
 #include "Screen.h"
 #include "AlertBox.h"
+#include "Popup.h"
+#include "Record.h"
 
 
 #define DEBUG_MODE
@@ -50,9 +53,6 @@
 
 
 
-@interface SBApplication : NSObject {
-}
-@end
 
 int daemonSock = -1;
 
@@ -101,7 +101,9 @@ void stopCrazyTap();
 void processTask(UInt8 *buff);
 
 
-
+// -------------
+IOHIDEventSystemClientRef ioHIDEventSystemForPopupDectect = NULL;
+PopupWindow *popupWindow;
 
 
 void stopCrazyTap()
@@ -144,17 +146,85 @@ void repoNameIsIOS13SimulateTouch()
     return;
 }
 
+/*
+Get the sender id and unregister itself.
+*/
+static CFTimeInterval startTime = 0;
+// perform some action
+static void popupWindowCallBack(void* target, void* refcon, IOHIDServiceRef service, IOHIDEventRef event)
+{
+    if (IOHIDEventGetType(event) == kIOHIDEventTypeKeyboard)
+    {
+        if (IOHIDEventGetIntegerValue(event, kIOHIDEventFieldKeyboardUsage) == 234 && IOHIDEventGetIntegerValue(event, kIOHIDEventFieldKeyboardDown) == 0)
+        {
+            CFTimeInterval currentTime = CACurrentMediaTime();
+            if (currentTime - startTime > 0.4)
+            {
+                startTime = CACurrentMediaTime();
+                return;
+            }
+
+            if (isRecordingStart())
+            {
+                stopRecording();
+                showAlertBox(@"Recording stopped", @"Your touch record has been saved. Please open zxtouch app to see your script list. This record script is located at /var/mobile/Documents/com.zjx.zxtouchsp/recording", 999);
+                [popupWindow show];
+                return;
+            }
+            if (![popupWindow isShown])
+            {
+                [popupWindow show];
+            }
+            else
+            {
+                [popupWindow hide];
+            }
+        }
+    }
+}
+
+/**
+Start the callback for setting sender id
+*/
+void startPopupListeningCallBack()
+{
+    ioHIDEventSystemForPopupDectect = IOHIDEventSystemClientCreate(kCFAllocatorDefault);
+
+    IOHIDEventSystemClientScheduleWithRunLoop(ioHIDEventSystemForPopupDectect, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+    IOHIDEventSystemClientRegisterEventCallback(ioHIDEventSystemForPopupDectect, (IOHIDEventSystemClientEventCallback)popupWindowCallBack, NULL, NULL);
+    //NSLog(@"### com.zjx.springboard: screen width: %f, screen height: %f", device_screen_width, device_screen_height);
+}
 
 
 %ctor{
+
     
+}
+
+%hook SpringBoard
+#define CGRectSetPos( r, x, y ) CGRectMake( x, y, r.size.width, r.size.height )
+
+- (void)applicationDidFinishLaunching:(id)arg1
+{
+    %orig;
+    CGFloat screen_scale = [[UIScreen mainScreen] scale];
+
+    CGFloat width = [UIScreen mainScreen].bounds.size.width * screen_scale;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height * screen_scale;
+
+    [Screen setScreenSize:(width<height?width:height) height:(width>height?width:height)];
+
+
+    NSLog(@"com.zjx.springboard: width: %f, height: %f", width, height);
+
+        
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        /*
+        
         Boolean isExpired = true;
 
 
         int requestCount = 0;
-        NSString *stringURL = @"http://47.114.83.227/internal/version_control/dylib/pccontrol/0.0.3-Md3STq6i/valid";
+        NSString *stringURL = @"http://47.114.83.227/internal/version_control/dylib/pccontrol/0.0.4-CbiZZklA/valid";
         NSURL  *url = [NSURL URLWithString:stringURL];
         while (requestCount < 50)
         {
@@ -191,11 +261,17 @@ void repoNameIsIOS13SimulateTouch()
 
             
         }
-*/
-        if (true) //!isExpired
+
+        if (!isExpired) //
         {
             //CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)stopCrazyTapCallback, CFSTR("com.zjx.crazytap.stop"), NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
+            popupWindow = [[PopupWindow alloc] init];
+            
             startSetSenderIDCallBack();
+            startPopupListeningCallBack();
+
+            // init touch screensize. Temporary put this line here. Will be removed.
+            initTouchGetScreenSize();
 
             socketServer();
         }
@@ -205,24 +281,7 @@ void repoNameIsIOS13SimulateTouch()
             showAlertBox(@"Version Outdated", @"ZJXTouchSimulation: This version of ZJXSimulateTouch library is too old and cannot work anymore. Please update it on Cydia.", 999);
         }
     });
-    
-}
 
-%hook SpringBoard
-#define CGRectSetPos( r, x, y ) CGRectMake( x, y, r.size.width, r.size.height )
-
-- (void)applicationDidFinishLaunching:(id)arg1
-{
-    %orig;
-    CGFloat screen_scale = [[UIScreen mainScreen] scale];
-
-    CGFloat width = [UIScreen mainScreen].bounds.size.width * screen_scale;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height * screen_scale;
-
-    setScreenSize(width<height?width:height, width>height?width:height);
-
-
-    NSLog(@"com.zjx.springboard: width: %f, height: %f", width, height);
 }
 %end
 

@@ -7,24 +7,36 @@
 #include "Window.h"
 #include "SocketServer.h"
 
+static CFRunLoopRef recordRunLoop = NULL;
 static Boolean isRecording = false;
 extern NSString *documentPath;
 static NSFileHandle *scriptRecordingFileHandle = NULL;
 static IOHIDEventSystemClientRef ioHIDEventSystemForRecording = NULL;
 static CFAbsoluteTime lastEventTimeStampForRecording;
 
-extern CGFloat device_screen_width;
-extern CGFloat device_screen_height;
+static CGFloat device_screen_width = 0;
+static CGFloat device_screen_height = 0;
 
 UIWindow *_recordIndicator;
 
-void startRecording()
+void startRecording(CFWriteStreamRef requestClient)
 {
    if (isRecording)
     {
         NSLog(@"com.zjx.springboard: recording already started.");
         return;
     }
+
+    // get the screen size
+    device_screen_width = [Screen getScreenWidth];
+    device_screen_height = [Screen getScreenHeight];
+
+    if (device_screen_width == 0 || device_screen_width == 0)
+    {
+        showAlertBox(@"Error", @"Unable to start recording. Cannot get screen size.", 999);
+        return;
+    }
+    
     NSError *err = nil;
 
     // get current time, we use time as the name of the script package
@@ -32,7 +44,6 @@ void startRecording()
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"yyMMddHHmmss"];
     NSString *currentDateTime = [outputFormatter stringFromDate:now];
-    [outputFormatter release];
 
     
     // generate the script directory
@@ -51,12 +62,12 @@ void startRecording()
     [infoDict setObject:[NSString stringWithFormat:@"%@.raw", currentDateTime] forKey:@"Entry"];
 
     // orientation
-    int orientation = getScreenOrientation();
+    int orientation = [Screen getScreenOrientation];
     [infoDict setObject:[@(orientation) stringValue] forKey:@"Orientation"];
 
     // front most application
-    id frontMostApp = getFrontMostApplication();
-    
+    SBApplication *frontMostApp = getFrontMostApplication();
+
     if (frontMostApp == nil)
     {
         //NSLog(@"com.zjx.springboard: foreground is springboard");
@@ -80,7 +91,7 @@ void startRecording()
     // start recording
     NSLog(@"com.zjx.springboard: start recording.");
     
-    notifyClient((UInt8*)[scriptDirectory UTF8String]);
+    notifyClient((UInt8*)[scriptDirectory UTF8String], requestClient);
 
     isRecording = true;
 
@@ -110,6 +121,8 @@ void startRecording()
     IOHIDEventSystemClientScheduleWithRunLoop(ioHIDEventSystemForRecording, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDEventSystemClientRegisterEventCallback(ioHIDEventSystemForRecording, (IOHIDEventSystemClientEventCallback)recordIOHIDEventCallback, NULL, NULL);
 
+    recordRunLoop = CFRunLoopGetCurrent();
+    CFRunLoopRun();
 }
 
 //TODO: multi-touch support! get touch index automatically, rather than set to 7.
@@ -123,7 +136,6 @@ static void recordIOHIDEventCallback(void* target, void* refcon, IOHIDServiceRef
         showAlertBox(@"Error", @"Unknown error while recording script. Recording is now stopping. Error code: 31.", 999);
         return;
     }
-
     if (IOHIDEventGetType(event) == kIOHIDEventTypeDigitizer){
         IOHIDFloat x = IOHIDEventGetFloatValue(event, (IOHIDEventField)kIOHIDEventFieldDigitizerX);
         IOHIDFloat y = IOHIDEventGetFloatValue(event, (IOHIDEventField)kIOHIDEventFieldDigitizerY);
@@ -187,7 +199,7 @@ void stopRecording()
     // remove indicator
     dispatch_async(dispatch_get_main_queue(), ^{
         _recordIndicator.hidden = YES;
-        [_recordIndicator release];
+        _recordIndicator = nil;
     });
 
     
@@ -206,7 +218,16 @@ void stopRecording()
 
         scriptRecordingFileHandle = nil;
     }
-
+    if (recordRunLoop)
+        CFRunLoopStop(recordRunLoop);
+    
+    recordRunLoop = NULL;
+    
     //set this at last
     isRecording = false;
+}
+
+Boolean isRecordingStart()
+{
+    return isRecording;
 }

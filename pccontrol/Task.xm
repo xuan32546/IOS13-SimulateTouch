@@ -4,6 +4,9 @@
 #include "AlertBox.h"
 #include "Record.h"
 #include "Play.h"
+
+extern CFWriteStreamRef writeStreamRef;
+
 /*
 get task type
 */
@@ -61,7 +64,7 @@ void processTask(UInt8 *buff)
     }
     else if (taskType == TASK_TOUCH_RECORDING_START)
     {
-        startRecording();    
+        startRecording(writeStreamRef);    
     }
     else if (taskType == TASK_TOUCH_RECORDING_STOP)
     {
@@ -69,7 +72,7 @@ void processTask(UInt8 *buff)
     }
     else if (taskType == TASK_PLAY_SCRIPT)
     {
-        playScript(eventData);
+        playScript(eventData, writeStreamRef);
     }
     else if (taskType == TASK_PLAY_SCRIPT_FORCE_STOP)
     {

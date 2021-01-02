@@ -82,9 +82,16 @@ static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, v
     }
 }
 
-int notifyClient(UInt8* msg)
+int notifyClient(UInt8* msg, CFWriteStreamRef client)
 {
-    return CFWriteStreamWrite(writeStreamRef, msg, strlen((char*)msg));
+    __block int result;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"com.zjx.springboard: client: %x", client);
+        if (client != 0)
+            result = CFWriteStreamWrite(client, msg, strlen((char*)msg));
+        result = -1;
+    });
+    return result;
 }
 
 static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info)

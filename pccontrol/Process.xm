@@ -1,4 +1,5 @@
 #include "Process.h"
+#include "Common.h"
 int (*openApp)(CFStringRef, Boolean);
 
 static void* sbServices = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ScriptListTableCell setPropertyWithPath:]:ScriptListTableCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "img">
+            </PersistentString>
+            <PersistentString
+               value = "self.iconImage">
+            </PersistentString>
+            <PersistentString
+               value = "_playButton">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

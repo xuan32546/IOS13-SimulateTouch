@@ -1,0 +1,9 @@
+/*
+  Localizable.strings
+  zxtouch
+
+  Created by Jason on 2020/12/31.
+  
+*/
+"prompt" = "提示";
+"showPopUpWindow" = "在任意应用双击音量减按钮以显示弹出窗";
