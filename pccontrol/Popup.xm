@@ -1,6 +1,7 @@
 #import "Popup.h"
 #import "Screen.h"
 #import "Record.h"
+#include "AlertBox.h"
 #import <UIKit/UIKit.h>
 
 extern CGFloat device_screen_width;
@@ -15,7 +16,7 @@ static int windowHeight = 250;
     BOOL isShown;
 }
 
--(id) init
+- (id) init
 {
     self = [super init];
     if(self)
@@ -97,7 +98,12 @@ static int windowHeight = 250;
 - (void) recordingStart {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self hide];
-        startRecording(0);
+        NSError *err = nil;
+        startRecording(0, &err);
+        if (err)
+        {
+            showAlertBox(@"Error", [NSString stringWithFormat:@"Unable to start recording. Reason: %@",[err localizedDescription]], 999);
+        }
     });
 }
 

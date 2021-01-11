@@ -13,8 +13,11 @@
 #define TASK_USLEEP 18
 #define TASK_PLAY_SCRIPT 19
 #define TASK_PLAY_SCRIPT_FORCE_STOP 20
+#define TASK_TEMPLATE_MATCH 21
+#define TASK_SHOW_TOAST 22
+#define TASK_TEST 99
 
-void processTask(UInt8 *buff);
+void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef = NULL);
 static int getTaskType(UInt8* dataArray);
 
 #endif

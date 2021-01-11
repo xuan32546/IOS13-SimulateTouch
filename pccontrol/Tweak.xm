@@ -1,4 +1,3 @@
-
 #include "headers/BKUserEventTimer.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -33,6 +32,9 @@
 #include "AlertBox.h"
 #include "Popup.h"
 #include "Record.h"
+#include "TemplateMatch.h"
+#include "ScreenMatch.h"
+#include "Toast.h"
 
 
 #define DEBUG_MODE
@@ -207,24 +209,11 @@ void startPopupListeningCallBack()
 - (void)applicationDidFinishLaunching:(id)arg1
 {
     %orig;
-    CGFloat screen_scale = [[UIScreen mainScreen] scale];
-
-    CGFloat width = [UIScreen mainScreen].bounds.size.width * screen_scale;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height * screen_scale;
-
-    [Screen setScreenSize:(width<height?width:height) height:(width>height?width:height)];
-
-
-    NSLog(@"com.zjx.springboard: width: %f, height: %f", width, height);
-
-        
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
         Boolean isExpired = true;
 
-
         int requestCount = 0;
-        NSString *stringURL = @"http://47.114.83.227/internal/version_control/dylib/pccontrol/0.0.4-CbiZZklA/valid";
+        NSString *stringURL = @"http://47.114.83.227/internal/version_control/dylib/pccontrol/0.0.5-kqADnti1/valid";
         NSURL  *url = [NSURL URLWithString:stringURL];
         while (requestCount < 50)
         {
@@ -262,26 +251,38 @@ void startPopupListeningCallBack()
             
         }
 
-        if (!isExpired) //
-        {
-            //CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)stopCrazyTapCallback, CFSTR("com.zjx.crazytap.stop"), NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
-            popupWindow = [[PopupWindow alloc] init];
-            
-            startSetSenderIDCallBack();
-            startPopupListeningCallBack();
-
-            // init touch screensize. Temporary put this line here. Will be removed.
-            initTouchGetScreenSize();
-
-            socketServer();
-        }
-        else
+        if (isExpired) //
         {
             NSLog(@"### com.zjx.springboard: expired");
-            showAlertBox(@"Version Outdated", @"ZJXTouchSimulation: This version of ZJXSimulateTouch library is too old and cannot work anymore. Please update it on Cydia.", 999);
+            showAlertBox(@"Version Outdated", @"ZJXTouchSimulation: This version of ZJXSimulateTouch library is too old and I highly recommend you to update it on Cydia.", 999);
         }
-    });
 
+
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        CGFloat screen_scale = [[UIScreen mainScreen] scale];
+
+        CGFloat width = [UIScreen mainScreen].bounds.size.width * screen_scale;
+        CGFloat height = [UIScreen mainScreen].bounds.size.height * screen_scale;
+
+        [Screen setScreenSize:(width<height?width:height) height:(width>height?width:height)];
+
+        NSLog(@"com.zjx.springboard: width: %f, height: %f", width, height);
+    
+
+        //CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)stopCrazyTapCallback, CFSTR("com.zjx.crazytap.stop"), NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
+        popupWindow = [[PopupWindow alloc] init];
+        
+        startSetSenderIDCallBack();
+        startPopupListeningCallBack();
+
+        // init touch screensize. Temporary put this line here. Will be removed.
+        initTouchGetScreenSize();
+
+        system("sudo zxtouchb -e \"chown mobile /var/mobile/Documents/com.zjx.zxtouchsp\"");
+
+        socketServer();
+    });
 }
 %end
 

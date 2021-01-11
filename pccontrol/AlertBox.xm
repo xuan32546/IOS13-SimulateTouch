@@ -1,9 +1,15 @@
 #include "AlertBox.h"
+#include "SocketServer.h"
 
-void showAlertBoxFromRawData(UInt8 *eventData)
+void showAlertBoxFromRawData(UInt8 *eventData, NSError **error)
 {
     NSString *alertData = [NSString stringWithFormat:@"%s", eventData];
     NSArray *alertDataArray = [alertData componentsSeparatedByString:@";;"];
+    if ([alertDataArray count] < 2)
+    {
+        *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unable to show alert box. The socket format should be [title];;[content].\r\n"}];
+        return;
+    }
     showAlertBox(alertDataArray[0], alertDataArray[1], 999);
 }
 

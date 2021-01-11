@@ -4,16 +4,16 @@
 #include "SocketServer.h"
 #include "Task.h"
 
+
 CFSocketRef socketRef;
 CFWriteStreamRef writeStreamRef = NULL;
 CFReadStreamRef readStreamRef = NULL;
-
+static NSMutableDictionary *socketClients = NULL;
 // Reference: https://www.jianshu.com/p/9353105a9129
 
 void socketServer()
 {
     @autoreleasepool {
-
         CFSocketRef _socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, TCPServerAcceptCallBack, NULL);
         
         if (_socket == NULL) {
@@ -46,6 +46,8 @@ void socketServer()
             _socket = NULL;
         }
         
+        socketClients = [[NSMutableDictionary alloc] init];
+
         NSLog(@"### com.zjx.springboard: connection waiting");
         CFRunLoopRef cfrunLoop = CFRunLoopGetCurrent();
         CFRunLoopSourceRef source = CFSocketCreateRunLoopSource(kCFAllocatorDefault, _socket, 0);
@@ -65,15 +67,17 @@ static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, v
 	memset(readDataBuff, 0, sizeof(readDataBuff));
     
     CFIndex hasRead = CFReadStreamRead(readStream, readDataBuff, sizeof(readDataBuff));
-    
 
     if (hasRead > 0) {
-
         //don't know how it works, copied from https://www.educative.io/edpresso/splitting-a-string-using-strtok-in-c
         
         for(char * charSep = strtok((char*)readDataBuff, "\n\r"); charSep != NULL; charSep = strtok(NULL, "\n\r")) {
             UInt8 *buff = (UInt8*)charSep;
-            processTask(buff);
+            id temp = [socketClients objectForKey:@((long)readStreamRef)];
+            if (temp != nil)
+                processTask(buff, (CFWriteStreamRef)[temp longValue]);
+            else
+                processTask(buff);
             //NSLog(@"com.zjx.springboard: get data: %s", buff);
         }
         //NSLog(@"com.zjx.springboard: return value: %d, ref: %d", CFWriteStreamWrite(writeStreamRef, (UInt8 *)"str", 3), writeStreamRef);
@@ -81,14 +85,15 @@ static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, v
 		//countsss++;
     }
 }
-
 int notifyClient(UInt8* msg, CFWriteStreamRef client)
 {
     __block int result;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSLog(@"com.zjx.springboard: client: %x", client);
         if (client != 0)
+        {
             result = CFWriteStreamWrite(client, msg, strlen((char*)msg));
+        }
         result = -1;
     });
     return result;
@@ -103,7 +108,6 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
         uint8_t name[SOCK_MAXADDRLEN];
         socklen_t namelen = sizeof(name);
         
-
         if (getpeername(nativeSocketHandle, (struct sockaddr *)name, &namelen) != 0) {
             
             NSLog(@"### com.zjx.springboard: ++++++++getpeername+++++++");
@@ -112,7 +116,6 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
         }
         
         struct sockaddr_in *addr_in = (struct sockaddr_in *)name;
-        
         NSLog(@"### com.zjx.springboard: connection starts", inet_ntoa(addr_in-> sin_addr), addr_in->sin_port);
         
         readStreamRef = NULL;
@@ -132,11 +135,11 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
             }
             
             CFReadStreamScheduleWithRunLoop(readStreamRef, CFRunLoopGetCurrent(), kCFRunLoopCommonModes);
-			
+
+			[socketClients setObject:@((long)writeStreamRef) forKey:@((long)readStreamRef)];
             //const char *str = "+++welcome++++\n";
             
-            //CFWriteStreamWrite(writeStreamRef, (UInt8 *)str, strlen(str) + 1);
-			
+            //CFWriteStreamWrite(writeStreamRef, (UInt8 *)str, strlen(str) + 1);	
         }
         else
         {

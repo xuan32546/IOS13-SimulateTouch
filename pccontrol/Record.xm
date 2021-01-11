@@ -19,11 +19,12 @@ static CGFloat device_screen_height = 0;
 
 UIWindow *_recordIndicator;
 
-void startRecording(CFWriteStreamRef requestClient)
+void startRecording(CFWriteStreamRef requestClient, NSError **error)
 {
    if (isRecording)
     {
-        NSLog(@"com.zjx.springboard: recording already started.");
+        NSLog(@"com.zjx.springboard: recording has already started.");
+        *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Recording has already started.\r\n"}];
         return;
     }
 
@@ -33,6 +34,7 @@ void startRecording(CFWriteStreamRef requestClient)
 
     if (device_screen_width == 0 || device_screen_width == 0)
     {
+        *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unable to start recording. Cannot get screen size.\r\n"}];
         showAlertBox(@"Error", @"Unable to start recording. Cannot get screen size.", 999);
         return;
     }
@@ -53,6 +55,7 @@ void startRecording(CFWriteStreamRef requestClient)
     if (err)
     {
         NSLog(@"com.zjx.springboard: create script recording folder error. Error: %@", err);
+        *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Create script recording folder error.\r\n"}];
         showAlertBox(@"Error", [NSString stringWithFormat:@"Cannot create script. Error info: %@", err], 999);
         return;
     }
@@ -222,7 +225,7 @@ void stopRecording()
         CFRunLoopStop(recordRunLoop);
     
     recordRunLoop = NULL;
-    
+
     //set this at last
     isRecording = false;
 }
