@@ -16,7 +16,7 @@ def pick_color(x, y):
     print(s.recv(1024))
 
 s = socket.socket()
-s.connect(("192.168.0.6", 6000))  # connect to the tweak
+s.connect(("127.0.0.1", 6000))  # connect to the tweak
 time.sleep(0.1)  # please sleep after connection.
 
 s.send("223;;Return to home screen;;2".encode())
