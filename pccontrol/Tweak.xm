@@ -35,6 +35,7 @@
 #include "TemplateMatch.h"
 #include "ScreenMatch.h"
 #include "Toast.h"
+#include "ColorPicker.h"
 
 
 #define DEBUG_MODE
@@ -276,11 +277,12 @@ void startPopupListeningCallBack()
         startSetSenderIDCallBack();
         startPopupListeningCallBack();
 
-        // init touch screensize. Temporary put this line here. Will be removed.
+        // init touch screensize. Temporarily put this line here. Will be removed.
         initTouchGetScreenSize();
 
-        system("sudo zxtouchb -e \"chown mobile /var/mobile/Documents/com.zjx.zxtouchsp\"");
+        system("sudo zxtouchb -e \"chown -R mobile:mobile /var/mobile/Documents/com.zjx.zxtouchsp\"");
 
+        
         socketServer();
     });
 }

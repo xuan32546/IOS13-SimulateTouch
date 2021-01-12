@@ -50,13 +50,15 @@ using namespace std;
 }
 
 - (CGRect)templateMatchWithPath:(NSString*)imgPath templatePath:(NSString*)templatePath {
-    Mat image = imread("/Library/Application Support/zxtouch/settings.jpg", CV_LOAD_IMAGE_GRAYSCALE); //[imgPath UTF8String]
-    Mat templ = imread("/Library/Application Support/zxtouch/wifi.jpg", CV_LOAD_IMAGE_GRAYSCALE); //[templatePath UTF8String]
+    Mat image = imread([imgPath UTF8String], CV_LOAD_IMAGE_GRAYSCALE); //[imgPath UTF8String]
+    Mat templ = imread([templatePath UTF8String], CV_LOAD_IMAGE_GRAYSCALE); //[templatePath UTF8String]
     return [self matchWithMat:image andTemplate:templ];
 }
 
+//uncompleted
 - (CGRect)templateMatchWithUIImage:(UIImage*)img template:(UIImage*)templ {
-    return [self matchWithMat:[self cvMatFromUIImage:img] andTemplate:[self cvMatFromUIImage:templ]];
+    //return [self matchWithMat:[self cvMatFromUIImage:img] andTemplate:[self cvMatFromUIImage:templ]];
+    return CGRect();
 }
 
 //调用OpenCV进行匹配
@@ -126,7 +128,7 @@ using namespace std;
     return img;
 }
 
-//UIImage转为OpenCV矩阵
+//UIImage转为OpenCV矩阵 BUGS exists for color picker!!! Do NOT USE THIS
 - (Mat)cvMatFromUIImage:(UIImage *)image {
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
     CGFloat cols = image.size.width;

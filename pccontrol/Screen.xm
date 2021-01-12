@@ -69,4 +69,21 @@ Get the size of the screen and set them.
 {    
     return [[UIScreen mainScreen] scale];
 }
+
+OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
++ (NSString*)screenShot
+{
+     UIImage *screenImage = _UICreateScreenUIImage();
+     // For debugging purpose
+    // Create path.
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"screenshot.jpg"];
+
+    // Save image.
+    [UIImageJPEGRepresentation(screenImage, 0.7) writeToFile:filePath atomically:true];
+
+    NSLog(@"com.zjx.springboard: screenshot path: %@", filePath);
+
+    return filePath;
+}
 @end

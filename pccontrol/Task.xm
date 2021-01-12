@@ -7,6 +7,7 @@
 #include "SocketServer.h"
 #include "ScreenMatch.h"
 #include "Toast.h"
+#include "ColorPicker.h"
 #import <mach/mach.h>
 
 
@@ -120,7 +121,7 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
         }
         else
         {
-            notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%.2f;;%.2f;;%.2f;;%.2f;;\r\n", 
+            notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%.2f;;%.2f;;%.2f;;%.2f\r\n", 
             result.origin.x, result.origin.y, result.size.width, result.size.height] UTF8String], writeStreamRef);
         }
     }
@@ -135,6 +136,19 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
         else
         {
             notifyClient((UInt8*)"0\r\n", writeStreamRef);
+        }
+    }
+    else if (taskType == TASK_COLOR_PICKER)
+    {
+        NSError *err = nil;
+        NSDictionary *rgb = getRGBFromRawData(eventData, &err);
+        if (err)
+        {
+            notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
+        }
+        else
+        {
+            notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%d;;%d;;%d\r\n", [rgb[@"red"] intValue], [rgb[@"green"] intValue], [rgb[@"blue"] intValue]] UTF8String], writeStreamRef);
         }
     }
     else if (taskType == TASK_TEST)

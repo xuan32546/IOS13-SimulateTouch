@@ -11,6 +11,7 @@
 + (CGFloat)getScreenWidth;
 + (CGFloat)getScreenHeight;
 + (CGFloat)getScale;
++ (NSString*)screenShot;
 
 @end
 

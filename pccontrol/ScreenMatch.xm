@@ -1,5 +1,6 @@
 #include "ScreenMatch.h"
 #include "TemplateMatch.h"
+#include "Screen.h"
 
 CGRect screenMatchFromRawData(UInt8 *eventData, NSError **error)
 {
@@ -24,19 +25,7 @@ CGRect screenMatchFromRawData(UInt8 *eventData, NSError **error)
 
 @implementation ScreenMatch
 
-OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
 + (CGRect)matchCurrentScreenWithTemplate:(NSString*)templatePath maxTryTimes:(int)mtt acceptableValue:(float)av scaleRation:(float)sr error:(NSError**)err {
-    UIImage *screenImage = _UICreateScreenUIImage();
-     // For debugging purpose
-    // Create path.
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"screenshot.jpg"];
-
-    // Save image.
-    [UIImageJPEGRepresentation(screenImage, 0.7) writeToFile:filePath atomically:true];
-
-    NSLog(@"com.zjx.springboard: image path: %@", filePath);
-    
     if (![[NSFileManager defaultManager] fileExistsAtPath:templatePath])
     {
         *err = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"-1;;Template image not found for image matching. Template path: %@\r\n", templatePath]}];
@@ -46,7 +35,7 @@ OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
     [templateMatch setAcceptableValue:av];
     [templateMatch setMaxTryTimes:mtt];
     [templateMatch setScaleRation:sr];
-    return [templateMatch templateMatchWithUIImage:[UIImage imageWithContentsOfFile:@"/var/mobile/Documents/screenshot.jpg"] template:[UIImage imageWithContentsOfFile:templatePath]];
+    return [templateMatch templateMatchWithPath:[Screen screenShot] templatePath:templatePath];
 }
 
 
