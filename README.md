@@ -48,7 +48,7 @@ This library enables you to simulate touch events on iOS 11.0 - 14 with just one
 
 ### Through Cydia:
 1. Open Cydia - Sources - Edit - Add - http://47.114.83.227 ("http" instead of "https"!!! Please double check this.)
-2. Install ***"ZJXTouchSimulation"*** tweak
+2. Install ***"ZXTouch"*** tweak
 3. Done
 
 ### Through Github:
