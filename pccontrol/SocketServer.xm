@@ -71,7 +71,7 @@ static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, v
     if (hasRead > 0) {
         //don't know how it works, copied from https://www.educative.io/edpresso/splitting-a-string-using-strtok-in-c
         
-        for(char * charSep = strtok((char*)readDataBuff, "\n\r"); charSep != NULL; charSep = strtok(NULL, "\n\r")) {
+        for(char * charSep = strtok((char*)readDataBuff, "\r\n"); charSep != NULL; charSep = strtok(NULL, "\r\n")) {
             UInt8 *buff = (UInt8*)charSep;
             id temp = [socketClients objectForKey:@((long)readStreamRef)];
             if (temp != nil)

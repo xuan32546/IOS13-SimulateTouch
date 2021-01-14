@@ -247,8 +247,6 @@ void startPopupListeningCallBack()
                 isExpired = false;
                 break;
             }
-
-
             
         }
 
@@ -266,15 +264,12 @@ void startPopupListeningCallBack()
         CGFloat width = [UIScreen mainScreen].bounds.size.width * screen_scale;
         CGFloat height = [UIScreen mainScreen].bounds.size.height * screen_scale;
 
-        [Screen setScreenSize:(width<height?width:height) height:(width>height?width:height)];
-
-        NSLog(@"com.zjx.springboard: width: %f, height: %f", width, height);
-    
+        [Screen setScreenSize:(width<height?width:height) height:(width>height?width:height)];    
 
         //CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)stopCrazyTapCallback, CFSTR("com.zjx.crazytap.stop"), NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
         popupWindow = [[PopupWindow alloc] init];
         
-        startSetSenderIDCallBack();
+        initSenderId();
         startPopupListeningCallBack();
 
         // init touch screensize. Temporarily put this line here. Will be removed.
@@ -287,4 +282,3 @@ void startPopupListeningCallBack()
     });
 }
 %end
-

@@ -65,7 +65,7 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
 
         CGFloat scale = [Screen getScale];
 
-        UIFont * font = [UIFont systemFontOfSize:23 weight:UIFontWeightLight];
+        UIFont * font = [UIFont systemFontOfSize:(int)(0.015*screenWidth) weight:UIFontWeightLight];
         CGSize contentSize = [content sizeWithFont:font];
 
         windowWidth = contentSize.width + 40;

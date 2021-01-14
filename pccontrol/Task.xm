@@ -8,7 +8,9 @@
 #include "ScreenMatch.h"
 #include "Toast.h"
 #include "ColorPicker.h"
+#include "UIKeyboard.h"
 #import <mach/mach.h>
+#include <Foundation/NSDistributedNotificationCenter.h>
 
 
 /*
@@ -151,10 +153,21 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
             notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%d;;%d;;%d\r\n", [rgb[@"red"] intValue], [rgb[@"green"] intValue], [rgb[@"blue"] intValue]] UTF8String], writeStreamRef);
         }
     }
+    else if (taskType == TASK_TEXT_INPUT)
+    {
+        NSError *err = nil;
+        inputTextFromRawData(eventData,  &err);
+        if (err)
+        {
+            notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
+        }
+        else
+        {
+            notifyClient((UInt8*)"0;;Successfully notify the appdelegate tweak. But not sure whether it works...\r\n", writeStreamRef);
+        }
+    }
     else if (taskType == TASK_TEST)
     {
         //notifyClient((UInt8*)"tttttttttttttttttttttttttttttttt", writeStreamRef);
-        Toast *t = [[Toast alloc] init];
-        [t show];
     }
 }

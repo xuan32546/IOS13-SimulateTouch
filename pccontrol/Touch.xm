@@ -1,7 +1,11 @@
 #include "Touch.h"
 #include "Common.h"
 #include "Screen.h"
+#include "AlertBox.h"
 #include "Task.h"
+
+#define TOUCH_SENDER_ID_PLIST_DIR @"/var/mobile/Library/com.zjx.zxtouchsp/"
+#define TOUCH_SENDER_ID_PLIST_FILE_NAME @"senderid.plist"
 
 // device screen size
 static CGFloat device_screen_width = 0;
@@ -11,8 +15,6 @@ IOHIDEventSystemClientRef ioHIDEventSystemForSenderID = NULL;
 
 // touch event sender id
 unsigned long long int senderID = 0x0;
-
-
 
 /*
 get count from data array by socket
@@ -182,6 +184,52 @@ static void postIOHIDEvent(IOHIDEventRef event)
     IOHIDEventSystemClientDispatchEvent(ioSystemClient, event);
 }
 
+/*
+Get sender id. If the device has not been rebooted, read senderid from file. Otherwise start set sender id callback
+*/
+void initSenderId()
+{
+    NSString *plistPath = [NSString stringWithFormat:@"%@%@", TOUCH_SENDER_ID_PLIST_DIR, TOUCH_SENDER_ID_PLIST_FILE_NAME];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        // check start time
+        NSInteger currentTime = [[NSDate date] timeIntervalSince1970];
+        NSInteger timeSinceReboot = [NSProcessInfo processInfo].systemUptime;
+        NSInteger thisRebootTime = currentTime - timeSinceReboot;
+        NSLog(@"com.zjx.springboard: currentTime: %ld, time since reboot: %ld, last reboot time: %ld", currentTime, timeSinceReboot, thisRebootTime);
+        
+        NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+        NSInteger lastRebootTime = [data[@"lastReboot"] longValue];
+        
+        if (abs(lastRebootTime - thisRebootTime) <= 3)
+        {
+            senderID = [data[@"senderID"] longLongValue];
+            NSLog(@"com.zjx.springboard: since the device has not been rebooted. Read sender id from the file. SenderID get: %qX", senderID);
+            return;
+        }
+    }
+    
+    NSLog(@"com.zjx.springboard: cannot read the sender id from file because the file doesn't exist or the device has restarted. Start set senderid callback.");
+    startSetSenderIDCallBack();
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // I know the code here is bad here, change this later.
+        while (true)
+        {
+            [NSThread sleepForTimeInterval:2.0f];
+
+            if (ioHIDEventSystemForSenderID != NULL && senderID != 0x0) // unregister the callback
+            {
+                IOHIDEventSystemClientUnregisterEventCallback(ioHIDEventSystemForSenderID);
+                IOHIDEventSystemClientUnscheduleWithRunLoop(ioHIDEventSystemForSenderID, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+                NSLog(@"com.zjx.springboard: unregister get sender id callback!");
+                break;
+            }
+        }
+    });
+
+}
+
 
 /*
 Get the sender id and unregister itself.
@@ -189,16 +237,26 @@ Get the sender id and unregister itself.
 static void setSenderIdCallback(void* target, void* refcon, IOHIDServiceRef service, IOHIDEventRef event)
 {
     if (IOHIDEventGetType(event) == kIOHIDEventTypeDigitizer){
-		if (senderID == 0)
+		if (senderID == 0x0)
         {
+            NSError *err = nil;
+            [[NSFileManager defaultManager] createDirectoryAtPath:TOUCH_SENDER_ID_PLIST_DIR withIntermediateDirectories:YES attributes:nil error:&err];
+            if (err)
+            {
+                NSLog(@"Cannot save senderid for future use, but the tweak should work fine. Error: %@", err);
+            }
+
 			senderID = IOHIDEventGetSenderID(event);
-            NSLog(@"### com.zjx.springboard: sender id is: %qX", senderID);
-        }
-        if (ioHIDEventSystemForSenderID) // unregister the callback
-        {
-            IOHIDEventSystemClientUnregisterEventCallback(ioHIDEventSystemForSenderID);
-            IOHIDEventSystemClientUnscheduleWithRunLoop(ioHIDEventSystemForSenderID, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-            ioHIDEventSystemForSenderID = NULL;
+
+            NSInteger currentTime = [[NSDate date] timeIntervalSince1970];
+            NSInteger timeSinceReboot = [NSProcessInfo processInfo].systemUptime;
+            NSInteger rebootTime = currentTime - timeSinceReboot;
+
+            NSDictionary *dict = @{@"lastReboot":@(rebootTime), @"senderID": @(senderID)};
+
+            [dict writeToFile:[NSString stringWithFormat:@"%@%@", TOUCH_SENDER_ID_PLIST_DIR, TOUCH_SENDER_ID_PLIST_FILE_NAME] atomically: YES];
+
+            NSLog(@"com.zjx.springboard: sender id is: %qX", senderID);
         }
     }
 }
@@ -209,10 +267,8 @@ Start the callback for setting sender id
 void startSetSenderIDCallBack()
 {
     ioHIDEventSystemForSenderID = IOHIDEventSystemClientCreate(kCFAllocatorDefault);
-
     IOHIDEventSystemClientScheduleWithRunLoop(ioHIDEventSystemForSenderID, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDEventSystemClientRegisterEventCallback(ioHIDEventSystemForSenderID, (IOHIDEventSystemClientEventCallback)setSenderIdCallback, NULL, NULL);
-    //NSLog(@"### com.zjx.springboard: screen width: %f, screen height: %f", device_screen_width, device_screen_height);
 }
 
 /*!!!!!!!!! Here, all the functions here will be moved to a class instance. This function is just for temporary use.*/
