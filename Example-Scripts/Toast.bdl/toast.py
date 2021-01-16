@@ -1,20 +1,23 @@
-import socket
+
+
+from zxtouch.client import zxtouch
+from zxtouch.toasttypes import *
 import time
 
-s = socket.socket()
-s.connect(("127.0.0.1", 6000))  # connect to the tweak
-time.sleep(0.1)  # please sleep after connection.
+device = zxtouch("127.0.0.1")
 
-s.send("221;;This is an error message toast;;1.5\r\n".encode())
-print(s.recv(1024))
+device.show_toast(TOAST_SUCCESS, "This is an success message toast", 1.5)
 time.sleep(1.5)
-s.send("222;;This is a warning message toast;;1.5\r\n".encode())
-print(s.recv(1024))
-time.sleep(1.5)
-s.send("223;;This is a normal message toast;;1.5\r\n".encode())
-print(s.recv(1024))
-time.sleep(1.5)
-s.send("224;;This is a success message toast;;1.5\r\n".encode())
-print(s.recv(1024))
 
-s.close() 
+device.show_toast(TOAST_ERROR, "This is an error message toast", 1.5)
+time.sleep(1.5)
+
+device.show_toast(TOAST_WARNING, "This is an warning message toast", 1.5)
+time.sleep(1.5)
+
+device.show_toast(TOAST_MESSAGE, "This is an normal message toast", 1.5)
+time.sleep(1.5)
+
+device.show_toast(TOAST_ERROR, "Toast can also be shown at bottom", 3, TOAST_BUTTOM)
+
+device.disconnect()

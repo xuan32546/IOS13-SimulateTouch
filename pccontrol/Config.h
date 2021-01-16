@@ -1,2 +1,3 @@
-#define DOCUMENT_ROOT_FOLDER_NAME "com.zjx.zxtouchsp"
+#define DOCUMENT_ROOT_FOLDER_NAME "ZXTouch"
 #define RECORDING_FILE_FOLDER_NAME "recording"
+#define SCRIPT_FOLDER_NAME "scripts"

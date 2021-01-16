@@ -1,6 +1,4 @@
 #include <stdio.h>
-
-#include <stdio.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
@@ -45,7 +43,8 @@ int getSpringboardSocket() {
 int main(int argc, char *argv[], char *envp[]) {
     if (argc < 2)
     {
-        NSLog(@"com.zjx.zxtouchb: usage: zxtouchd [parameter] [...]");
+        NSLog(@"com.zjx.zxtouchb: usage: zxtouchd task [...]");
+        printf("com.zjx.zxtouchb: usage: zxtouchd task [...]");
         return 0;
     }
     
@@ -107,6 +106,7 @@ int executeCommand()
     
     return system([[NSString stringWithFormat:@"%@", parameterArr[2]] UTF8String]);
 }
+
 
 int playBackFromRawFile()
 {

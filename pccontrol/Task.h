@@ -17,6 +17,9 @@
 #define TASK_SHOW_TOAST 22
 #define TASK_COLOR_PICKER 23
 #define TASK_TEXT_INPUT 24
+#define TASK_GET_DEVICE_INFO 25
+
+
 #define TASK_TEST 99
 
 void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef = NULL);

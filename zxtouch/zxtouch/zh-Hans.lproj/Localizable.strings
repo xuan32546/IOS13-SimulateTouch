@@ -7,3 +7,16 @@
 */
 "prompt" = "提示";
 "showPopUpWindow" = "在任意应用双击音量减按钮以显示弹出窗";
+"error" = "错误";
+"createFolderPathNotSet" = "无法创建文件夹。路径为空。可以在Github提交Issue或者在Discord上联系我";
+"createFolderEmptyName" = "请输入文件夹名";
+"createFolderAlreadyExists" = "文件夹已经存在，请输入其他文件夹名";
+"createFolderFailed" = "无法创建文件夹，原因: ";
+
+"createScriptPathNotSet" = "无法创建脚本。路径为空。可以在Github提交Issue或者在Discord上联系我";
+"createScriptAlreadyExists" = "脚本已经存在，请输入其他脚本名";
+"createScriptFailed" = "无法创建脚本，原因: ";
+"createScriptEmptyName" = "请输入脚本名";
+
+"newFeatures" = "新特性";
+"006features" = "1. 添加了python模块支持 （具体请看示例脚本）\n2. Toasts现在支持不同位置了\n3. 添加了日志与新建脚本按钮\n4. UI更新\n5. 更新了所有示例脚本\n6. 修复bug";

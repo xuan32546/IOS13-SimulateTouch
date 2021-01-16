@@ -10,6 +10,11 @@
 		961098F5259E1DE500919CA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 961098F7259E1DE500919CA1 /* Localizable.strings */; };
 		9619F9CF25831EE4001D7EA9 /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9619F9CE25831EE4001D7EA9 /* Socket.m */; };
 		9649DA762587A4AD00CD3ADE /* ScriptListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649DA752587A4AD00CD3ADE /* ScriptListViewController.m */; };
+		965E8C8E25B2BEFD00FDD35C /* AdderPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */; };
+		965E8C9525B31DD100FDD35C /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C9425B31DD100FDD35C /* Util.m */; };
+		965E8CC225B3682C00FDD35C /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8CC025B3682C00FDD35C /* LogViewController.m */; };
+		965E8CCA25B36A0F00FDD35C /* LogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965E8CCC25B36A0F00FDD35C /* LogViewController.xib */; };
+		965E8CD425B36A5F00FDD35C /* AdderPopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965E8CD625B36A5F00FDD35C /* AdderPopOverViewController.xib */; };
 		96A2BC382587C20A008DE91F /* ScriptListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A2BC372587C20A008DE91F /* ScriptListTableCell.m */; };
 		96D7E5A32581F99900B39A81 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5A22581F99900B39A81 /* AppDelegate.m */; };
 		96D7E5A62581F99900B39A81 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5A52581F99900B39A81 /* SceneDelegate.m */; };
@@ -48,6 +53,17 @@
 		9619F9CE25831EE4001D7EA9 /* Socket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
 		9649DA742587A4AD00CD3ADE /* ScriptListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptListViewController.h; sourceTree = "<group>"; };
 		9649DA752587A4AD00CD3ADE /* ScriptListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptListViewController.m; sourceTree = "<group>"; };
+		965E8C6D25B2A9DA00FDD35C /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		965E8C8B25B2BEFD00FDD35C /* AdderPopOverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdderPopOverViewController.h; sourceTree = "<group>"; };
+		965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdderPopOverViewController.m; sourceTree = "<group>"; };
+		965E8C9325B31DD100FDD35C /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		965E8C9425B31DD100FDD35C /* Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		965E8CBF25B3682C00FDD35C /* LogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		965E8CC025B3682C00FDD35C /* LogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
+		965E8CCB25B36A0F00FDD35C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/LogViewController.xib"; sourceTree = "<group>"; };
+		965E8CD025B36A4500FDD35C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LogViewController.xib; sourceTree = "<group>"; };
+		965E8CD525B36A5F00FDD35C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/AdderPopOverViewController.xib"; sourceTree = "<group>"; };
+		965E8CDA25B36A6500FDD35C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AdderPopOverViewController.xib; sourceTree = "<group>"; };
 		96A2BC362587C20A008DE91F /* ScriptListTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptListTableCell.h; sourceTree = "<group>"; };
 		96A2BC372587C20A008DE91F /* ScriptListTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptListTableCell.m; sourceTree = "<group>"; };
 		96D7E59E2581F99900B39A81 /* zxtouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zxtouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +111,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		965E8C8725B2BEB000FDD35C /* ScriptAdder */ = {
+			isa = PBXGroup;
+			children = (
+				965E8C8B25B2BEFD00FDD35C /* AdderPopOverViewController.h */,
+				965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */,
+				965E8CD625B36A5F00FDD35C /* AdderPopOverViewController.xib */,
+			);
+			path = ScriptAdder;
+			sourceTree = "<group>";
+		};
 		96D7E5952581F99900B39A81 = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +144,11 @@
 		96D7E5A02581F99900B39A81 /* zxtouch */ = {
 			isa = PBXGroup;
 			children = (
+				965E8C8725B2BEB000FDD35C /* ScriptAdder */,
 				96D7E5AD2581F99B00B39A81 /* Assets.xcassets */,
+				965E8C6D25B2A9DA00FDD35C /* Config.h */,
+				965E8C9325B31DD100FDD35C /* Util.h */,
+				965E8C9425B31DD100FDD35C /* Util.m */,
 				96D7E5A12581F99900B39A81 /* AppDelegate.h */,
 				96D7E5A22581F99900B39A81 /* AppDelegate.m */,
 				96D7E5A42581F99900B39A81 /* SceneDelegate.h */,
@@ -135,6 +165,9 @@
 				96A2BC372587C20A008DE91F /* ScriptListTableCell.m */,
 				96F4696A258B24DA0052D78D /* ScriptEditorViewController.h */,
 				96F4696B258B24DA0052D78D /* ScriptEditorViewController.m */,
+				965E8CBF25B3682C00FDD35C /* LogViewController.h */,
+				965E8CC025B3682C00FDD35C /* LogViewController.m */,
+				965E8CCC25B36A0F00FDD35C /* LogViewController.xib */,
 				961098F7259E1DE500919CA1 /* Localizable.strings */,
 			);
 			path = zxtouch;
@@ -262,7 +295,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				96D7E5B12581F99B00B39A81 /* LaunchScreen.storyboard in Resources */,
+				965E8CD425B36A5F00FDD35C /* AdderPopOverViewController.xib in Resources */,
 				961098F5259E1DE500919CA1 /* Localizable.strings in Resources */,
+				965E8CCA25B36A0F00FDD35C /* LogViewController.xib in Resources */,
 				96D7E5AE2581F99B00B39A81 /* Assets.xcassets in Resources */,
 				96D7E5AC2581F99900B39A81 /* Main.storyboard in Resources */,
 			);
@@ -290,9 +325,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9619F9CF25831EE4001D7EA9 /* Socket.m in Sources */,
+				965E8CC225B3682C00FDD35C /* LogViewController.m in Sources */,
 				96F4696C258B24DA0052D78D /* ScriptEditorViewController.m in Sources */,
+				965E8C8E25B2BEFD00FDD35C /* AdderPopOverViewController.m in Sources */,
 				9649DA762587A4AD00CD3ADE /* ScriptListViewController.m in Sources */,
 				96D7E5A32581F99900B39A81 /* AppDelegate.m in Sources */,
+				965E8C9525B31DD100FDD35C /* Util.m in Sources */,
 				96A2BC382587C20A008DE91F /* ScriptListTableCell.m in Sources */,
 				96D7E5B42581F99B00B39A81 /* main.m in Sources */,
 				96D7E5A62581F99900B39A81 /* SceneDelegate.m in Sources */,
@@ -338,6 +376,24 @@
 				961098FB259E1DE900919CA1 /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		965E8CCC25B36A0F00FDD35C /* LogViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				965E8CCB25B36A0F00FDD35C /* zh-Hans */,
+				965E8CD025B36A4500FDD35C /* Base */,
+			);
+			name = LogViewController.xib;
+			sourceTree = "<group>";
+		};
+		965E8CD625B36A5F00FDD35C /* AdderPopOverViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				965E8CD525B36A5F00FDD35C /* zh-Hans */,
+				965E8CDA25B36A6500FDD35C /* Base */,
+			);
+			name = AdderPopOverViewController.xib;
 			sourceTree = "<group>";
 		};
 		96D7E5AA2581F99900B39A81 /* Main.storyboard */ = {
@@ -413,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -467,7 +523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -484,7 +540,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HV4X93VAHU;
 				INFOPLIST_FILE = zxtouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,7 +561,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HV4X93VAHU;
 				INFOPLIST_FILE = zxtouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

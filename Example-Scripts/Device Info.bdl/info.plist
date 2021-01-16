@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>Entry</key>
-	<string>opensettings.raw</string>
+	<string>device_info.py</string>
 	<key>FrontApp</key>
-	<string>com.apple.Preferences</string>
+	<string></string>
 	<key>Orientation</key>
 	<string>1</string>
 </dict>

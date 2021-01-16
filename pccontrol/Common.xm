@@ -43,6 +43,15 @@ Get document root of springboard
 */
 NSString* getDocumentRoot()
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [NSString stringWithFormat:@"%@/" DOCUMENT_ROOT_FOLDER_NAME, [paths objectAtIndex:0]];
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [NSString stringWithFormat:@"/var/mobile/Library/%s/" ,DOCUMENT_ROOT_FOLDER_NAME];
+}
+
+/**
+Get scripts path
+*/
+NSString* getScriptsFolder()
+{
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [NSString stringWithFormat:@"%@/%s/", getDocumentRoot(), SCRIPT_FOLDER_NAME];
 }

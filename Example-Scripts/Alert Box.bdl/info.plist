@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Entry</key>
-	<string>alertbox.raw</string>
+	<string>alertbox.py</string>
 	<key>FrontApp</key>
 	<string>com.apple.springboard</string>
 	<key>Orientation</key>

@@ -4,7 +4,6 @@
 #include "AlertBox.h"
 #include "Task.h"
 
-#define TOUCH_SENDER_ID_PLIST_DIR @"/var/mobile/Library/com.zjx.zxtouchsp/"
 #define TOUCH_SENDER_ID_PLIST_FILE_NAME @"senderid.plist"
 
 // device screen size
@@ -189,7 +188,7 @@ Get sender id. If the device has not been rebooted, read senderid from file. Oth
 */
 void initSenderId()
 {
-    NSString *plistPath = [NSString stringWithFormat:@"%@%@", TOUCH_SENDER_ID_PLIST_DIR, TOUCH_SENDER_ID_PLIST_FILE_NAME];
+    NSString *plistPath = [NSString stringWithFormat:@"%@/coreutils/touching/%@", getDocumentRoot(), TOUCH_SENDER_ID_PLIST_FILE_NAME];
     if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
     {
         // check start time
@@ -240,7 +239,7 @@ static void setSenderIdCallback(void* target, void* refcon, IOHIDServiceRef serv
 		if (senderID == 0x0)
         {
             NSError *err = nil;
-            [[NSFileManager defaultManager] createDirectoryAtPath:TOUCH_SENDER_ID_PLIST_DIR withIntermediateDirectories:YES attributes:nil error:&err];
+            [[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/coreutils/touching/", getDocumentRoot()] withIntermediateDirectories:YES attributes:nil error:&err];
             if (err)
             {
                 NSLog(@"Cannot save senderid for future use, but the tweak should work fine. Error: %@", err);
@@ -254,7 +253,7 @@ static void setSenderIdCallback(void* target, void* refcon, IOHIDServiceRef serv
 
             NSDictionary *dict = @{@"lastReboot":@(rebootTime), @"senderID": @(senderID)};
 
-            [dict writeToFile:[NSString stringWithFormat:@"%@%@", TOUCH_SENDER_ID_PLIST_DIR, TOUCH_SENDER_ID_PLIST_FILE_NAME] atomically: YES];
+            [dict writeToFile:[NSString stringWithFormat:@"%@/coreutils/touching/%@", getDocumentRoot(), TOUCH_SENDER_ID_PLIST_FILE_NAME] atomically: YES];
 
             NSLog(@"com.zjx.springboard: sender id is: %qX", senderID);
         }

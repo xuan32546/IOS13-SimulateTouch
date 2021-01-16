@@ -7,3 +7,16 @@
 */
 "prompt" = "Prompt";
 "showPopUpWindow" = "Double click volume down button in any application to show pop-up window.";
+"error" = "Error";
+"createFolderPathNotSet" = "Cannot create folder. Path is NULL. Please contact me on Github or Discord.";
+"createFolderEmptyName" = "Please input folder name.";
+"createFolderAlreadyExists" = "Folder already exists. Please input another folder name.";
+"createFolderFailed" = "Unable to create folder, reason: ";
+
+"createScriptPathNotSet" = "Unable to create script. Path is NULL. Please contact me on Github or Discord.";
+"createScriptAlreadyExists" = "Unable to create script. Script already exists. Please input another script name.";
+"createScriptFailed" = "Unable to create script, reason: ";
+"createScriptEmptyName" = "Please input script name.";
+
+"newFeatures" = "New Fetures";
+"006features" = "1. Added zxtouch python library support (see example scripts)\n2. Buttom/left/right toasts\n3. Added log/add buttons\n4. UI Updates\n5. All example scripts have been updated\n6. Fixes bugs";

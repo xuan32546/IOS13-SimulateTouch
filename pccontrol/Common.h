@@ -17,5 +17,6 @@
 int getRandomNumberInt(int min, int max);
 float getRandomNumberFloat(float min, float max);
 NSString* getDocumentRoot();
+NSString* getScriptsFolder();
 
 #endif

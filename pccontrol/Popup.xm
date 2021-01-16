@@ -6,6 +6,7 @@
 
 extern CGFloat device_screen_width;
 extern CGFloat device_screen_height;
+extern CFRunLoopRef recordRunLoop;
 
 static int windowWidth = 250;
 static int windowHeight = 250;
@@ -103,7 +104,10 @@ static int windowHeight = 250;
         if (err)
         {
             showAlertBox(@"Error", [NSString stringWithFormat:@"Unable to start recording. Reason: %@",[err localizedDescription]], 999);
+            return;
         }
+        recordRunLoop = CFRunLoopGetCurrent();
+        CFRunLoopRun();
     });
 }
 

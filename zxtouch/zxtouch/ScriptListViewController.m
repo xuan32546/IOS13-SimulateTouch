@@ -8,8 +8,9 @@
 #import "ScriptListViewController.h"
 #import "ScriptListTableCell.h"
 #import "ScriptEditorViewController.h"
-
-#define SPRINGBOARD_RECORDING_PATH @"/var/mobile/Documents/com.zjx.zxtouchsp/recording/"
+#import "LogViewController.h"
+#import "ScriptAdder/AdderPopOverViewController.h"
+#include "Config.h"
 
 @interface ScriptListViewController ()
 
@@ -26,22 +27,37 @@
     currentFolder = folder;
 }
 
-- (NSMutableArray*) updateScriptList {
+- (IBAction)logButtonClick:(id)sender {
+
+    LogViewController *logEditorViewController = [[LogViewController alloc] initWithNibName: @"LogViewController" bundle: nil];
     
+    logEditorViewController.title = @"Log";
+    //[logEditorViewController setFile:RUNTIME_OUTPUT_PATH];
+
+    [self presentViewController:logEditorViewController animated:YES completion:nil];
+}
+
+- (IBAction)addButtonClick:(id)sender {
+    AdderPopOverViewController *contentVC = [[AdderPopOverViewController alloc] initWithNibName:@"AdderPopOverViewController" bundle:nil];
+    contentVC.modalPresentationStyle = UIModalPresentationPopover;
+    [contentVC setFolder:currentFolder];
+    [contentVC setUpperLevelViewController:self];
+    UIPopoverPresentationController *popPC = contentVC.popoverPresentationController;
+    popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    popPC.barButtonItem = sender;
+    [self presentViewController:contentVC animated:YES completion:nil];
+}
+
+
+- (NSMutableArray*) updateScriptList {
     NSMutableArray *scriptList = [[NSMutableArray alloc] init];
 
     if (!currentFolder)
-    {
-        // get script list in springboard document dirs and zxtouch document dirs
-        [self insertFileListIntoArray:scriptList fromPath:SPRINGBOARD_RECORDING_PATH];
-    }
-    else
-    {
-        [self insertFileListIntoArray:scriptList fromPath:currentFolder];
-    }
-    
+        currentFolder = SCRIPTS_PATH;
+
+    [self insertFileListIntoArray:scriptList fromPath:currentFolder];
+
     // add scripts from documents list
-    
     return scriptList;
 }
 
@@ -77,7 +93,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ZXTouchAlreadyLaunchedv0.0.1"])
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"notifyDoubleClickVolumnBtn"])
     {
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"prompt", nil)
@@ -90,17 +106,40 @@
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ZXTouchAlreadyLaunchedv0.0.1"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notifyDoubleClickVolumnBtn"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ZXTouchAlreadyLaunchedv0.0.6"])
+    {
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"newFeatures", nil)
+                                                                       message:NSLocalizedString(@"006features", nil)
+                                       preferredStyle:UIAlertControllerStyleAlert];
+         
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+           handler:^(UIAlertAction * action) {}];
+         
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ZXTouchAlreadyLaunchedv0.0.6"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     
     scriptList = [self updateScriptList];
     
     refreshControl = [[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     self._scriptListTableView.refreshControl = refreshControl;
-
+    
+    if (![currentFolder isEqualToString:SCRIPTS_PATH])
+    {
+        self.navigationItem.leftBarButtonItems = nil;
+    }
 }
+
 
 - (void)refreshTable {
     scriptList = [self updateScriptList];

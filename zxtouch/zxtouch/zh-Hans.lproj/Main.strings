@@ -1,6 +1,6 @@
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "78e-iB-1fm"; */
-"78e-iB-1fm.title" = "Item";
+"78e-iB-1fm.title" = "设置";
 
 /* Class = "UIButton"; normalTitle = "Play"; ObjectID = "8uv-BC-Bsb"; */
 "8uv-BC-Bsb.normalTitle" = "运行";
@@ -15,4 +15,4 @@
 "MXX-sD-5Vi.text" = "Title";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "VoC-cu-PEt"; */
-"VoC-cu-PEt.title" = "Item";
+"VoC-cu-PEt.title" = "脚本";

@@ -55,7 +55,6 @@
         // Now the image will have been loaded and decoded and is ready to rock for the main thread
         [[self imageView] setImage:[UIImage imageNamed:@"script-icon"]];
         
-        [_playButton setTitle:@"run" forState:UIControlStateNormal];
         return;
     }
     

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>Entry</key>
-	<string>210102110339.raw</string>
+	<string>simulate_touch.py</string>
 	<key>FrontApp</key>
-	<string>com.apple.springboard</string>
+	<string>com.zjx.zxtouch</string>
 	<key>Orientation</key>
 	<string>1</string>
 </dict>

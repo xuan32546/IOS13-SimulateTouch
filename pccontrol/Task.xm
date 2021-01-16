@@ -9,9 +9,11 @@
 #include "Toast.h"
 #include "ColorPicker.h"
 #include "UIKeyboard.h"
+#include "DeviceInfo.h"
 #import <mach/mach.h>
 #include <Foundation/NSDistributedNotificationCenter.h>
 
+extern CFRunLoopRef recordRunLoop;
 
 /*
 get task type
@@ -61,17 +63,38 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
     }
     else if (taskType == TASK_USLEEP)
     {
-        int usleepTime = 0;
+        if (writeStreamRef)
+        {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                int usleepTime = 0;
 
-        @try{
-            usleepTime = atoi((char*)eventData);
+                @try{
+                    usleepTime = atoi((char*)eventData);
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"com.zjx.springboard: Debug: %@", exception.reason);
+                    return;
+                }
+                //NSLog(@"com.zjx.springboard: sleep %d microseconds", usleepTime);
+                usleep(usleepTime);
+                notifyClient((UInt8*)"0;;Sleep ends\r\n", writeStreamRef); 
+            });
         }
-        @catch (NSException *exception) {
-            NSLog(@"com.zjx.springboard: Debug: %@", exception.reason);
-            return;
+        else
+        {
+            int usleepTime = 0;
+
+            @try{
+                usleepTime = atoi((char*)eventData);
+            }
+            @catch (NSException *exception) {
+                NSLog(@"com.zjx.springboard: Debug: %@", exception.reason);
+                return;
+            }
+            //NSLog(@"com.zjx.springboard: sleep %d microseconds", usleepTime);
+            usleep(usleepTime);
         }
-        //NSLog(@"com.zjx.springboard: sleep %d microseconds", usleepTime);
-        usleep(usleepTime);
+
     }
     else if (taskType == TASK_RUN_SHELL)
     {
@@ -80,16 +103,20 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
     }
     else if (taskType == TASK_TOUCH_RECORDING_START)
     {
-        NSError *err = nil;
-        startRecording(writeStreamRef, &err);    
-        if (err)
-        {
-            notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
-        }
-        else
-        {
-            notifyClient((UInt8*)"0\r\n", writeStreamRef);
-        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSError *err = nil;
+            startRecording(writeStreamRef, &err);    
+            if (err)
+            {
+                notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
+            }
+            else
+            {
+                notifyClient((UInt8*)"0\r\n", writeStreamRef);
+            }
+            recordRunLoop = CFRunLoopGetCurrent();
+            CFRunLoopRun();
+        });
     }
     else if (taskType == TASK_TOUCH_RECORDING_STOP)
     {
@@ -164,6 +191,19 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
         else
         {
             notifyClient((UInt8*)"0;;Successfully notify the appdelegate tweak. But not sure whether it works...\r\n", writeStreamRef);
+        }
+    }
+    else if (taskType == TASK_GET_DEVICE_INFO)
+    {
+        NSError *err = nil;
+        NSString *deviceInfo = getDeviceInfoFromRawData(eventData,  &err);
+        if (err)
+        {
+            notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
+        }
+        else
+        {
+            notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%@\r\n", deviceInfo] UTF8String], writeStreamRef);
         }
     }
     else if (taskType == TASK_TEST)

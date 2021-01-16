@@ -12,11 +12,22 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
     NSArray *data = [[NSString stringWithFormat:@"%s", eventData] componentsSeparatedByString:@";;"];
     if ([data count] < 3)
     {
-        *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;The data format should be \"type;;content;;duration(in seconds)\". For example, 0;;success;;3.\r\n"}];
+        *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;The data format should be \"type;;content;;duration(in seconds)[];;position(0: top, 1: bottom, 2: left, 3: right)]\". For example, 0;;success;;1.5;;0.\r\n"}];
         return;
     }
     int type = [data[0] intValue];
     int duration = [data[2] intValue];
+    int position = 0;
+    int fontSize = 0;
+    if ([data count] >= 4)
+    {
+        position = [data[3] intValue];
+    }
+    if ([data count] >= 5)
+    {
+        fontSize = [data[4] intValue];
+    }
+
     if (type > 4 || type < 0)
     {
         *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unknown type. The type ranges from 0-3. Please refer to the documentation on Github.\r\n"}];
@@ -31,7 +42,7 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
         if (type == 0)
             [Toast hideToast];
         else
-            [Toast showToastWithContent:data[1] type:type duration:duration];
+            [Toast showToastWithContent:data[1] type:type duration:duration position:position fontSize:fontSize];
     });
 }
 
@@ -51,7 +62,7 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
     }
 }
 
-+ (void) showToastWithContent:(NSString*)content type:(int)type duration:(float)duration
++ (void) showToastWithContent:(NSString*)content type:(int)type duration:(float)duration position:(int)position fontSize:(int)afontSize // positon: 0 top 1 bottom 2 left(not supported) 3 right (ns)
 {
     __block UIWindow* currentWindow = NULL;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -64,8 +75,26 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
         CGFloat screenHeight = [Screen getScreenHeight];
 
         CGFloat scale = [Screen getScale];
+        
+        int fontSize = 15;
+        if (afontSize != 0)
+        {
+            fontSize = afontSize;
+        }
+        else
+        {
+            fontSize = (int)(0.015*screenWidth);
+            if (fontSize <= 15)
+            {
+                fontSize = 15;
+            }
+            else if (fontSize >= 30)
+            {
+                fontSize = 30;
+            }
+        }
 
-        UIFont * font = [UIFont systemFontOfSize:(int)(0.015*screenWidth) weight:UIFontWeightLight];
+        UIFont * font = [UIFont systemFontOfSize:fontSize weight:UIFontWeightLight];
         CGSize contentSize = [content sizeWithFont:font];
 
         windowWidth = contentSize.width + 40;
@@ -74,6 +103,16 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
 
         int windowLeftTopCornerX = (int)((screenWidth/scale)/2 - windowWidth/2);
         int windowLeftTopCornerY = 20;
+        if (position == 0)
+        {
+            windowLeftTopCornerY = 20;
+        }
+        else if (position == 1)
+        {
+            windowLeftTopCornerY = (int)((screenHeight - contentSize.height - 50)/scale);
+            NSLog(@"com.zjx.springboard: windowLeftTopCornerY: %d", windowLeftTopCornerY);
+        }
+        
         _window = [[UIWindow alloc] initWithFrame:CGRectMake(windowLeftTopCornerX, windowLeftTopCornerY, windowWidth, windowHeight)];
         currentWindow = _window;
         _window.windowLevel = UIWindowLevelStatusBar;

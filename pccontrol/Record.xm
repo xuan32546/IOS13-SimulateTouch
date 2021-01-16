@@ -7,7 +7,7 @@
 #include "Window.h"
 #include "SocketServer.h"
 
-static CFRunLoopRef recordRunLoop = NULL;
+CFRunLoopRef recordRunLoop = NULL;
 static Boolean isRecording = false;
 extern NSString *documentPath;
 static NSFileHandle *scriptRecordingFileHandle = NULL;
@@ -49,7 +49,7 @@ void startRecording(CFWriteStreamRef requestClient, NSError **error)
 
     
     // generate the script directory
-    NSString *scriptDirectory = [NSString stringWithFormat:@"%@/" RECORDING_FILE_FOLDER_NAME "/%@.bdl", getDocumentRoot(), currentDateTime];
+    NSString *scriptDirectory = [NSString stringWithFormat:@"%@/" RECORDING_FILE_FOLDER_NAME "/%@.bdl", getScriptsFolder(), currentDateTime];
     [[NSFileManager defaultManager] createDirectoryAtPath:scriptDirectory withIntermediateDirectories:YES attributes:nil error:&err];
     
     if (err)
@@ -124,8 +124,7 @@ void startRecording(CFWriteStreamRef requestClient, NSError **error)
     IOHIDEventSystemClientScheduleWithRunLoop(ioHIDEventSystemForRecording, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDEventSystemClientRegisterEventCallback(ioHIDEventSystemForRecording, (IOHIDEventSystemClientEventCallback)recordIOHIDEventCallback, NULL, NULL);
 
-    recordRunLoop = CFRunLoopGetCurrent();
-    CFRunLoopRun();
+
 }
 
 //TODO: multi-touch support! get touch index automatically, rather than set to 7.
@@ -222,9 +221,10 @@ void stopRecording()
         scriptRecordingFileHandle = nil;
     }
     if (recordRunLoop)
+    {
         CFRunLoopStop(recordRunLoop);
-    
-    recordRunLoop = NULL;
+        recordRunLoop = NULL;
+    }
 
     //set this at last
     isRecording = false;

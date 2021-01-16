@@ -170,7 +170,7 @@ static void popupWindowCallBack(void* target, void* refcon, IOHIDServiceRef serv
             if (isRecordingStart())
             {
                 stopRecording();
-                showAlertBox(@"Recording stopped", @"Your touch record has been saved. Please open zxtouch app to see your script list. This record script is located at /var/mobile/Documents/com.zjx.zxtouchsp/recording", 999);
+                showAlertBox(@"Recording stopped", [NSString stringWithFormat:@"Your touch record has been saved. Please open zxtouch app to see your script list. This record script is located at %@recording", getScriptsFolder()], 999);
                 [popupWindow show];
                 return;
             }
@@ -275,9 +275,8 @@ void startPopupListeningCallBack()
         // init touch screensize. Temporarily put this line here. Will be removed.
         initTouchGetScreenSize();
 
-        system("sudo zxtouchb -e \"chown -R mobile:mobile /var/mobile/Documents/com.zjx.zxtouchsp\"");
+        //system("sudo zxtouchb -e \"chown -R mobile:mobile /var/mobile/Documents/com.zjx.zxtouchsp\"");
 
-        
         socketServer();
     });
 }

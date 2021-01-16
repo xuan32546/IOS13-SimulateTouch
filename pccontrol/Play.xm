@@ -143,9 +143,9 @@ void playFromPythonFile(NSString* filePath, NSString* foregroundApp, NSError **e
         isPlaying = false;
         return;
     }
+    NSLog(@"com.zjx.springboard: command %@", [NSString stringWithFormat:@"sudo zxtouchb -e \"python3 -u \\\"%@\\\" 2>&1 | /var/mobile/Library/ZXTouch/coreutils/ScriptRuntime/add_datetime.sh | tee -a /var/mobile/Library/ZXTouch/coreutils/ScriptRuntime/output\"", filePath]);
 
-    system([[NSString stringWithFormat:@"sudo zxtouchb -e \"python3 \\\"%@\\\"\"", filePath] UTF8String]);
-
+    system([[NSString stringWithFormat:@"sudo zxtouchb -e \"python3 -u \\\"%@\\\" 2>&1 | /var/mobile/Library/ZXTouch/coreutils/ScriptRuntime/add_datetime.sh \\\"%@\\\" | tee -a /var/mobile/Library/ZXTouch/coreutils/ScriptRuntime/output\"", filePath, filePath] UTF8String]);
     // add force stop
 
     isPlaying = false;
