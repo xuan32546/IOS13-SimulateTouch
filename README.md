@@ -25,23 +25,20 @@ This library enables you to simulate touch events on iOS 11.0 - 14 with just one
 	* Programmable. Control scripts can be programmed with all the programming languages you desire.
 	* Instant controlling supported. The ios device can be controlled with no latency from other devices/computers.
 	* System-level touch simulation (will not inject to any process).
-	* Record & Playback
+	* Touch recording. Record your touch event and play back.
 2. GUI Application
-	* Script shop to download scripts.
-	* Write your own script.
 3. Others
 	* Application running.
 	* System wide alert box displaying.
 	* Shell accessing.
+	* Color picker. Get the color of a specified pixel.
+	* Image matching.
+	* Device information
+	* Battery information
+	* More features see the documentation below
 
 ## Upcoming Feature Updates (ALL FREE & OPEN SOURCE!)
-1. GUI Application
-	* Color picker. Get the color of a specified pixel.
-	* Touch recording. Record your touch event and play back.
-	* Image matching.
-2. Others
-	* Physical buttons simulations.
-	* Submit suggestions on discord!
+Submit suggestions on discord!
 
 
 ## Installation
@@ -52,185 +49,10 @@ This library enables you to simulate touch events on iOS 11.0 - 14 with just one
 3. Done
 
 ### Through Github:
-1. Download **com.zjx.pccontrol_0.0.2_iphoneos-arm.deb** from **release**
+1. Download **com.zjx.ioscontrol_0.0.6_iphoneos-arm.deb** from **release**
 2. Copy the deb file to your iOS device
 3. SSH to your iOS device and install the deb file by typing "dpkg -i /PATH/TO/om.zjx.pccontrol_0.0.2_iphoneos-arm.deb"
 
-## Code Example
-
-`Python Version`
-
-```Python
-import socket
-import time
-
-# touch event types
-TOUCH_UP = 0
-TOUCH_DOWN = 1
-TOUCH_MOVE = 2
-SET_SCREEN_SIZE = 9
-
-# you can copy and paste these methods to your code
-def formatSocketData(type, index, x, y):
-    return '{}{:02d}{:05d}{:05d}'.format(type, index, int(x*10), int(y*10))
-
-def horizontalSwipe():
-    x = 300
-    s.send(("101" + formatSocketData(TOUCH_DOWN, 7, x, 1000)).encode())  # touch down "10" at the beginning means "perform touch event". The third digit("1") is the data count.
-    # the above code is equal to s.send(("1011070300010000").encode())
-    time.sleep(0.01) # if you run this script on your computer, change sleep time to 0.2. (This is weird that python sleeps much longer on iOS than it should)
-    while x <= 600:
-        s.send(("101" + formatSocketData(TOUCH_MOVE, 7, x, 1000)).encode())  # move our finger 7 to the right
-        x += 5
-        time.sleep(0.01)
-
-    while x >= 100:
-        s.send(("101" + formatSocketData(TOUCH_MOVE, 7, x, 1000)).encode())  # move our finger 7 to the left
-        x -= 5
-        time.sleep(0.01)
-
-    s.send(("101" + formatSocketData(TOUCH_UP, 7, x, 1000)).encode())  # release finger
-
-if __name__ == '__main__':
-    s = socket.socket()
-    s.connect(("127.0.0.1", 6000))  # connect to the tweak
-    time.sleep(0.1)  # please sleep after connection.
-
-    # the format should be "{task_id(2 digits)}{task_data}"
-    #############   switch application to foreground part   ##############
-    s.send("11com.apple.Preferences".encode())  # 11 at head means the task is id 11 (launch app). Move application "com.apple.Preferences" to the foreground" (launch settings app)
-    time.sleep(1)
-
-    #############   show system wide alert box part   ##############
-    s.send("12This Is Title;;Title and content should be splitted by two semicolons. I am going to close settings in 5 seconds.".encode())  # 12 at head means the task id is 12 (show alert). Title and content should be splitted by two semicolons.
-    time.sleep(5)
-
-    #############   shell access as root    ##############
-    s.send("13killall Preferences".encode())  # 13 at head means the task id is 13 (run shell command). The shell command here is "killall Prefernces", which kills the settings app.
-    time.sleep(1)
-
-    # let's look at the sending touch event part
-    # the task id for touching is 10. So if you want to touch down at some point, you have to send "10" + "1" + formatSocketData(TOUCH_DOWN, 7, x, 1000). 10 at head means the task id is 10 (touch event). "1" means event count is 1
-    # Other things keep the same as the old version.
-    s.send("11com.apple.springboard".encode())  # return to home screen
-    horizontalSwipe() # preform swipe
-
-
-    s.close()
-```
-
-Actually the touch is performed by only one line: 
-
-```Python
-s.send(("101"+formatSocketData(TOUCH_DOWN, 7, 300, 400)).encode()) 
-```
-
-Neat and easy. 
-
-Perform Touch Move
-
-```Python
-s.send(("101"+formatSocketData(TOUCH_MOVE, 7, 800, 400)).encode())  # tell the tweak to move our finger "7" to (800, 400)
-```
-
-Perform Touch Up
-
-```Python
-s.send(("101"+formatSocketData(TOUCH_UP, 7, 800, 400)).encode())  # tell the tweak to touch up our finger "7" at (800, 400)
-```
-
-Combining them
-
-```Python
-s.send(("101"+formatSocketData(TOUCH_DOWN, 7, 300, 400)).encode())
-time.sleep(1)
-s.send(("101"+formatSocketData(TOUCH_MOVE, 7, 800, 400)).encode())
-time.sleep(1)
-s.send(("101"+formatSocketData(TOUCH_UP, 7, 800, 400)).encode())
-```
-
-First the finger touches (300, 400), and then it moves to (800, 400), and then "leaves" the screen. All the touch events are performed with no latency.
-
-The following method is written for you to copy & paste to your code
-
-```Python
-# touch event types
-TOUCH_UP = 0
-TOUCH_DOWN = 1
-TOUCH_MOVE = 2
-SET_SCREEN_SIZE = 9
-
-# you can copy and paste these methods to your code
-def formatSocketData(type, index, x, y):
-    return '{}{:02d}{:05d}{:05d}'.format(type, index, int(x*10), int(y*10))
-
-
-def performTouch(socket, event_array):
-    """Perform touch events
-
-    Perform touch events in event_array. event_array should be an array containing dictionaries of touch events. The format of the dictionaries: {"type": touch type, "index": finger index, "x": x coordinate, "y": y coordinate}
-
-    Args:
-        socket: socket instance that connects to ZJXTouchSimulation tweak
-        event_array: array of touch event dictionaries
-
-    Returns:
-        None
-
-    Demo usage:
-        performTouch(s, [{"type": 1, "index": 3, "x": 100, "y": 200}]) # touch down at (100, 300) with finger "3"
-    """
-    event_data = ''
-    for touch_event in event_array:
-        event_data += formatSocketData(touch_event['type'], touch_event['index'], touch_event['x'], touch_event['y'])
-    socket.send('10{}{}'.format(len(event_array), event_data))
-
-def switchAppToForeground(socket, app_identifier):
-    """Bring application to foregound
-
-    Args:
-        socket: socket instance that connects to ZJXTouchSimulation tweak
-        app_identifier: iOS application bundle identifier.
-
-    Returns:
-        None
-
-    Demo Usage:
-        switchAppToForeground(s, "com.apple.springboard") # returns to home screen
-    """
-    socket.send('11{}'.format(app_identifier).encode())
-
-def showAlertBox(socket, title, content):
-    """Show a system wide alert box
-
-    Args:
-        socket: socket instance that connects to ZJXTouchSimulation tweak
-        title: title of the alert box
-        content: content of the alert box
-
-    Returns:
-        None
-
-    Demo Usage:
-        showAlertBox(s, "Low Battery", "10% of battery remaining") # just a joke
-    """
-    socket.send('12{};;{}'.format(title, content).encode())
-
-def executeCommand(socket, command_to_run):
-    """Execute shell command with root privileges
-
-    Args:
-        socket: socket instance that connects to ZJXTouchSimulation tweak
-        command_to_run: command that you want to execute
-
-    Returns:
-        None
-
-    Demo Usage:
-        executeCommand(s, "reboot") # reboot your device
-    """
-    socket.send('13{}'.format(command_to_run).encode())
-```
 
 ## Demo Usage
 **Remote Controlling:**
@@ -247,130 +69,558 @@ Record touch events and playback
 
 ## Usage
 
-After installation, the tweak starts listening at port 6000.
+See python version of documentation below. But you can also use ANY language to control your iOS device as long as the language supports socket. Here is how it works:
 
-What you have to do is:
-1. Connection to the tweak using socket.
-2. Send the task data to the tweak (you have to follow the format specified below).
+1. After installation, the tweak starts listening at port 6000.
 
-### The format of the whole data
-![total data format](img/task_data_explanation.jpg)
-
-**The data consists of two parts, task ID part (2 digits) and task data part.**
-
-****
-### Task ID format
-task id should be a 2-digit integer
-
-Task id table:
-
-| Task       | Task ID | Description                                               |
-|:----------:|:----:|:---------------------------------------------------------:|
-| Reserved | < 10 | Reserved for future use |
-| Touch Simulation   | 10   | Simulate touch events                     |
-| Running Application  | 11    | Bring the application specified to foreground (run the app if not running)  |
-| Alert Box Displaying | 12    | Display a system wide alert box |
-| Shell Accessing   | 13    | Access shell with root privileges      |
-| Comming soon | > 13 | Comming soon (you can submit suggestions via discord or email) |
+2. To control your device, send data in certain format to port 6000 on your device. I will not list the detail format of data here, but you can read my python module source code to figure it out.
 
 
-****
+## Documentation (Python)
 
-### Task Data Format
+### Installation
 
-* [Touch Simulation](#sending-touch-events)
-* [Application Running]()
-* [System Wide Alert Box Displaying]()
-* [Shell Accessing]()
-* [Crazy Tap]()
-* [Recording & Playing Back]()
-* [Run Script from Shell Output]() <------ This will be very useful.
-***1. Touch Simulation***
-
-task data should always be decimal digits, specified below
-![event data img](img/event_data_digit.png)
-
-`Event Count`(1 digit): Specify the count of the single events. If you have multiple events to send at the same time, just increase the event count and append events to the data.
-
-`Type`(1 digit): Specify the type of the single event. 
-
-Supported event type:
-
-| Event      | Flag | Description                                               |
-|:----------:|:----:|:---------------------------------------------------------:|
-| Touch Up   | 0    | Specify the event as a touch-up event                     |
-| Touch Down | 1    | Specify the event as a touch-down event                   |
-| Touch Move | 2    | Specify the event as a touch-move event (move the finger) |
-| Set Size   | 9    | Set screen size (deprecated)      |
-
-`Touch Index`(2 digits): Apple supports multitouch, so you have to specify the finger index when posting touching events. The range of finger index is 1-20 (0 is reserved, don't use 0 as finger index). 
-
-`x Coordinate`(5 digits): The x coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for the decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "01234" for this.
-
-`y Coordinate`(5 digits): The y coordinate of the place you want to touch. The first 4 digit is for integer part while the last one is for the decimal part. For example, if you want to touch (123.4, 2432.1) on the screen, you should fill "24321" for this.
-
-### Important Note
-
-The touch coordinate does not depend on the orientation of your device. See picture below to get more information. However you place your device, the click point on the screen will **not** be changed.
-![coordinate_note img](img/iOS_coordinate.png)
+1. **On Your iOS Device**: ZXTouch python module will be automatically installed on your iOS device.
 
 
-***2. Application Running***
+2. **On Computers**: If you want to install ZXTouch python module on your computer for remote controlling, download the source code from [github](https://github.com/xuan32546/IOS13-SimulateTouch/tree/0.0.6/layout/usr/lib/python3.7/site-packages) and copy the zxtouch folder to your "site-packages" folder of your python on your computer.
+
+### Create A ZXTouch Instance
+
+To create a instance, use zxtouch(ip) where ip is the ip address of your device. If you want to run the script locally on your iOS device, just input "127.0.0.1".
+
+```python
+from zxtouch.client import zxtouch # import module
+device = zxtouch("127.0.0.1") # create instance
+```
+
+### Instance Methods
+
+## Touch:
+
+There are two methods you can use to send touch events. 
+
+For a single touch event: 
+
+```python
+def touch(type, finger_index, x, y):
+	"""Perform a touch event
+	
+	Args:
+		type: touch event type. For touch event types, please insert "from zxtouch.touchtypes import *" at top of your script.
+		finger_index: the finger index of the touch event. The range should be 1-19
+		x: x coordinate of the screen
+		y: y coordinate of the screen
+	
+	Returns: 
+		None
+	"""
+```
+
+For sending multiple touch events at the same time:
+
+```python
+def touch_with_list(self, touch_list: list):
+    """Perform touch events with a list of events
+    touch list should be type of list. Inside the list, there must be dictionaries with the following format
+
+    Args:
+    	touch_list: format example: [{"type": ?, "finger_index": ?, "x": ?, "y": ?}]
+    	
+    Returns: 
+    	None
+    """
+```
+
+**Code Example**
+
+```python
+# code example
+from zxtouch.client import zxtouch
+from zxtouch.touchtypes import *
+import time
+
+device = zxtouch("127.0.0.1") # create instance
+
+# finger "5" touch (400, 400)
+device.touch(TOUCH_DOWN, 5, 400, 400) # TOUCH_DOWN is imported from zxtouch.touchtypes
+time.sleep(1)
+# move to (400, 600)
+device.touch(TOUCH_MOVE, 5, 400, 600) # TOUCH_MOVE is imported from zxtouch.touchtypes
+time.sleep(1)
+# touch up
+device.touch(TOUCH_UP, 5, 400, 600) # TOUCH_UP is imported from zxtouch.touchtypes
+time.sleep(1)
+
+# multitouch point (300, 300) and (500, 500) at the same time
+device.touch_with_list([{"type": TOUCH_DOWN, "finger_index": 1, "x": 300, "y": 300}, {"type": TOUCH_DOWN, "finger_index": 2, "x": 500, "y": 500}])
+time.sleep(1)
+device.touch_with_list([{"type": TOUCH_UP, "finger_index": 1, "x": 300, "y": 300}, {"type": TOUCH_UP, "finger_index": 2, "x": 500, "y": 500}])
+
+device.disconnect()
+```
+
+## Bring Application to Foreground
+
+```python
+def switch_to_app(bundle_identifier):
+	"""Bring an application to foreground
+	
+	Args:
+		bundle_identifier: the bundle identifier of the application
+	
+	Returns: 
+		Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+	"""
+```
+
+**Code Example**
+
+```python
+from zxtouch.client import zxtouch
+
+device = zxtouch("127.0.0.1") # create instance
+device.switch_to_app("com.apple.springboard") # return to home screen
+
+device.disconnect()
+```
+
+## Show Alert Box
+ 
+```python
+def show_alert_box(title, content, duration):
+    """Show alert box on device
+
+    Args:
+        title: title of the alert box
+        content: content of the alert box
+        duration: the time the alert box shows before disappear
+
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
+
+**Code Example**
+
+```python
+from zxtouch.client import zxtouch
+
+device = zxtouch("127.0.0.1") # create instance
+device.show_alert_box("Alert", "This is a system-wide alert box that lasts for 3 seconds", 3)
+
+device.disconnect()
+```
 
 
-Task data should be the the bundle identifier of app you want to run.
+## Run Shell Command As Root
+ 
+```python
+def run_shell_command(command):
+    """Run shell command on device as root
+		
+	Args:
+    	command: command to run
+        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
 
-For example, if you want to run "settings" app, the task data should be **"com.apple.Preferences"**. So the entire data that should be sent to the tweak is **"11com.apple.Preferences"** (11 is the task id).
+## Image Matching
 
-**[appster](http://cydia.saurik.com/package/com.jake0oo0.appster/)** might help for finding bundle id.
+Match screen with a template image.
 
-***3. System Wide Alert Box Displaying***
+```python
+def image_match(template_path, acceptable_value=0.8, max_try_times=4, scaleRation=0.8):
+    """Match screen with a template image
+		
+	Args:
+    	template_path: absolute path of the template image on your iOS device.
+    	acceptable_value: for a success match, what is the similarity of the template and parts you want to match on the screen.
+    	scaleRation: if match failed due to the size difference between template image and image on screen, what should the size of the template image be for the next try.
+    	max_try_times: how many times to try.
+        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise a dictionary containing x, y, width, height of the template on screen. (see code example below)
+		
+		NOTICE: result_tuple[0] == True does not mean a success match, it only means no error happens while matching. To check whether it is a success match, check the width and height of the returned dictionary. If both width and height == 0, then it means match failed.
+    """
+```
+
+**Code Example**
+
+```Python
+from zxtouch.client import zxtouch
+
+device = zxtouch("127.0.0.1") # create instance
+result_tuple = device.image_match("/var/mobile/Library/ZXTouch/scripts/examples/Image Matching.bdl/examples_folder.jpg", 0.8, 5, 0.85) # try 5 times with acceptable value 0.8. Each time  make template image size*1.5 AND size/1.5 then match again.
+
+if not result_tuple[0]:
+	print("Error happens while matching template image. Error info: " + result_tuple[1])
+else:
+	result_dict = result_tuple[1]
+	if float(result_dict["width"]) != 0 and float(result_dict["height"]) != 0:
+		print("Match success! X: " + result_dict["x"] + ". Y: " + result_dict["y"] + ". Width: " + result_dict["width"] + ". Height: " + result_dict["height"])
+	else:
+		print("Match failed. Cannot find template image on screen.")
+		
+device.disconnect()
+```
+
+## Toast
+
+```python
+def show_toast(toast_type, content, duration, position=0, fontSize=0):
+	"""show a toast
+	
+	Args:
+        type: type of the toast. Please import zxtouch.toasttypes for the constant.
+        content: content of the toast
+        duration: how long the toast will appear before disappearing
+        position: position of the toast. Please import zxtouch.toasttypes for the constant.
+        
+        For more information about the constants, please see code example below
+	
+	Returns: 
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""	"""
+```
+
+**Code Example**
+
+```python
+from zxtouch.client import zxtouch
+from zxtouch.toasttypes import *
+import time
+
+device = zxtouch("127.0.0.1") # create instance
+device.show_toast(TOAST_SUCCESS, "This is an success message toast", 1.5)
+time.sleep(1.5)
+
+device.show_toast(TOAST_ERROR, "This is an error message toast", 1.5)
+time.sleep(1.5)
+
+device.show_toast(TOAST_WARNING, "This is an warning message toast", 1.5)
+time.sleep(1.5)
+
+device.show_toast(TOAST_MESSAGE, "This is an normal message toast", 1.5)
+time.sleep(1.5)
+
+device.show_toast(TOAST_ERROR, "Toast can also be shown at bottom", 3, TOAST_BUTTOM)
 
 
-An alert box consists of title and content. The title and content you want to show should be splitted by two semicolons (";;"). The alert box is system wide.
+device.disconnect()
+```
 
-For example, if you want to emulate a "low battery" alert box to trick your friend, just send "12Low Battery;;10% of battery remaining". (12 is the task id)
+## Color Picker (RGB Value From A Point on Screen)
 
-***4. Shell Accessing as Root***
+```python
+def pick_color(x, y):
+    """Get the rgb value from the screen.
+		
+	Args:
+   		x: x coordinate of the point on the screen
+   		y: y coordinate of the point on the screen
+
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise a dictionary containing red, green, blue of the point on screen.  
+    """
+```
+
+**Code Example**
+
+```Python
+from zxtouch.client import zxtouch
+import time
+
+device = zxtouch("127.0.0.1")
+print("Picking color from 100, 100 after 1.5 seconds...")
+time.sleep(1.5)
+result_tuple = device.pick_color(100, 100)
+if not result_tuple[0]:
+    print("Error while getting color. Error info: " + result_tuple[1])
+else:
+    result_dict = result_tuple[1]
+    print("Red: " + result_dict["red"] + ". Green: " + result_dict["green"] + ". Blue: " + result_dict["blue"])
+		
+device.disconnect()
+```
 
 
-You can access shell with root privileges by setting the task id to 13. The task data should be the shell command you want to execute. **Caution: executing shell command as root is powerful but dangerous.**
+## Accurate Sleep
 
-For example, if you want to reboot your device, just send "13reboot". If you want to respring, send "13killall SpringBoard". (13 is the task id)
+I don't know the why, but if you call `time.sleep` in python, the sleep time will not be accurate. However you can use accurate_sleep method in zxtouch to sleep for an accurate time.
 
-***5. Crazy Tap***
+ 
+```python
+def accurate_usleep(microseconds):
+    """Sleep for an accurate time
+		
+	Args:
+    	microseconds: microseconds to sleep
+        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
+
+## Hide Keyboard
+
+If the keyboard is showing, hide the keyboard
+
+```python
+def hide_keyboard():
+    """Hide the keyboard
+    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
+
+## Show Keyboard
+
+If the keyboard is hiding, show the keyboard
+
+```python
+def show_keyboard():
+    """Show the keyboard
+    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
+
+## Text Input
+
+Insert text to the current text field. If you want to delete characters, please call this method like this: `device.insert_text("\b")`
+
+```python
+def insert_text(text):
+    """Insert text to the textfield
+    
+    Args:
+    	text: text to insert (\b for deleting characters)
+    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
+
+## Move Cursor
+
+Move the text cursor on textfield
+
+    def move_cursor(self, offset):
 
 
-This touch simulation tweak allows you to tap at most 200000+ times in a minute.
+## Play A Script
 
-The task id for crazy tap is 16. Just like the way you call functions, the data to be sent should consist of 5 parameters. Instead of using "," to seperate parameters (which you use in most of the programming languages), you should use ";;" to seperate parameters. So the data format should be: 16x;;y;;elapsetime;;countToStop;;sleepUTime.
+Play a zxtouch script on iOS device.
 
-x: the x coordinate on the screen you want to tap.
-y: the y coordinate on the screen you want to tap.
-elapsetime: time to elapse (how many seconds you want it to tap)
-countToStop: the crazy time will stop as long as it clicks the {countToStop} times
-sleepUTime: how many microseconds you want it to sleep between taps. (clicks slower if you increase this value, vice versa)
+```python
+def play_script(script_absolute_path):
+    """Play a zxtouch script on iOS device.
+		
+	Args:
+    	script_absolute_path: absolute path of the script
+    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
 
-For example, if you want to click (400.3, 500.7) on the screen for 3 seconds, and sleep 1000 microseconds between taps, send "16400.3;;500.7;;3;;0;;1000". If you want to click (100.4, 200) on the screen for 1000 times, and sleep 1500 microseconds between taps, send "16100.4;;200;;0;1000;1500". If you want to click infinitely, send "16100.4;;200;;0;;0;;1500", and when you want to sleep, either call "notify_post("com.zjx.crazytap.stop");" if you are using objective-c, or send "60" to port 5999.
+## Force Stop Script Playing
 
-**Caution: for most of the devices, you should NOT sleep less than 1500 microsconds between taps. Otherwise your device will stop responding to anything, thus there is no way to stop the tap (if you encounter this, try to respring or reboot).**
+Force the device to stop playing current script
 
-***6. Recording ***
+```python
+def move_cursor(offset):
+    """Move the cursor
+		
+	Args:
+		offset: the related position you want to move. To move left, offset should be negative. For moving right, it should be positive
+		    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
 
-You can start recording your touch event by setting the task id to 14. The script will be saved at "/var/mobile/Documents/com.zjx.zxtouchsp/recording". If zxtouch is currently recording your touch events, a red dot will be displayed at the top-left corner of your screen.
+## Get Screen Size
 
+```python
+def get_screen_size():
+    """Get screen size in pixels
+		
+	Args:
+		None
+				    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise a dictionary containing width and height of the screen.
+							format of the dicionary: {"width": ?, "height": ?}
+    """
+```
 
-For example, if you want to start recording, just send "14". For stopping the recording, send "15".
+## Get Screen Orientation
 
-***7. Script Playback ***
+```python
+def get_screen_orientation():
+    """Get orientation of the screen
+		
+	Args:
+		None
+				    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise the orientation of the screen. An int value in str format indicating the orientation.
+    """
+```
 
-For current version, you can only play those scripts which are auto generated by recording. You can start a script playback by setting the task id to 19 along with a path to the script. If zxtouch is currently playing a script, a green dot will be displayed at the top-left corner of your screen.
+## Get Screen Scale
 
-For example, if you want to start a script playback at path /var/mobile/script.bdl, just send "19/var/mobile/script.bdl". For terminating the playback, send "20".
+```python
+def get_screen_scale():
+    """Get scale of the screen
+		
+	Args:
+		None
+				    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise the scale of the screen. An int value in str format indicating the scale.
+    """
+```
 
-***8. Run Script from Shell Output**
+## Get Device Information
 
-Comming Soon
+```python
+def get_device_info():
+    """Get information of the device
+		
+	Args:
+		None
+				    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise a dictionary containing name, system_name, system_version, model, identifier_for_vendor.
+							format of the dicionary: {"name": ?, "system_name": ?, "system_version": ?, "model": ?, "identifier_for_vendor": ?}
+    """
+```
+
+## Get Battery Information
+
+```python
+def get_battery_info():
+    """Get information of the battery
+		
+	Args:
+		None
+				    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise a dictionary containing battery_state, battery_level, battery_state_string.
+							format of the dicionary: {"battery_state": ?, "battery_level": ?, "battery_state_string": ?}
+    """
+```
+
+## Start Touch Recording
+
+```python
+def start_touch_recording():
+    """Start recording touch events. If success, there will be a red indicator at the top of your screen.
+		
+	Args:
+    	None
+        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
+
+## Stop Touch Recording
+
+```python
+def stop_touch_recording():
+    """Stop recording touch events. You can also double click volumn down button to stop recording
+		
+	Args:
+    	None
+        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
 
 
 ## Contact
