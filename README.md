@@ -1,4 +1,4 @@
-# IOS13-SimulateTouch V0.0.2
+# IOS13-SimulateTouch V0.0.6
 
 A **system wide** touch event simulation library for iOS 11.0 - 14.
 
@@ -17,6 +17,10 @@ The source code of springboard part has been released! **I am looking for someon
 ## Description
 
 This library enables you to simulate touch events on iOS 11.0 - 14 with just one line of code! Currently, the repository is mainly for programmers. In the future, I will make it suitable for people who do not understand how to code.
+
+## Looking For Script Developers
+
+Script developers needed for ZXTouch. If you are insterested in it, please contact me on Github or Discord. Although ZXTouch are free & open source, you are allowed to charge users for writing scripts because they are your own work, and you deserve it.
 
 ## Features
 
@@ -37,7 +41,7 @@ This library enables you to simulate touch events on iOS 11.0 - 14 with just one
 	* Battery information
 	* More features see the documentation below
 
-## Upcoming Feature Updates (ALL FREE & OPEN SOURCE!)
+## Upcoming Feature Updates
 Submit suggestions on discord!
 
 
@@ -95,6 +99,47 @@ device = zxtouch("127.0.0.1") # create instance
 ```
 
 ### Instance Methods
+[Touch](#Touch)
+
+[Bring Application to Foreground](#bring-application-to-foreground)
+
+[Show Alert Box](#show-alert-box)
+
+[Run Shell Command As Root](#run-shell-command-as-root)
+
+[Image Matching](#image-matching)
+
+[Toast](#toast)
+
+[Color Picker (RGB Value From A Point on Screen)](#color-picker-rgb-value-from-a-point-on-screen)
+
+[Accurate Sleep](#accurate-sleep)
+
+[Hide Keyboard](#hide-keyboard)
+
+[Show Keyboard](#show-keyboard)
+
+[Text Input](#text-input)
+
+[Move Cursor](#move-cursor)
+
+[Play A Script](#play-a-script)
+
+[Force Stop Script Playing](#force-stop-script-playing)
+
+[Get Screen Size](#get-screen-size)
+
+[Get Screen Orientation](#get-screen-orientation)
+
+[Get Screen Scale](#get-screen-scale)
+
+[Get Device Information](#get-device-information)
+
+[Get Battery Information](#get-battery-information)
+
+[Start Touch Recording](#start-touch-recording)
+
+[Stop Touch Recording](#stop-touch-recording)
 
 ## Touch:
 
