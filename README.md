@@ -450,8 +450,21 @@ def insert_text(text):
 
 Move the text cursor on textfield
 
-    def move_cursor(self, offset):
-
+```python
+def move_cursor(offset):
+    """Move the cursor
+		
+	Args:
+		offset: the related position you want to move. To move left, offset should be negative. For moving right, it should be positive
+		    	        
+    Returns:
+       Result tuple
+		
+		The format of the result tuple:
+		result_tuple[0]: True if no error happens when executing the command on your device. False otherwise
+		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
+    """
+```
 
 ## Play A Script
 
@@ -478,12 +491,12 @@ def play_script(script_absolute_path):
 Force the device to stop playing current script
 
 ```python
-def move_cursor(offset):
-    """Move the cursor
+def force_stop_script_play():
+    """Force stop playing a script
 		
 	Args:
-		offset: the related position you want to move. To move left, offset should be negative. For moving right, it should be positive
-		    	        
+		None
+				    	        
     Returns:
        Result tuple
 		
@@ -492,6 +505,7 @@ def move_cursor(offset):
 		result_tuple[1]: error info if result_tuple[0] == False. Otherwise ""
     """
 ```
+
 
 ## Get Screen Size
 
