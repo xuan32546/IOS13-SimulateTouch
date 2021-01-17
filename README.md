@@ -39,6 +39,7 @@ Script developers needed for ZXTouch. If you are insterested in it, please conta
 	* Image matching.
 	* Device information
 	* Battery information
+	* Toast
 	* More features see the documentation below
 
 ## Upcoming Feature Updates
@@ -48,7 +49,7 @@ Submit suggestions on discord!
 ## Installation
 
 ### Through Cydia:
-1. Open Cydia - Sources - Edit - Add - http://47.114.83.227 ("http" instead of "https"!!! Please double check this.)
+1. Open Cydia - Sources - Edit - Add - https://zxtouch.net (backup server: http://47.114.83.227  ("http" instead of "https"!!! Please double check this.))
 2. Install ***"ZXTouch"*** tweak
 3. Done
 
