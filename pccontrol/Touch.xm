@@ -6,6 +6,17 @@
 
 #define TOUCH_SENDER_ID_PLIST_FILE_NAME @"senderid.plist"
 
+#define MAX_FINGER_INDEX 20
+
+#define NOT_VALID 0
+#define VALID 1
+#define VALID_AT_NEXT_APPEND 2
+
+#define EVENT_VALID_INDEX 0
+#define EVENT_TYPE_INDEX 1
+#define EVENT_X_INDEX 2
+#define EVENT_Y_INDEX 3
+
 // device screen size
 static CGFloat device_screen_width = 0;
 static CGFloat device_screen_height = 0;
@@ -14,6 +25,10 @@ IOHIDEventSystemClientRef ioHIDEventSystemForSenderID = NULL;
 
 // touch event sender id
 unsigned long long int senderID = 0x0;
+
+
+// valid type x y
+static int eventsToAppend[MAX_FINGER_INDEX][4];
 
 /*
 get count from data array by socket
@@ -75,14 +90,13 @@ static float getTouchYFromDataArray(UInt8* dataArray, int index)
 
 /*
 Get the child event of touching down.
-
 index: index of the finger
 x: coordinate x of the screen (before conversion)
 y: coordinate y of the screen (before conversion)
 */
 static IOHIDEventRef generateChildEventTouchDown(int index, float x, float y)
 {
-	IOHIDEventRef child = IOHIDEventCreateDigitizerFingerEvent(kCFAllocatorDefault, mach_absolute_time(), index, 2, 35, x/device_screen_width, y/device_screen_height, 0.0f, 0.0f, 0.0f, 1, 1, 0);
+	IOHIDEventRef child = IOHIDEventCreateDigitizerFingerEvent(kCFAllocatorDefault, mach_absolute_time(), index, 3, 3, x/device_screen_width, y/device_screen_height, 0.0f, 0.0f, 0.0f, 1, 1, 0);
     IOHIDEventSetFloatValue(child, 0xb0014, 0.04f); //set the major index getRandomNumberFloat(0.03, 0.05)
     IOHIDEventSetFloatValue(child, 0xb0015, 0.04f); //set the minor index
 	return child;
@@ -90,14 +104,13 @@ static IOHIDEventRef generateChildEventTouchDown(int index, float x, float y)
 
 /*
 Get the child event of touching move. 
-
 index: index of the finger
 x: coordinate x of the screen (before conversion)
 y: coordinate y of the screen (before conversion)
 */
 static IOHIDEventRef generateChildEventTouchMove(int index, float x, float y)
 {
-	IOHIDEventRef child = IOHIDEventCreateDigitizerFingerEvent(kCFAllocatorDefault, mach_absolute_time(), index, 2, 4, x/device_screen_width, y/device_screen_height, 0.0f, 0.0f, 0.0f, 1, 1, 0);
+	IOHIDEventRef child = IOHIDEventCreateDigitizerFingerEvent(kCFAllocatorDefault, mach_absolute_time(), index, 3, 4, x/device_screen_width, y/device_screen_height, 0.0f, 0.0f, 0.0f, 1, 1, 0);
     IOHIDEventSetFloatValue(child, 0xb0014, 0.04f); //set the major index
     IOHIDEventSetFloatValue(child, 0xb0015, 0.04f); //set the minor index
 	return child;
@@ -105,14 +118,13 @@ static IOHIDEventRef generateChildEventTouchMove(int index, float x, float y)
 
 /*
 Get the child event of touching up.
-
 index: index of the finger
 x: coordinate x of the screen (before conversion)
 y: coordinate y of the screen (before conversion)
 */
 static IOHIDEventRef generateChildEventTouchUp(int index, float x, float y)
 {
-	IOHIDEventRef child = IOHIDEventCreateDigitizerFingerEvent(kCFAllocatorDefault, mach_absolute_time(), index, 2, 33, x/device_screen_width, y/device_screen_height, 0.0f, 0.0f, 0.0f, 0, 0, 0);
+	IOHIDEventRef child = IOHIDEventCreateDigitizerFingerEvent(kCFAllocatorDefault, mach_absolute_time(), index, 3, 2, x/device_screen_width, y/device_screen_height, 0.0f, 0.0f, 0.0f, 0, 0, 0);
     IOHIDEventSetFloatValue(child, 0xb0014, 0.04f); //set the major index
     IOHIDEventSetFloatValue(child, 0xb0015, 0.04f); //set the minor index
 	return child;
@@ -153,7 +165,46 @@ void performTouchFromRawData(UInt8 *eventData)
     for (int i = 0; i < getTouchCountFromDataArray(eventData); i++)
     {
         //NSLog(@"### com.zjx.springboard: get data. index: %d. type: %d. touchIndex: %d. x: %f. y: %f", i, getTouchTypeFromDataArray(eventData, i), getTouchIndexFromDataArray(eventData, i), getTouchXFromDataArray(eventData, i), getTouchYFromDataArray(eventData, i));
-        appendChildEvent(parent, getTouchTypeFromDataArray(eventData, i), getTouchIndexFromDataArray(eventData, i), getTouchXFromDataArray(eventData, i), getTouchYFromDataArray(eventData, i));
+        int touchType = getTouchTypeFromDataArray(eventData, i);
+        int x = getTouchXFromDataArray(eventData, i);
+        int y = getTouchYFromDataArray(eventData, i);
+        int index = getTouchIndexFromDataArray(eventData, i);
+
+        appendChildEvent(parent, touchType, index, x, y); // append child event to parent
+
+        switch (touchType)
+        {
+            case TOUCH_MOVE:
+                eventsToAppend[index][EVENT_VALID_INDEX] = VALID_AT_NEXT_APPEND;
+                eventsToAppend[index][EVENT_TYPE_INDEX] = TOUCH_MOVE;
+                eventsToAppend[index][EVENT_X_INDEX] = (int)x;
+                eventsToAppend[index][EVENT_Y_INDEX] = (int)y;
+                break;
+            case TOUCH_DOWN:
+                eventsToAppend[index][EVENT_VALID_INDEX] = VALID_AT_NEXT_APPEND;
+                eventsToAppend[index][EVENT_TYPE_INDEX] = TOUCH_DOWN;
+                eventsToAppend[index][EVENT_X_INDEX] = (int)x; //!!!!!!directly converting to int may couse some precision problems
+                eventsToAppend[index][EVENT_Y_INDEX] = (int)y; //!!!
+                break;
+            case TOUCH_UP:
+                eventsToAppend[index][EVENT_VALID_INDEX] = NOT_VALID;
+                break;
+        }
+
+    }
+
+    for (int i = 0; i < MAX_FINGER_INDEX; i++)
+    {
+        if (eventsToAppend[i][EVENT_VALID_INDEX] == VALID)
+        {
+            NSLog(@"com.zjx.springboard: appending event for finger: %d. type: %d. x: %d. y: %d", i, eventsToAppend[i][EVENT_TYPE_INDEX], eventsToAppend[i][EVENT_X_INDEX], eventsToAppend[i][EVENT_Y_INDEX]);
+            appendChildEvent(parent, eventsToAppend[i][EVENT_TYPE_INDEX], i, eventsToAppend[i][EVENT_X_INDEX], eventsToAppend[i][EVENT_Y_INDEX]);
+        }
+        else if (eventsToAppend[i][EVENT_VALID_INDEX] == VALID_AT_NEXT_APPEND) // make it valid
+        {
+            NSLog(@"com.zjx.springboard:  finger: %d to become valid. type: %d. x: %d. y: %d", i, eventsToAppend[i][EVENT_TYPE_INDEX], eventsToAppend[i][EVENT_X_INDEX], eventsToAppend[i][EVENT_Y_INDEX]);
+            eventsToAppend[i][EVENT_VALID_INDEX] = VALID;
+        }
     }
 
     IOHIDEventSetIntegerValue(parent, 0xb0007, 0x23);

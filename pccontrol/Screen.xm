@@ -70,6 +70,11 @@ Get the size of the screen and set them.
     return [[UIScreen mainScreen] scale];
 }
 
++ (CGRect)getBounds
+{
+    return [UIScreen mainScreen].bounds;
+}
+
 OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
 + (NSString*)screenShot
 {

@@ -18,5 +18,7 @@ int getRandomNumberInt(int min, int max);
 float getRandomNumberFloat(float min, float max);
 NSString* getDocumentRoot();
 NSString* getScriptsFolder();
-
+void swapCGFloat(CGFloat *a, CGFloat *b);
+NSString *getConfigFilePath();
+NSString *getCommonConfigFilePath();
 #endif

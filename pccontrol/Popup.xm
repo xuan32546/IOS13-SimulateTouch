@@ -32,7 +32,7 @@ static int windowHeight = 250;
             //windowHeight = (int)((screenHeight/scale)/4);
 
             int windowLeftTopCornerX = (int)((screenWidth/scale)/2 - windowWidth/2);
-            int windowLeftTopCornerY = 0;
+            int windowLeftTopCornerY = (int)((screenHeight/scale)/2 - windowHeight/2);
             _window = [[UIWindow alloc] initWithFrame:CGRectMake(windowLeftTopCornerX, windowLeftTopCornerY, windowWidth, windowHeight)];
             _window.windowLevel = UIWindowLevelStatusBar;
             [_window setBackgroundColor:[UIColor whiteColor]];
@@ -40,7 +40,6 @@ static int windowHeight = 250;
             _window.layer.borderColor = [UIColor whiteColor].CGColor;
             _window.layer.borderWidth = 2.0f;
             _window.layer.cornerRadius = 15.0f;
-
             // Add header
             NSString *headerText = @"ZXTouch Panel";
 

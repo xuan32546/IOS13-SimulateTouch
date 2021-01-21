@@ -58,4 +58,16 @@
     send(socketHandle , msg, strlen(msg) , 0);
 }
 
+-(void)close {
+    if (!socketHandle)
+        return;
+    close(socketHandle);
+    socketHandle = 0;
+}
+
+-(void)dealloc {
+    NSLog(@"Socket dealloc");
+    [self close];
+}
+
 @end

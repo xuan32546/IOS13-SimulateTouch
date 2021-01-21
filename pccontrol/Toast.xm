@@ -102,16 +102,28 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
         //windowHeight = (int)((screenHeight/scale)/4);
 
         int windowLeftTopCornerX = (int)((screenWidth/scale)/2 - windowWidth/2);
-        int windowLeftTopCornerY = 20;
+        int windowLeftTopCornerY = 30;
+
         if (position == 0)
         {
-            windowLeftTopCornerY = 20;
+            windowLeftTopCornerY = 30;
         }
         else if (position == 1)
         {
             windowLeftTopCornerY = (int)((screenHeight - contentSize.height - 50)/scale);
             NSLog(@"com.zjx.springboard: windowLeftTopCornerY: %d", windowLeftTopCornerY);
         }
+
+        if (@available(iOS 11.0, *)) {
+            UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+            CGFloat topPadding = window.safeAreaInsets.top;
+            CGFloat bottomPadding = window.safeAreaInsets.bottom;
+
+            windowLeftTopCornerY = bottomPadding + windowLeftTopCornerY;
+        }
+
+
+
         
         _window = [[UIWindow alloc] initWithFrame:CGRectMake(windowLeftTopCornerX, windowLeftTopCornerY, windowWidth, windowHeight)];
         currentWindow = _window;

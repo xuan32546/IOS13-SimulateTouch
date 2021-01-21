@@ -19,4 +19,13 @@
 "createScriptEmptyName" = "Please input script name.";
 
 "newFeatures" = "New Fetures";
-"006features" = "1. Added zxtouch python library support (see example scripts)\n2. Buttom/left/right toasts\n3. Added log/add buttons\n4. UI Updates\n5. All example scripts have been updated\n6. Fixes bugs";
+"006features" = "1. Added zxtouch python library support (see example scripts)\n2. Bottom/left/right toasts\n3. Added log/add buttons\n4. UI Updates\n5. All example scripts have been updated\n6. Fixes bugs";
+
+"webServerCommingSoon" = "Web Server will be out in several days. Thanks for your patience";
+
+"webServer" = "Web Server";
+"touchIndicator" = "Touch Indicator";
+
+"remoteManagement" = "REMOTE MANAGEMENT";
+"control" = "CONTROL";
+"alpha" = "Alpha";

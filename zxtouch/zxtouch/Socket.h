@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(int) connect: (NSString*) ip byPort:(int) port;
 -(void) send: (NSString*)msg;
 -(void) sendChar: (char*)msg;
+-(void)close;
 
 @end
 

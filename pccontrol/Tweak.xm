@@ -36,6 +36,7 @@
 #include "ScreenMatch.h"
 #include "Toast.h"
 #include "ColorPicker.h"
+#include "TouchIndicator/TouchIndicatorWindow.h"
 
 
 #define DEBUG_MODE
@@ -198,6 +199,32 @@ void startPopupListeningCallBack()
     //NSLog(@"### com.zjx.springboard: screen width: %f, screen height: %f", device_screen_width, device_screen_height);
 }
 
+Boolean init()
+{
+    // read config file
+    // check whether config file exist
+    NSString *configFilePath = getCommonConfigFilePath();
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:configFilePath])
+    {
+        showAlertBox(@"Error", @"Unable to initiate zxtouch tweak. Config file is missing. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", 999);
+        return false;
+    }
+    // read indicator color from the config file
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:configFilePath];
+
+    if ([config[@"touch_indicator"][@"show"] boolValue])
+    {
+        NSError *err = nil;
+        startTouchIndicator(&err);
+        if (err)
+        {
+            showAlertBox(@"Error", [NSString stringWithFormat:@"Cannot start touch indicator, error info: %@", err], 999);
+        }
+    }
+
+    return true;
+}
 
 %ctor{
 
@@ -274,6 +301,12 @@ void startPopupListeningCallBack()
 
         // init touch screensize. Temporarily put this line here. Will be removed.
         initTouchGetScreenSize();
+
+        // init other things
+        if (!init())
+        {
+            return;
+        }
 
         //system("sudo zxtouchb -e \"chown -R mobile:mobile /var/mobile/Documents/com.zjx.zxtouchsp\"");
 

@@ -20,3 +20,12 @@
 
 "newFeatures" = "新特性";
 "006features" = "1. 添加了python模块支持 （具体请看示例脚本）\n2. Toasts现在支持不同位置了\n3. 添加了日志与新建脚本按钮\n4. UI更新\n5. 更新了所有示例脚本\n6. 修复bug";
+
+"webServerCommingSoon" = "网络服务器即将上线，请耐心等待";
+
+"webServer" = "服务器";
+"touchIndicator" = "触摸显示器";
+
+"remoteManagement" = "远程管理";
+"control" = "控制";
+"alpha" = "不透明度";

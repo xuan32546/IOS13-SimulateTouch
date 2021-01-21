@@ -18,7 +18,7 @@ int playScript(UInt8* path, NSError **error)
     }
 
     // check folder exists
-    NSLog(@"com.zjx.springboard: dictionary path: %@", [NSString stringWithFormat:@"%s/info.plist", path]);
+    NSLog(@"com.zjx.springboard: dictionary path: %@", [NSString stringWithFormat:@"%s/", path]);
 
     BOOL isDir;
     if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%s", path] isDirectory:&isDir] || !isDir)
@@ -49,6 +49,7 @@ int playScript(UInt8* path, NSError **error)
         _playIndicator.windowLevel = UIWindowLevelStatusBar;
         _playIndicator.hidden = NO;
         [_playIndicator setBackgroundColor:[UIColor clearColor]];
+        [_playIndicator setUserInteractionEnabled:NO];
 
         UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10*2,10*2)];
 
@@ -58,11 +59,14 @@ int playScript(UInt8* path, NSError **error)
         [_playIndicator addSubview:circleView];
     });
 
+    NSString *entryFilePath = [NSString stringWithFormat:@"%s/%@", path,entryFileName];
+    NSLog( [NSString stringWithFormat:@"com.zjx.springboard: path is: %s/", path]);
+    NSLog( @"com.zjx.springboard: %@", entryFilePath);
     if ([fileExtension isEqualToString:@"raw"])
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSError *err = nil;
-            playFromRawFile([NSString stringWithFormat:@"%s/%@", path,entryFileName], foregroundApp, &err);
+            playFromRawFile(entryFilePath, foregroundApp, &err);
             // remove indicator
             dispatch_async(dispatch_get_main_queue(), ^{
                 _playIndicator.hidden = YES;
@@ -72,9 +76,11 @@ int playScript(UInt8* path, NSError **error)
     }
     else if ([fileExtension isEqualToString:@"py"])
     {
+
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSError *err = nil;
-            playFromPythonFile([NSString stringWithFormat:@"%s/%@", path,entryFileName], foregroundApp, &err);
+            playFromPythonFile(entryFilePath, foregroundApp, &err);
             // remove indicator
             dispatch_async(dispatch_get_main_queue(), ^{
                 _playIndicator.hidden = YES;
@@ -83,7 +89,7 @@ int playScript(UInt8* path, NSError **error)
         }); 
     }
 
-    NSLog(@"com.zjx.springboard: Script currently playing");
+    NSLog(@"com.zjx.springboard: Script start playing");
     return 0;
 }
 

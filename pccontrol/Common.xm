@@ -55,3 +55,23 @@ NSString* getScriptsFolder()
     //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [NSString stringWithFormat:@"%@/%s/", getDocumentRoot(), SCRIPT_FOLDER_NAME];
 }
+
+/**
+Get config dir
+*/
+NSString *getConfigFilePath()
+{
+	return [getDocumentRoot() stringByAppendingPathComponent:@CONFIG_FOLDER_NAME];
+}
+
+NSString *getCommonConfigFilePath()
+{
+    return [getConfigFilePath() stringByAppendingPathComponent:@COMMON_CONFIG_NAME];
+}
+
+void swapCGFloat(CGFloat *a, CGFloat *b)
+{
+	CGFloat temp = *a;
+	*a = *b;
+	*b = temp;
+}

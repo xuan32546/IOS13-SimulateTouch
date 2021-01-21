@@ -10,6 +10,7 @@
 #include "ColorPicker.h"
 #include "UIKeyboard.h"
 #include "DeviceInfo.h"
+#include "TouchIndicator/TouchIndicatorWindow.h"
 #import <mach/mach.h>
 #include <Foundation/NSDistributedNotificationCenter.h>
 
@@ -206,8 +207,21 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
             notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%@\r\n", deviceInfo] UTF8String], writeStreamRef);
         }
     }
+    else if (taskType == TASK_TOUCH_INDICATOR)
+    {
+        NSError *err = nil;
+        handleTouchIndicatorTaskWithRawData(eventData, &err);
+        if (err)
+        {
+            notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
+        }
+        else
+        {
+            notifyClient((UInt8*)"0\r\n", writeStreamRef);
+        }
+    }
     else if (taskType == TASK_TEST)
     {
-        //notifyClient((UInt8*)"tttttttttttttttttttttttttttttttt", writeStreamRef);
+
     }
 }
