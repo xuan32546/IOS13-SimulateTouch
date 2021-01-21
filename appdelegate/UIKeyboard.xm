@@ -8,6 +8,14 @@
 #import <mach-o/dyld.h>
 #include <substrate.h>
 
+#define INSERT_TEXT 1
+#define VIRTUAL_KEYBOARD 2
+#define MOVE_CURSOR 3
+#define DELETE_CHARACTER 4
+
+#define VIRTUAL_KEYBOARD_HIDE 1
+#define VIRTUAL_KEYBOARD_SHOW 2
+
 
 @interface UIKeyboardImpl : UIView
 	+ (id)sharedInstance;
