@@ -1,0 +1,5 @@
+#!/bin/sh
+su mobile -c uicache
+echo "mobile ALL=(root) NOPASSWD:/usr/bin/zxtouchb" >> /etc/sudoers
+chown -R mobile:mobile /var/mobile/Library/ZXTouch
+chmod +x /var/mobile/Library/ZXTouch/coreutils/ScriptRuntime/add_datetime.sh
