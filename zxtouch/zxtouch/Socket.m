@@ -66,7 +66,6 @@
 }
 
 -(void)dealloc {
-    NSLog(@"Socket dealloc");
     [self close];
 }
 

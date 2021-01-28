@@ -87,8 +87,6 @@ OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
     // Save image.
     [UIImageJPEGRepresentation(screenImage, 0.7) writeToFile:filePath atomically:true];
 
-    NSLog(@"com.zjx.springboard: screenshot path: %@", filePath);
-
     return filePath;
 }
 @end

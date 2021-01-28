@@ -90,40 +90,46 @@ void startRecording(CFWriteStreamRef requestClient, NSError **error)
     NSString *rawFilePath = [NSString stringWithFormat:@"%@/%@.raw", scriptDirectory, currentDateTime];
     [[NSFileManager defaultManager] createFileAtPath:rawFilePath contents:nil attributes:nil];
 
-    
-    // start recording
-    NSLog(@"com.zjx.springboard: start recording.");
-    
-    notifyClient((UInt8*)[scriptDirectory UTF8String], requestClient);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-    isRecording = true;
+        // start recording
+        NSLog(@"com.zjx.springboard: start recording.");
+        
+        notifyClient((UInt8*)[scriptDirectory UTF8String], requestClient);
 
-    // show indicator
-    dispatch_async(dispatch_get_main_queue(), ^{
-        _recordIndicator = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,10*2,10*2)];
-        _recordIndicator.windowLevel = UIWindowLevelStatusBar;
-        _recordIndicator.hidden = NO;
-        [_recordIndicator setBackgroundColor:[UIColor clearColor]];
-        [_recordIndicator setUserInteractionEnabled:NO];
+        isRecording = true;
 
-        UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10*2,10*2)];
+        // show indicator
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _recordIndicator = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,10*2,10*2)];
+            _recordIndicator.windowLevel = UIWindowLevelStatusBar;
+            _recordIndicator.hidden = NO;
+            [_recordIndicator setBackgroundColor:[UIColor clearColor]];
+            [_recordIndicator setUserInteractionEnabled:NO];
 
-        //circleView.alpha = 1;
-        circleView.layer.cornerRadius = 10;  // half the width/height
-        circleView.backgroundColor = [UIColor redColor];
-        [_recordIndicator addSubview:circleView];
+            UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10*2,10*2)];
+
+            //circleView.alpha = 1;
+            circleView.layer.cornerRadius = 10;  // half the width/height
+            circleView.backgroundColor = [UIColor redColor];
+            [_recordIndicator addSubview:circleView];
+        });
+
+        scriptRecordingFileHandle = [NSFileHandle fileHandleForWritingAtPath:rawFilePath];
+
+        // get time stamp
+        lastEventTimeStampForRecording = CFAbsoluteTimeGetCurrent();
+
+        // start watching function
+        ioHIDEventSystemForRecording = IOHIDEventSystemClientCreate(kCFAllocatorDefault);
+
+        IOHIDEventSystemClientScheduleWithRunLoop(ioHIDEventSystemForRecording, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+        IOHIDEventSystemClientRegisterEventCallback(ioHIDEventSystemForRecording, (IOHIDEventSystemClientEventCallback)recordIOHIDEventCallback, NULL, NULL);
+        
+        
+        recordRunLoop = CFRunLoopGetCurrent();
+        CFRunLoopRun();
     });
-
-    scriptRecordingFileHandle = [NSFileHandle fileHandleForWritingAtPath:rawFilePath];
-
-    // get time stamp
-    lastEventTimeStampForRecording = CFAbsoluteTimeGetCurrent();
-
-    // start watching function
-    ioHIDEventSystemForRecording = IOHIDEventSystemClientCreate(kCFAllocatorDefault);
-
-    IOHIDEventSystemClientScheduleWithRunLoop(ioHIDEventSystemForRecording, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-    IOHIDEventSystemClientRegisterEventCallback(ioHIDEventSystemForRecording, (IOHIDEventSystemClientEventCallback)recordIOHIDEventCallback, NULL, NULL);
 }
 
 //TODO: multi-touch support! get touch index automatically, rather than set to 7.
@@ -160,7 +166,7 @@ static void recordIOHIDEventCallback(void* target, void* refcon, IOHIDServiceRef
             if ( touch == 1 && eventMask & 2 )
             {
                 // touch down
-                NSLog(@"com.zjx.springboard: Touch down. x %f : y %f. index: %d.  eventmask: %d, range: %d, touch: %d", x*device_screen_width, y*device_screen_height, index, eventMask, range, touch);
+                //NSLog(@"com.zjx.springboard: Touch down. x %f : y %f. index: %d.  eventmask: %d, range: %d, touch: %d", x*device_screen_width, y*device_screen_height, index, eventMask, range, touch);
                 [scriptRecordingFileHandle writeData:[[NSString stringWithFormat:@"18%.0f\n1011%02d%05.0f%05.0f\n", sleepusecs, index, xToWrite, yToWrite] dataUsingEncoding:NSUTF8StringEncoding]];
                 lastEventTimeStampForRecording = CFAbsoluteTimeGetCurrent();
                 print = true;
@@ -168,7 +174,7 @@ static void recordIOHIDEventCallback(void* target, void* refcon, IOHIDServiceRef
             else if ( touch == 1 && eventMask & 4 )
             {
                 // touch move
-                NSLog(@"com.zjx.springboard: touch moved to (%f, %f). index: %d. eventmask: %d, range: %d, touch: %d", x*device_screen_width, y*device_screen_height, index, eventMask, range, touch);
+                //NSLog(@"com.zjx.springboard: touch moved to (%f, %f). index: %d. eventmask: %d, range: %d, touch: %d", x*device_screen_width, y*device_screen_height, index, eventMask, range, touch);
                 [scriptRecordingFileHandle writeData:[[NSString stringWithFormat:@"18%.0f\n1012%02d%05.0f%05.0f\n", sleepusecs, index, xToWrite, yToWrite] dataUsingEncoding:NSUTF8StringEncoding]];
                 lastEventTimeStampForRecording = CFAbsoluteTimeGetCurrent();
                 print = true;
@@ -176,16 +182,10 @@ static void recordIOHIDEventCallback(void* target, void* refcon, IOHIDServiceRef
             else if (!touch && (eventMask & 2) )
             {
                 // touch up
-                NSLog(@"com.zjx.springboard: Touch up. x %f : y %f. index: %d.  eventmask: %d, range: %d, touch: %d", x*device_screen_width, y*device_screen_height, index, eventMask, range, touch);
+                //NSLog(@"com.zjx.springboard: Touch up. x %f : y %f. index: %d.  eventmask: %d, range: %d, touch: %d", x*device_screen_width, y*device_screen_height, index, eventMask, range, touch);
                 [scriptRecordingFileHandle writeData:[[NSString stringWithFormat:@"18%.0f\n1010%02d%05.0f%05.0f\n", sleepusecs, index, xToWrite, yToWrite] dataUsingEncoding:NSUTF8StringEncoding]];
                 lastEventTimeStampForRecording = CFAbsoluteTimeGetCurrent();
                 print = true;
-            }
-            if (print)
-            {
-                NSLog(@"com.zjx.springboard: parent: %@", parentEvent);
-                NSLog(@"com.zjx.springboard: child (%d): %@", i, event);
-
             }
         }
         /*

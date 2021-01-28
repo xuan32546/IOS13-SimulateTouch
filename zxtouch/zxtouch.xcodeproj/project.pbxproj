@@ -9,12 +9,34 @@
 /* Begin PBXBuildFile section */
 		961098F5259E1DE500919CA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 961098F7259E1DE500919CA1 /* Localizable.strings */; };
 		9619F9CF25831EE4001D7EA9 /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9619F9CE25831EE4001D7EA9 /* Socket.m */; };
+		961B79AA25C1ACC20083DC41 /* PlaySettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961B79A925C1ACC20083DC41 /* PlaySettingsNavigationController.m */; };
 		9649DA762587A4AD00CD3ADE /* ScriptListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649DA752587A4AD00CD3ADE /* ScriptListViewController.m */; };
+		964DF10825B9D87E006061B4 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0EC25B9D87E006061B4 /* GCDWebServerResponse.m */; };
+		964DF10925B9D87E006061B4 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0EF25B9D87E006061B4 /* GCDWebServerRequest.m */; };
+		964DF10A25B9D87E006061B4 /* GCDWebServerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0F225B9D87E006061B4 /* GCDWebServerFunctions.m */; };
+		964DF10B25B9D87E006061B4 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0F325B9D87E006061B4 /* GCDWebServer.m */; };
+		964DF10C25B9D87E006061B4 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0F425B9D87E006061B4 /* GCDWebServerConnection.m */; };
+		964DF10D25B9D87E006061B4 /* GCDWebServerErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0F925B9D87E006061B4 /* GCDWebServerErrorResponse.m */; };
+		964DF10E25B9D87E006061B4 /* GCDWebServerFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0FB25B9D87E006061B4 /* GCDWebServerFileResponse.m */; };
+		964DF10F25B9D87E006061B4 /* GCDWebServerDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0FC25B9D87E006061B4 /* GCDWebServerDataResponse.m */; };
+		964DF11025B9D87E006061B4 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF0FE25B9D87E006061B4 /* GCDWebServerStreamedResponse.m */; };
+		964DF11125B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF10325B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.m */; };
+		964DF11225B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF10425B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m */; };
+		964DF11325B9D87E006061B4 /* GCDWebServerDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF10525B9D87E006061B4 /* GCDWebServerDataRequest.m */; };
+		964DF11425B9D87E006061B4 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF10625B9D87E006061B4 /* GCDWebServerFileRequest.m */; };
+		964DF11D25B9E9AC006061B4 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 964DF11C25B9E9AC006061B4 /* index.html */; };
 		965E8C8E25B2BEFD00FDD35C /* AdderPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */; };
 		965E8C9525B31DD100FDD35C /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C9425B31DD100FDD35C /* Util.m */; };
 		965E8CC225B3682C00FDD35C /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8CC025B3682C00FDD35C /* LogViewController.m */; };
 		965E8CCA25B36A0F00FDD35C /* LogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965E8CCC25B36A0F00FDD35C /* LogViewController.xib */; };
 		965E8CD425B36A5F00FDD35C /* AdderPopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965E8CD625B36A5F00FDD35C /* AdderPopOverViewController.xib */; };
+		966598C525BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966598C325BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.m */; };
+		966598C625BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966598C425BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.xib */; };
+		966598CE25BD4E3000F18DEB /* TableViewCellWithSingleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 966598CC25BD4E3000F18DEB /* TableViewCellWithSingleButton.m */; };
+		966598CF25BD4E3000F18DEB /* TableViewCellWithSingleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966598CD25BD4E3000F18DEB /* TableViewCellWithSingleButton.xib */; };
+		966598DC25BD5DF900F18DEB /* PlaySettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966598DA25BD5DF900F18DEB /* PlaySettingsViewController.m */; };
+		966598ED25BD6DF900F18DEB /* TableViewCellWithInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 966598EB25BD6DF900F18DEB /* TableViewCellWithInput.m */; };
+		966598EE25BD6DF900F18DEB /* TableViewCellWithInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966598EC25BD6DF900F18DEB /* TableViewCellWithInput.xib */; };
 		9684FF7525B58A3700549FC8 /* SettingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9684FF7425B58A3700549FC8 /* SettingsPageViewController.m */; };
 		9684FFB425B67DC000549FC8 /* TouchIndicatorConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9684FFB225B67DC000549FC8 /* TouchIndicatorConfigurationViewController.m */; };
 		9684FFC825B6894B00549FC8 /* SettingPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9684FFC725B6894B00549FC8 /* SettingPages.storyboard */; };
@@ -25,6 +47,10 @@
 		9684FFF325B873EC00549FC8 /* TableViewCellWithEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9684FFF125B873EC00549FC8 /* TableViewCellWithEntry.m */; };
 		9684FFF425B873EC00549FC8 /* TableViewCellWithEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9684FFF225B873EC00549FC8 /* TableViewCellWithEntry.xib */; };
 		96A2BC382587C20A008DE91F /* ScriptListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A2BC372587C20A008DE91F /* ScriptListTableCell.m */; };
+		96D3EE3A25C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D3EE3825C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.m */; };
+		96D3EE3B25C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D3EE3925C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.xib */; };
+		96D3EE4225C1C9FE002B0000 /* TableViewCellSingleChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D3EE4025C1C9FE002B0000 /* TableViewCellSingleChoice.m */; };
+		96D3EE4325C1C9FE002B0000 /* TableViewCellSingleChoice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D3EE4125C1C9FE002B0000 /* TableViewCellSingleChoice.xib */; };
 		96D7E5A32581F99900B39A81 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5A22581F99900B39A81 /* AppDelegate.m */; };
 		96D7E5A62581F99900B39A81 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5A52581F99900B39A81 /* SceneDelegate.m */; };
 		96D7E5AC2581F99900B39A81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D7E5AA2581F99900B39A81 /* Main.storyboard */; };
@@ -60,8 +86,48 @@
 		961098FB259E1DE900919CA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9619F9CD25831EE4001D7EA9 /* Socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Socket.h; sourceTree = "<group>"; };
 		9619F9CE25831EE4001D7EA9 /* Socket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
+		961B795425C089980083DC41 /* libactivator.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libactivator.dylib; path = zxtouch/lib/libactivator.dylib; sourceTree = "<group>"; };
+		961B797325C0908A0083DC41 /* LASettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LASettingsViewController.h; sourceTree = "<group>"; };
+		961B797425C0908A0083DC41 /* LAEventDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAEventDataSource.h; sourceTree = "<group>"; };
+		961B797525C0908A0083DC41 /* LAActivator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAActivator.h; sourceTree = "<group>"; };
+		961B797625C0908A0083DC41 /* UIImageView+Activator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Activator.h"; sourceTree = "<group>"; };
+		961B797725C0908A0083DC41 /* LAListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAListener.h; sourceTree = "<group>"; };
+		961B797825C0908A0083DC41 /* LAEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAEvent.h; sourceTree = "<group>"; };
+		961B797925C0908A0083DC41 /* libactivator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libactivator.h; sourceTree = "<group>"; };
+		961B797A25C0908A0083DC41 /* LAActivatorVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAActivatorVersion.h; sourceTree = "<group>"; };
+		961B79A825C1ACC20083DC41 /* PlaySettingsNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaySettingsNavigationController.h; sourceTree = "<group>"; };
+		961B79A925C1ACC20083DC41 /* PlaySettingsNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaySettingsNavigationController.m; sourceTree = "<group>"; };
 		9649DA742587A4AD00CD3ADE /* ScriptListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptListViewController.h; sourceTree = "<group>"; };
 		9649DA752587A4AD00CD3ADE /* ScriptListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptListViewController.m; sourceTree = "<group>"; };
+		964DF0EA25B9D87E006061B4 /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFunctions.h; sourceTree = "<group>"; };
+		964DF0EB25B9D87E006061B4 /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerPrivate.h; sourceTree = "<group>"; };
+		964DF0EC25B9D87E006061B4 /* GCDWebServerResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerResponse.m; sourceTree = "<group>"; };
+		964DF0ED25B9D87E006061B4 /* GCDWebServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerConnection.h; sourceTree = "<group>"; };
+		964DF0EE25B9D87E006061B4 /* GCDWebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServer.h; sourceTree = "<group>"; };
+		964DF0EF25B9D87E006061B4 /* GCDWebServerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerRequest.m; sourceTree = "<group>"; };
+		964DF0F025B9D87E006061B4 /* GCDWebServerHTTPStatusCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerHTTPStatusCodes.h; sourceTree = "<group>"; };
+		964DF0F125B9D87E006061B4 /* GCDWebServerResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerResponse.h; sourceTree = "<group>"; };
+		964DF0F225B9D87E006061B4 /* GCDWebServerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFunctions.m; sourceTree = "<group>"; };
+		964DF0F325B9D87E006061B4 /* GCDWebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServer.m; sourceTree = "<group>"; };
+		964DF0F425B9D87E006061B4 /* GCDWebServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerConnection.m; sourceTree = "<group>"; };
+		964DF0F525B9D87E006061B4 /* GCDWebServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerRequest.h; sourceTree = "<group>"; };
+		964DF0F725B9D87E006061B4 /* GCDWebServerFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileResponse.h; sourceTree = "<group>"; };
+		964DF0F825B9D87E006061B4 /* GCDWebServerStreamedResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerStreamedResponse.h; sourceTree = "<group>"; };
+		964DF0F925B9D87E006061B4 /* GCDWebServerErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerErrorResponse.m; sourceTree = "<group>"; };
+		964DF0FA25B9D87E006061B4 /* GCDWebServerDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataResponse.h; sourceTree = "<group>"; };
+		964DF0FB25B9D87E006061B4 /* GCDWebServerFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileResponse.m; sourceTree = "<group>"; };
+		964DF0FC25B9D87E006061B4 /* GCDWebServerDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataResponse.m; sourceTree = "<group>"; };
+		964DF0FD25B9D87E006061B4 /* GCDWebServerErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerErrorResponse.h; sourceTree = "<group>"; };
+		964DF0FE25B9D87E006061B4 /* GCDWebServerStreamedResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerStreamedResponse.m; sourceTree = "<group>"; };
+		964DF10025B9D87E006061B4 /* GCDWebServerDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataRequest.h; sourceTree = "<group>"; };
+		964DF10125B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerMultiPartFormRequest.h; sourceTree = "<group>"; };
+		964DF10225B9D87E006061B4 /* GCDWebServerFileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileRequest.h; sourceTree = "<group>"; };
+		964DF10325B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerURLEncodedFormRequest.m; sourceTree = "<group>"; };
+		964DF10425B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerMultiPartFormRequest.m; sourceTree = "<group>"; };
+		964DF10525B9D87E006061B4 /* GCDWebServerDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataRequest.m; sourceTree = "<group>"; };
+		964DF10625B9D87E006061B4 /* GCDWebServerFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileRequest.m; sourceTree = "<group>"; };
+		964DF10725B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerURLEncodedFormRequest.h; sourceTree = "<group>"; };
+		964DF11C25B9E9AC006061B4 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		965E8C6D25B2A9DA00FDD35C /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		965E8C8B25B2BEFD00FDD35C /* AdderPopOverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdderPopOverViewController.h; sourceTree = "<group>"; };
 		965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdderPopOverViewController.m; sourceTree = "<group>"; };
@@ -73,6 +139,17 @@
 		965E8CD025B36A4500FDD35C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LogViewController.xib; sourceTree = "<group>"; };
 		965E8CD525B36A5F00FDD35C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/AdderPopOverViewController.xib"; sourceTree = "<group>"; };
 		965E8CDA25B36A6500FDD35C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AdderPopOverViewController.xib; sourceTree = "<group>"; };
+		966598C225BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreOptionsPopOverTableViewController.h; sourceTree = "<group>"; };
+		966598C325BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreOptionsPopOverTableViewController.m; sourceTree = "<group>"; };
+		966598C425BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreOptionsPopOverTableViewController.xib; sourceTree = "<group>"; };
+		966598CB25BD4E3000F18DEB /* TableViewCellWithSingleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellWithSingleButton.h; sourceTree = "<group>"; };
+		966598CC25BD4E3000F18DEB /* TableViewCellWithSingleButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellWithSingleButton.m; sourceTree = "<group>"; };
+		966598CD25BD4E3000F18DEB /* TableViewCellWithSingleButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellWithSingleButton.xib; sourceTree = "<group>"; };
+		966598D925BD5DF900F18DEB /* PlaySettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaySettingsViewController.h; sourceTree = "<group>"; };
+		966598DA25BD5DF900F18DEB /* PlaySettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaySettingsViewController.m; sourceTree = "<group>"; };
+		966598EA25BD6DF900F18DEB /* TableViewCellWithInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellWithInput.h; sourceTree = "<group>"; };
+		966598EB25BD6DF900F18DEB /* TableViewCellWithInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellWithInput.m; sourceTree = "<group>"; };
+		966598EC25BD6DF900F18DEB /* TableViewCellWithInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellWithInput.xib; sourceTree = "<group>"; };
 		9684FF7325B58A3700549FC8 /* SettingsPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsPageViewController.h; sourceTree = "<group>"; };
 		9684FF7425B58A3700549FC8 /* SettingsPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsPageViewController.m; sourceTree = "<group>"; };
 		9684FFB125B67DC000549FC8 /* TouchIndicatorConfigurationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchIndicatorConfigurationViewController.h; sourceTree = "<group>"; };
@@ -89,6 +166,12 @@
 		9684FFF225B873EC00549FC8 /* TableViewCellWithEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellWithEntry.xib; sourceTree = "<group>"; };
 		96A2BC362587C20A008DE91F /* ScriptListTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptListTableCell.h; sourceTree = "<group>"; };
 		96A2BC372587C20A008DE91F /* ScriptListTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptListTableCell.m; sourceTree = "<group>"; };
+		96D3EE3725C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptPlaySettingsActivatorViewController.h; sourceTree = "<group>"; };
+		96D3EE3825C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptPlaySettingsActivatorViewController.m; sourceTree = "<group>"; };
+		96D3EE3925C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScriptPlaySettingsActivatorViewController.xib; sourceTree = "<group>"; };
+		96D3EE3F25C1C9FE002B0000 /* TableViewCellSingleChoice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellSingleChoice.h; sourceTree = "<group>"; };
+		96D3EE4025C1C9FE002B0000 /* TableViewCellSingleChoice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellSingleChoice.m; sourceTree = "<group>"; };
+		96D3EE4125C1C9FE002B0000 /* TableViewCellSingleChoice.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellSingleChoice.xib; sourceTree = "<group>"; };
 		96D7E59E2581F99900B39A81 /* zxtouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zxtouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D7E5A12581F99900B39A81 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		96D7E5A22581F99900B39A81 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -134,14 +217,146 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		965E8C8725B2BEB000FDD35C /* ScriptAdder */ = {
+		961B795325C089970083DC41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				961B795425C089980083DC41 /* libactivator.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		961B797225C0908A0083DC41 /* libactivator */ = {
+			isa = PBXGroup;
+			children = (
+				961B797325C0908A0083DC41 /* LASettingsViewController.h */,
+				961B797425C0908A0083DC41 /* LAEventDataSource.h */,
+				961B797525C0908A0083DC41 /* LAActivator.h */,
+				961B797625C0908A0083DC41 /* UIImageView+Activator.h */,
+				961B797725C0908A0083DC41 /* LAListener.h */,
+				961B797825C0908A0083DC41 /* LAEvent.h */,
+				961B797925C0908A0083DC41 /* libactivator.h */,
+				961B797A25C0908A0083DC41 /* LAActivatorVersion.h */,
+			);
+			path = libactivator;
+			sourceTree = "<group>";
+		};
+		961B79A725C1AC190083DC41 /* ScriptPlaySettings */ = {
+			isa = PBXGroup;
+			children = (
+				966598D925BD5DF900F18DEB /* PlaySettingsViewController.h */,
+				966598DA25BD5DF900F18DEB /* PlaySettingsViewController.m */,
+				961B79A825C1ACC20083DC41 /* PlaySettingsNavigationController.h */,
+				961B79A925C1ACC20083DC41 /* PlaySettingsNavigationController.m */,
+				96D3EE3725C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.h */,
+				96D3EE3825C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.m */,
+				96D3EE3925C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.xib */,
+			);
+			path = ScriptPlaySettings;
+			sourceTree = "<group>";
+		};
+		964DF0E825B9D87E006061B4 /* GCDWebServer */ = {
+			isa = PBXGroup;
+			children = (
+				964DF0E925B9D87E006061B4 /* Core */,
+				964DF0F625B9D87E006061B4 /* Responses */,
+				964DF0FF25B9D87E006061B4 /* Requests */,
+			);
+			path = GCDWebServer;
+			sourceTree = "<group>";
+		};
+		964DF0E925B9D87E006061B4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				964DF0EA25B9D87E006061B4 /* GCDWebServerFunctions.h */,
+				964DF0EB25B9D87E006061B4 /* GCDWebServerPrivate.h */,
+				964DF0EC25B9D87E006061B4 /* GCDWebServerResponse.m */,
+				964DF0ED25B9D87E006061B4 /* GCDWebServerConnection.h */,
+				964DF0EE25B9D87E006061B4 /* GCDWebServer.h */,
+				964DF0EF25B9D87E006061B4 /* GCDWebServerRequest.m */,
+				964DF0F025B9D87E006061B4 /* GCDWebServerHTTPStatusCodes.h */,
+				964DF0F125B9D87E006061B4 /* GCDWebServerResponse.h */,
+				964DF0F225B9D87E006061B4 /* GCDWebServerFunctions.m */,
+				964DF0F325B9D87E006061B4 /* GCDWebServer.m */,
+				964DF0F425B9D87E006061B4 /* GCDWebServerConnection.m */,
+				964DF0F525B9D87E006061B4 /* GCDWebServerRequest.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		964DF0F625B9D87E006061B4 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				964DF0F725B9D87E006061B4 /* GCDWebServerFileResponse.h */,
+				964DF0F825B9D87E006061B4 /* GCDWebServerStreamedResponse.h */,
+				964DF0F925B9D87E006061B4 /* GCDWebServerErrorResponse.m */,
+				964DF0FA25B9D87E006061B4 /* GCDWebServerDataResponse.h */,
+				964DF0FB25B9D87E006061B4 /* GCDWebServerFileResponse.m */,
+				964DF0FC25B9D87E006061B4 /* GCDWebServerDataResponse.m */,
+				964DF0FD25B9D87E006061B4 /* GCDWebServerErrorResponse.h */,
+				964DF0FE25B9D87E006061B4 /* GCDWebServerStreamedResponse.m */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		964DF0FF25B9D87E006061B4 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				964DF10025B9D87E006061B4 /* GCDWebServerDataRequest.h */,
+				964DF10125B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.h */,
+				964DF10225B9D87E006061B4 /* GCDWebServerFileRequest.h */,
+				964DF10325B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.m */,
+				964DF10425B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m */,
+				964DF10525B9D87E006061B4 /* GCDWebServerDataRequest.m */,
+				964DF10625B9D87E006061B4 /* GCDWebServerFileRequest.m */,
+				964DF10725B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.h */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		964DF11B25B9E988006061B4 /* http */ = {
+			isa = PBXGroup;
+			children = (
+				964DF11C25B9E9AC006061B4 /* index.html */,
+			);
+			path = http;
+			sourceTree = "<group>";
+		};
+		965E8C8725B2BEB000FDD35C /* ScriptManagement */ = {
 			isa = PBXGroup;
 			children = (
 				965E8C8B25B2BEFD00FDD35C /* AdderPopOverViewController.h */,
 				965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */,
 				965E8CD625B36A5F00FDD35C /* AdderPopOverViewController.xib */,
+				966598C225BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.h */,
+				966598C325BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.m */,
+				966598C425BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.xib */,
 			);
-			path = ScriptAdder;
+			path = ScriptManagement;
+			sourceTree = "<group>";
+		};
+		966598CA25BD4DFB00F18DEB /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9684FFDD25B84AE200549FC8 /* TableViewCellWithSwitch.h */,
+				9684FFDE25B84AE200549FC8 /* TableViewCellWithSwitch.m */,
+				9684FFDF25B84AE200549FC8 /* TableViewCellWithSwitch.xib */,
+				9684FFE525B8569A00549FC8 /* TableViewCellWithSlider.h */,
+				9684FFE625B8569A00549FC8 /* TableViewCellWithSlider.m */,
+				9684FFE725B8569A00549FC8 /* TableViewCellWithSlider.xib */,
+				9684FFF025B873EC00549FC8 /* TableViewCellWithEntry.h */,
+				9684FFF125B873EC00549FC8 /* TableViewCellWithEntry.m */,
+				9684FFF225B873EC00549FC8 /* TableViewCellWithEntry.xib */,
+				966598CB25BD4E3000F18DEB /* TableViewCellWithSingleButton.h */,
+				966598CC25BD4E3000F18DEB /* TableViewCellWithSingleButton.m */,
+				966598CD25BD4E3000F18DEB /* TableViewCellWithSingleButton.xib */,
+				966598EA25BD6DF900F18DEB /* TableViewCellWithInput.h */,
+				966598EB25BD6DF900F18DEB /* TableViewCellWithInput.m */,
+				966598EC25BD6DF900F18DEB /* TableViewCellWithInput.xib */,
+				96D3EE3F25C1C9FE002B0000 /* TableViewCellSingleChoice.h */,
+				96D3EE4025C1C9FE002B0000 /* TableViewCellSingleChoice.m */,
+				96D3EE4125C1C9FE002B0000 /* TableViewCellSingleChoice.xib */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		9684FF7225B58A1A00549FC8 /* Settings */ = {
@@ -152,15 +367,6 @@
 				9684FFB125B67DC000549FC8 /* TouchIndicatorConfigurationViewController.h */,
 				9684FFB225B67DC000549FC8 /* TouchIndicatorConfigurationViewController.m */,
 				9684FFC725B6894B00549FC8 /* SettingPages.storyboard */,
-				9684FFDD25B84AE200549FC8 /* TableViewCellWithSwitch.h */,
-				9684FFDE25B84AE200549FC8 /* TableViewCellWithSwitch.m */,
-				9684FFDF25B84AE200549FC8 /* TableViewCellWithSwitch.xib */,
-				9684FFE525B8569A00549FC8 /* TableViewCellWithSlider.h */,
-				9684FFE625B8569A00549FC8 /* TableViewCellWithSlider.m */,
-				9684FFE725B8569A00549FC8 /* TableViewCellWithSlider.xib */,
-				9684FFF025B873EC00549FC8 /* TableViewCellWithEntry.h */,
-				9684FFF125B873EC00549FC8 /* TableViewCellWithEntry.m */,
-				9684FFF225B873EC00549FC8 /* TableViewCellWithEntry.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -172,6 +378,7 @@
 				96D7E5BC2581F99C00B39A81 /* zxtouchTests */,
 				96D7E5C72581F99C00B39A81 /* zxtouchUITests */,
 				96D7E59F2581F99900B39A81 /* Products */,
+				961B795325C089970083DC41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,8 +396,13 @@
 			isa = PBXGroup;
 			children = (
 				96D7E5AD2581F99B00B39A81 /* Assets.xcassets */,
+				961B79A725C1AC190083DC41 /* ScriptPlaySettings */,
+				961B797225C0908A0083DC41 /* libactivator */,
+				966598CA25BD4DFB00F18DEB /* TableViewCells */,
+				964DF11B25B9E988006061B4 /* http */,
+				964DF0E825B9D87E006061B4 /* GCDWebServer */,
 				9684FF7225B58A1A00549FC8 /* Settings */,
-				965E8C8725B2BEB000FDD35C /* ScriptAdder */,
+				965E8C8725B2BEB000FDD35C /* ScriptManagement */,
 				965E8C6D25B2A9DA00FDD35C /* Config.h */,
 				965E8C9325B31DD100FDD35C /* Util.h */,
 				965E8C9425B31DD100FDD35C /* Util.m */,
@@ -339,7 +551,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				966598CF25BD4E3000F18DEB /* TableViewCellWithSingleButton.xib in Resources */,
+				96D3EE3B25C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.xib in Resources */,
 				9684FFF425B873EC00549FC8 /* TableViewCellWithEntry.xib in Resources */,
+				966598EE25BD6DF900F18DEB /* TableViewCellWithInput.xib in Resources */,
+				964DF11D25B9E9AC006061B4 /* index.html in Resources */,
 				96D7E5B12581F99B00B39A81 /* LaunchScreen.storyboard in Resources */,
 				965E8CD425B36A5F00FDD35C /* AdderPopOverViewController.xib in Resources */,
 				961098F5259E1DE500919CA1 /* Localizable.strings in Resources */,
@@ -347,7 +563,9 @@
 				96D7E5AE2581F99B00B39A81 /* Assets.xcassets in Resources */,
 				9684FFE125B84AE200549FC8 /* TableViewCellWithSwitch.xib in Resources */,
 				96D7E5AC2581F99900B39A81 /* Main.storyboard in Resources */,
+				966598C625BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.xib in Resources */,
 				9684FFE925B8569A00549FC8 /* TableViewCellWithSlider.xib in Resources */,
+				96D3EE4325C1C9FE002B0000 /* TableViewCellSingleChoice.xib in Resources */,
 				9684FFC825B6894B00549FC8 /* SettingPages.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,19 +591,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964DF11025B9D87E006061B4 /* GCDWebServerStreamedResponse.m in Sources */,
+				966598CE25BD4E3000F18DEB /* TableViewCellWithSingleButton.m in Sources */,
+				966598ED25BD6DF900F18DEB /* TableViewCellWithInput.m in Sources */,
 				9619F9CF25831EE4001D7EA9 /* Socket.m in Sources */,
+				964DF11125B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
 				965E8CC225B3682C00FDD35C /* LogViewController.m in Sources */,
+				964DF10C25B9D87E006061B4 /* GCDWebServerConnection.m in Sources */,
 				96F4696C258B24DA0052D78D /* ScriptEditorViewController.m in Sources */,
+				964DF10825B9D87E006061B4 /* GCDWebServerResponse.m in Sources */,
+				964DF10E25B9D87E006061B4 /* GCDWebServerFileResponse.m in Sources */,
+				96D3EE3A25C1C009002B0000 /* ScriptPlaySettingsActivatorViewController.m in Sources */,
+				964DF11325B9D87E006061B4 /* GCDWebServerDataRequest.m in Sources */,
+				964DF10B25B9D87E006061B4 /* GCDWebServer.m in Sources */,
+				966598DC25BD5DF900F18DEB /* PlaySettingsViewController.m in Sources */,
 				9684FFE025B84AE200549FC8 /* TableViewCellWithSwitch.m in Sources */,
+				96D3EE4225C1C9FE002B0000 /* TableViewCellSingleChoice.m in Sources */,
 				9684FFF325B873EC00549FC8 /* TableViewCellWithEntry.m in Sources */,
 				965E8C8E25B2BEFD00FDD35C /* AdderPopOverViewController.m in Sources */,
+				964DF10D25B9D87E006061B4 /* GCDWebServerErrorResponse.m in Sources */,
 				9684FFE825B8569A00549FC8 /* TableViewCellWithSlider.m in Sources */,
 				9684FF7525B58A3700549FC8 /* SettingsPageViewController.m in Sources */,
+				964DF11225B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m in Sources */,
+				964DF10925B9D87E006061B4 /* GCDWebServerRequest.m in Sources */,
 				9649DA762587A4AD00CD3ADE /* ScriptListViewController.m in Sources */,
+				964DF10F25B9D87E006061B4 /* GCDWebServerDataResponse.m in Sources */,
 				96D7E5A32581F99900B39A81 /* AppDelegate.m in Sources */,
 				9684FFB425B67DC000549FC8 /* TouchIndicatorConfigurationViewController.m in Sources */,
 				965E8C9525B31DD100FDD35C /* Util.m in Sources */,
+				964DF10A25B9D87E006061B4 /* GCDWebServerFunctions.m in Sources */,
+				964DF11425B9D87E006061B4 /* GCDWebServerFileRequest.m in Sources */,
 				96A2BC382587C20A008DE91F /* ScriptListTableCell.m in Sources */,
+				961B79AA25C1ACC20083DC41 /* PlaySettingsNavigationController.m in Sources */,
+				966598C525BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.m in Sources */,
 				96D7E5B42581F99B00B39A81 /* main.m in Sources */,
 				96D7E5A62581F99900B39A81 /* SceneDelegate.m in Sources */,
 			);
@@ -599,7 +837,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.6;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/zxtouch/lib",
+				);
+				MARKETING_VERSION = "0.0.6-6";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -621,7 +863,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.6;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/zxtouch/lib",
+				);
+				MARKETING_VERSION = "0.0.6-6";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dL1-5q-FkV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dL1-5q-FkV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,29 +53,43 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uv-BC-Bsb">
-                                                    <rect key="frame" x="343.5" y="0.0" width="50.5" height="50.5"/>
+                                                    <rect key="frame" x="332" y="13" width="25" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50.333333333333314" id="Mmw-Xk-gHc"/>
+                                                        <constraint firstAttribute="width" constant="25" id="eGu-Cl-bX2"/>
+                                                        <constraint firstAttribute="height" constant="25" id="jKs-xY-snN"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="play-icon"/>
                                                     <connections>
                                                         <action selector="playButtonClick:" destination="tDu-2v-8S6" eventType="touchUpInside" id="pfk-ra-YDc"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-o5-QSp">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-o5-QSp">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="Zog-3f-0Ki"/>
                                                         <constraint firstAttribute="width" constant="50" id="sHa-et-FaU"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKz-sp-7qO">
+                                                    <rect key="frame" x="377" y="9.5" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="CI1-E1-3LY"/>
+                                                        <constraint firstAttribute="height" constant="32" id="EYR-kB-umz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <state key="normal" title="Button" backgroundImage="gearshape"/>
+                                                    <connections>
+                                                        <action selector="moreButtonClicked:" destination="8jf-LX-yKd" eventType="touchUpInside" id="g8B-zD-85T"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hy9-o5-QSp" firstAttribute="top" secondItem="Rfh-Nu-ozD" secondAttribute="top" id="4Ak-Sa-xCu"/>
                                                 <constraint firstItem="MXX-sD-5Vi" firstAttribute="top" secondItem="Rfh-Nu-ozD" secondAttribute="topMargin" id="5UO-96-Gvg"/>
-                                                <constraint firstItem="8uv-BC-Bsb" firstAttribute="bottom" secondItem="hy9-o5-QSp" secondAttribute="bottom" id="RcS-Av-hge"/>
-                                                <constraint firstItem="8uv-BC-Bsb" firstAttribute="top" secondItem="hy9-o5-QSp" secondAttribute="top" id="Z1G-Ld-ltk"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="8uv-BC-Bsb" secondAttribute="trailing" constant="-5.6843418860808015e-14" id="ZdJ-aH-fk1"/>
+                                                <constraint firstAttribute="trailing" secondItem="GKz-sp-7qO" secondAttribute="trailing" constant="5" id="Oi8-EV-I4s"/>
+                                                <constraint firstItem="GKz-sp-7qO" firstAttribute="leading" secondItem="8uv-BC-Bsb" secondAttribute="trailing" constant="20" id="be0-Ca-2Yb"/>
+                                                <constraint firstItem="8uv-BC-Bsb" firstAttribute="centerY" secondItem="Rfh-Nu-ozD" secondAttribute="centerY" id="hZe-rF-tJb"/>
+                                                <constraint firstItem="GKz-sp-7qO" firstAttribute="centerY" secondItem="Rfh-Nu-ozD" secondAttribute="centerY" id="i1o-s4-RqK"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="MXX-sD-5Vi" secondAttribute="bottom" id="kDx-YE-Jyb"/>
                                                 <constraint firstItem="hy9-o5-QSp" firstAttribute="top" secondItem="Rfh-Nu-ozD" secondAttribute="top" id="neY-0X-OZF"/>
                                                 <constraint firstItem="MXX-sD-5Vi" firstAttribute="leading" secondItem="hy9-o5-QSp" secondAttribute="trailing" constant="20" id="nnj-yI-TeO"/>
@@ -237,8 +251,9 @@
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="gearshape" width="132" height="132"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
-        <image name="play-icon" width="1448" height="1508"/>
+        <image name="play-icon" width="43" height="51"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

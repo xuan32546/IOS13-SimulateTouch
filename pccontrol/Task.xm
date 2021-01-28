@@ -115,8 +115,6 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
             {
                 notifyClient((UInt8*)"0\r\n", writeStreamRef);
             }
-            recordRunLoop = CFRunLoopGetCurrent();
-            CFRunLoopRun();
         });
     }
     else if (taskType == TASK_TOUCH_RECORDING_STOP)
@@ -139,7 +137,18 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
     }
     else if (taskType == TASK_PLAY_SCRIPT_FORCE_STOP)
     {
-        playForceStop();
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSError *err = nil;
+            stopScriptPlaying(&err);
+            if (err)
+            {
+                notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
+            }
+            else
+            {
+                notifyClient((UInt8*)"0\r\n", writeStreamRef);
+            }
+        });
     }
     else if (taskType == TASK_TEMPLATE_MATCH)
     {

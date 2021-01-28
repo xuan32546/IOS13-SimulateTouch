@@ -3,3 +3,5 @@
 #define SCRIPT_FOLDER_NAME "scripts"
 #define CONFIG_FOLDER_NAME "config/tweak"
 #define COMMON_CONFIG_NAME "config.plist"
+#define SCRIPT_PLAY_CONFIG_PATH @"/var/mobile/Library/ZXTouch/config/tweak/script_play_settings.plist"
+#define ACTIVATOR_CONFIG_PATH @"/var/mobile/Library/ZXTouch/config/tweak/activator.plist"

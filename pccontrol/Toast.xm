@@ -111,7 +111,6 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
         else if (position == 1)
         {
             windowLeftTopCornerY = (int)((screenHeight - contentSize.height - 50)/scale);
-            NSLog(@"com.zjx.springboard: windowLeftTopCornerY: %d", windowLeftTopCornerY);
         }
 
         if (@available(iOS 11.0, *)) {
@@ -133,6 +132,7 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
         _window.layer.borderColor = [UIColor clearColor].CGColor;
         _window.layer.borderWidth = 2.0f;
         _window.layer.cornerRadius = 10;
+        [_window setUserInteractionEnabled:NO];
 
         UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(windowWidth/2 - contentSize.width/2, 0, contentSize.width, contentSize.height)];
         contentLabel.font = font;

@@ -36,8 +36,9 @@
 #include "ScreenMatch.h"
 #include "Toast.h"
 #include "ColorPicker.h"
+#include "Play.h"
 #include "TouchIndicator/TouchIndicatorWindow.h"
-
+#include "Activator/ActivatorListener.h"
 
 #define DEBUG_MODE
 
@@ -56,6 +57,7 @@
 #define SET_SIZE 9
 
 
+static ActivatorListener *activatorInstance;
 
 
 int daemonSock = -1;
@@ -199,6 +201,12 @@ void startPopupListeningCallBack()
     //NSLog(@"### com.zjx.springboard: screen width: %f, screen height: %f", device_screen_width, device_screen_height);
 }
 
+Boolean initActivatorInstance()
+{
+
+    return true;
+}
+
 Boolean init()
 {
     // read config file
@@ -223,11 +231,27 @@ Boolean init()
         }
     }
 
+    initScriptPlayer();
+    initActivatorInstance();
     return true;
 }
 
 %ctor{
+    
+    dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
+    Class la = objc_getClass("LAActivator");
+    if (la) { //libactivator is installed
+        activatorInstance = [[ActivatorListener alloc] init];
+        
+        LAActivator* activator = [la sharedInstance];
+        if (activator.isRunningInsideSpringBoard)
+        {
+            [activator unregisterListenerWithName:@"com.zjx.zxtouch"];
+            [activator registerListener:activatorInstance 
+                                            forName:@"com.zjx.zxtouch"];
+        }
 
+    }
     
 }
 
@@ -308,7 +332,25 @@ Boolean init()
             return;
         }
 
+       
+     /*
+        
+        // Add a handler to respond to GET requests on any URL
+        [_webServer addDefaultHandlerForMethod:@"GET"
+                                requestClass:[GCDWebServerRequest class]
+                                processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
+        
+        return [GCDWebServerDataResponse responseWithHTML:@"<html><body><p>Hello World</p></body></html>"];
+        
+        }];
+        */
+        
+        // Start server on port 8080
+        //[_webServer startWithPort:8080 bonjourName:nil];
+        //NSLog(@"com.zjx.springboard: Visit %@ in your web browser", _webServer.serverURL);
+
         //system("sudo zxtouchb -e \"chown -R mobile:mobile /var/mobile/Documents/com.zjx.zxtouchsp\"");
+        system("sudo zxtouchb -e \"chown -R mobile:mobile /var/mobile/Library/ZXTouch\"");
 
         socketServer();
     });

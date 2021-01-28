@@ -17,11 +17,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="698" height="1025"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UJ1-rh-03h">
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VoY-gU-GzZ">
-                    <rect key="frame" x="0.0" y="0.0" width="698" height="44"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
                         <navigationItem title="Log" id="93b-4g-sU9">
                             <barButtonItem key="leftBarButtonItem" title="Clear" id="gPg-sr-60s">
@@ -37,27 +44,19 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UJ1-rh-03h">
-                    <rect key="frame" x="0.0" y="44" width="698" height="947"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <color key="textColor" systemColor="labelColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="UJ1-rh-03h" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="2wl-G5-ZSg"/>
-                <constraint firstItem="VoY-gU-GzZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nsk-1R-smp"/>
-                <constraint firstItem="UJ1-rh-03h" firstAttribute="top" secondItem="VoY-gU-GzZ" secondAttribute="bottom" id="SXt-Q8-Iq0"/>
-                <constraint firstItem="VoY-gU-GzZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZKN-C2-NY8"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="UJ1-rh-03h" secondAttribute="trailing" id="lrX-s9-SVK"/>
-                <constraint firstAttribute="trailing" secondItem="VoY-gU-GzZ" secondAttribute="trailing" id="met-IZ-LeZ"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="UJ1-rh-03h" secondAttribute="bottom" id="sZX-r7-txM"/>
+                <constraint firstItem="VoY-gU-GzZ" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="62t-bZ-YSx"/>
+                <constraint firstItem="UJ1-rh-03h" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="9as-QZ-U8g"/>
+                <constraint firstItem="UJ1-rh-03h" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="DhD-Vf-64O"/>
+                <constraint firstItem="UJ1-rh-03h" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="Ksp-CS-719"/>
+                <constraint firstItem="VoY-gU-GzZ" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="nhW-6f-7Lk"/>
+                <constraint firstItem="VoY-gU-GzZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="rb1-mR-Yxi"/>
+                <constraint firstItem="UJ1-rh-03h" firstAttribute="top" secondItem="VoY-gU-GzZ" secondAttribute="bottom" id="sgA-55-ygw"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="92.753623188405811" y="181.80803571428569"/>
+            <point key="canvasLocation" x="92.753623188405811" y="181.47321428571428"/>
         </view>
     </objects>
     <resources>

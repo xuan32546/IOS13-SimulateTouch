@@ -18,6 +18,11 @@
     ScriptListViewController *upperLevel;
 }
 
+
+- (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController * ) controller {
+    return UIModalPresentationNone;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.preferredContentSize = CGSizeMake(300, 100);
@@ -25,7 +30,7 @@
 }
 
 - (void)setFolder:(NSString*)path {
-    currentFolder = path;
+    currentFolder = [path stringByStandardizingPath];
 }
 
 - (void)setUpperLevelViewController:(ScriptListViewController*)vc{

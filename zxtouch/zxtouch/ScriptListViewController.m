@@ -9,8 +9,9 @@
 #import "ScriptListTableCell.h"
 #import "ScriptEditorViewController.h"
 #import "LogViewController.h"
-#import "ScriptAdder/AdderPopOverViewController.h"
+#import "AdderPopOverViewController.h"
 #include "Config.h"
+#import "MoreOptionsPopOverTableViewController.h"
 
 @interface ScriptListViewController ()
 
@@ -24,10 +25,15 @@
 }
 
 - (void) setFolder:(NSString*)folder {
-    currentFolder = folder;
+    currentFolder = [folder stringByStandardizingPath];
+}
+
+- (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController * ) controller {
+    return UIModalPresentationNone;
 }
 
 - (IBAction)logButtonClick:(id)sender {
+    
 
     LogViewController *logEditorViewController = [[LogViewController alloc] initWithNibName: @"LogViewController" bundle: nil];
     
@@ -35,6 +41,8 @@
     //[logEditorViewController setFile:RUNTIME_OUTPUT_PATH];
 
     [self presentViewController:logEditorViewController animated:YES completion:nil];
+     
+
 }
 
 - (IBAction)addButtonClick:(id)sender {
@@ -45,6 +53,7 @@
     UIPopoverPresentationController *popPC = contentVC.popoverPresentationController;
     popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
     popPC.barButtonItem = sender;
+    popPC.delegate = contentVC;
     [self presentViewController:contentVC animated:YES completion:nil];
 }
 
@@ -140,6 +149,22 @@
     }
 }
 
+
+- (IBAction)moreButtonClicked:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self._scriptListTableView];
+    NSIndexPath *indexPath = [self._scriptListTableView indexPathForRowAtPoint:buttonPosition];
+    
+    MoreOptionsPopOverTableViewController *contentVC = [[MoreOptionsPopOverTableViewController alloc] initWithFolderPath:scriptList[indexPath.row]];
+    
+    contentVC.modalPresentationStyle = UIModalPresentationPopover;
+    [contentVC setUpperLevelViewController:self];
+    UIPopoverPresentationController *popPC = contentVC.popoverPresentationController;
+    popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    //popPC.barButtonItem = sender;
+    popPC.sourceView = sender;
+    popPC.delegate = contentVC;
+    [self presentViewController:contentVC animated:YES completion:nil];
+}
 
 - (void)refreshTable {
     scriptList = [self updateScriptList];

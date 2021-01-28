@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AdderPopOverViewController : UIViewController
+@interface AdderPopOverViewController : UIViewController<UIPopoverPresentationControllerDelegate>
 - (IBAction)createFolderButtonClick:(id)sender;
 - (IBAction)createScriptButtonClick:(id)sender;
 

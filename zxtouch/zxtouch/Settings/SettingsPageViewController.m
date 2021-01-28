@@ -14,12 +14,21 @@
 #import "TableViewCellWithSlider.h"
 #import "TableViewCellWithEntry.h"
 
+#import "GCDWebServer.h"
+#import "GCDWebServerDataResponse.h"
+
+#import "libactivator.h"
+#import <dlfcn.h>
+#import <objc/runtime.h>
+
 #define SETTING_CELL_SWITCH 0
 #define SETTING_CELL_ENTRY 1
 
 
 @interface SettingsPageViewController ()
-
+{
+    GCDWebServer* _webServer;
+}
 @end
 
 @implementation SettingsPageViewController
@@ -52,14 +61,46 @@
     UINib *entryCellNib = [UINib nibWithNibName:@"TableViewCellWithEntry" bundle:nil];
     [_tableView registerNib:entryCellNib forCellReuseIdentifier:@"EntryCell"];
     
+    
+    /*
+    // Create server
+    _webServer = [[GCDWebServer alloc] init];
+    
+    // Add a handler to respond to GET requests on any URL
+    [_webServer addDefaultHandlerForMethod:@"GET"
+                              requestClass:[GCDWebServerRequest class]
+                              processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"index"
+                                                         ofType:@"html"];
+
+        // 
+        
+        NSError *err = nil;
+
+        NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+        if (err)
+        {
+            NSLog(@"error: %@", err);
+        }
+        return [GCDWebServerDataResponse responseWithHTML:html];
+      
+    }];
+    
+    [_webServer startWithPort:8080 bonjourName:nil];
+    NSLog(@"Visit %@ in your web browser", _webServer.serverURL);
+     */
+    
+    _tableView.backgroundColor = [UIColor colorWithRed:243/255.0f green:242/255.0f blue:248/255.0f alpha:1.0f];
+    _tableView.tableFooterView = [[UIView alloc] init];
+    
 }
 
 - (void)handleWebServerWithSwitchCellInstance:(UISwitch*)s {
     if ([s isOn])
     {
-        NSLog(@"Start WebServer");
-        [Util showAlertBoxWithOneOption:self title:@"ZXTouch" message:NSLocalizedString(@"webServerCommingSoon", nil) buttonString:@"OK"];
-        [s setOn:NO];
+
+        
+        //[Util showAlertBoxWithOneOption:self title:@"ZXTouch" message:NSLocalizedString(@"webServerCommingSoon", nil) buttonString:@"OK"];
     }
     else
     {
@@ -68,13 +109,18 @@
 }
 
 - (void)handleActivatorWithEntryCellInstance:(TableViewCellWithEntry*)cell {
-    if ([cell isSelected])
-    {
-        NSLog(@"Selected");
+    
+    dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
+    Class la = objc_getClass("LAListenerSettingsViewController");
+    if (la) {
+        LAListenerSettingsViewController *vc = [[la alloc] init];
+        [vc setListenerName:@"com.zjx.zxtouch"];
+        vc.title = @"ZXTouch Activator";
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else
     {
-        NSLog(@"Deselected");
+        [Util showAlertBoxWithOneOption:self title:@"Error" message:NSLocalizedString(@"activatorNeedInstall", nil) buttonString:@"OK"];
     }
 }
 
@@ -185,12 +231,15 @@
     
     [resultView addSubview:title];
     
-    [[title.centerYAnchor constraintEqualToAnchor:resultView.centerYAnchor] setActive:YES];
     [[title.leftAnchor constraintEqualToAnchor:resultView.leftAnchor constant:10] setActive:YES];
-    
+    [[title.bottomAnchor constraintEqualToAnchor:resultView.bottomAnchor constant:-5] setActive:YES];
+
     return resultView;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 60;
+}
 /*
 #pragma mark - Navigation
 

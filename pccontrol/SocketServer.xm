@@ -63,7 +63,6 @@ void socketServer()
 static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, void * clientCallBackInfo) 
 {
     UInt8 readDataBuff[2048];
-    
 	memset(readDataBuff, 0, sizeof(readDataBuff));
     
     CFIndex hasRead = CFReadStreamRead(readStream, readDataBuff, sizeof(readDataBuff));
@@ -73,7 +72,7 @@ static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, v
         
         for(char * charSep = strtok((char*)readDataBuff, "\r\n"); charSep != NULL; charSep = strtok(NULL, "\r\n")) {
             UInt8 *buff = (UInt8*)charSep;
-            id temp = [socketClients objectForKey:@((long)readStreamRef)];
+            id temp = [socketClients objectForKey:@((long)readStream)];
             if (temp != nil)
                 processTask(buff, (CFWriteStreamRef)[temp longValue]);
             else
@@ -89,7 +88,7 @@ int notifyClient(UInt8* msg, CFWriteStreamRef client)
 {
     __block int result;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"com.zjx.springboard: client: %x", client);
+        //NSLog(@"com.zjx.springboard: client: %x", client);
         if (client != 0)
         {
             result = CFWriteStreamWrite(client, msg, strlen((char*)msg));

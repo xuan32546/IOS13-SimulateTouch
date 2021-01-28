@@ -1,3 +1,0 @@
-pod 'SocketRocket'
-platform :ios, '13.0'
-workspace '/Users/jason/Code/pccontrol'

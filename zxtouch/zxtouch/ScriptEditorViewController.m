@@ -29,7 +29,7 @@
 }
 
 - (void) setFile:(NSString*)file {
-    currentFilePath = file;
+    currentFilePath = [file stringByStandardizingPath];
 }
 
 - (void) showSaveButton {

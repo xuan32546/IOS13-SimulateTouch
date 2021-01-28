@@ -16,5 +16,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[ScriptPlaySettingsActivatorViewController tableView:numberOfRowsInSection:]:ScriptPlaySettingsActivatorViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[table allKeys][section] ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

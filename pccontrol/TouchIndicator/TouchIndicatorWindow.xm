@@ -269,7 +269,7 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             _window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, screenBoundsWidth, screenBoundsHeight)];
-            _window.windowLevel = UIWindowLevelStatusBar;
+            _window.windowLevel = UIWindowLevelAlert;
             [_window setBackgroundColor:[UIColor clearColor]];
             [_window setUserInteractionEnabled:NO];
             [_window setAutoresizingMask:18];

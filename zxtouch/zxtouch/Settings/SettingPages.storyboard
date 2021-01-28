@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Play Settings Navigation Controller-->
+        <scene sceneID="rRc-1E-AGX">
+            <objects>
+                <navigationController storyboardIdentifier="PlaySettingsNavigationController" id="yVY-Ea-KdQ" customClass="PlaySettingsNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lDr-tI-tJg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="voB-Gb-ocn" kind="relationship" relationship="rootViewController" id="jgN-k7-VNK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hpe-we-p4k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1776" y="-609"/>
+        </scene>
+        <!--Play Settings View Controller-->
+        <scene sceneID="pjm-3K-eeg">
+            <objects>
+                <viewController storyboardIdentifier="PlaySettingsViewController" id="voB-Gb-ocn" customClass="PlaySettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="miW-p2-duc" customClass="PlaySettings">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-IH-8pv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="voB-Gb-ocn" id="U4B-pr-W66"/>
+                                    <outlet property="delegate" destination="voB-Gb-ocn" id="DRI-rf-chk"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7zN-Y7-cxu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7zN-Y7-cxu" firstAttribute="bottom" secondItem="3MA-IH-8pv" secondAttribute="bottom" id="869-QH-hho"/>
+                            <constraint firstItem="3MA-IH-8pv" firstAttribute="leading" secondItem="7zN-Y7-cxu" secondAttribute="leading" id="aXe-XM-XsW"/>
+                            <constraint firstItem="3MA-IH-8pv" firstAttribute="top" secondItem="7zN-Y7-cxu" secondAttribute="top" id="rbb-AL-FQv"/>
+                            <constraint firstItem="7zN-Y7-cxu" firstAttribute="trailing" secondItem="3MA-IH-8pv" secondAttribute="trailing" id="wFt-Z7-aqx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cen-cV-mJa">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hxa-84-ZfM">
+                            <connections>
+                                <action selector="cancelButtonClicked:" destination="voB-Gb-ocn" id="AgA-f3-izD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Tyc-vz-def">
+                            <connections>
+                                <action selector="doneButtonClicked:" destination="voB-Gb-ocn" id="Njx-zB-gFU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="3MA-IH-8pv" id="mgG-3x-qXQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Irp-J3-E8m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1739" y="121"/>
+        </scene>
         <!--Touch Indicator Configuration View Controller-->
         <scene sceneID="AhZ-5Y-lEt">
             <objects>

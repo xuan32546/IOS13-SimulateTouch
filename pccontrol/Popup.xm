@@ -1,12 +1,13 @@
 #import "Popup.h"
 #import "Screen.h"
 #import "Record.h"
+#include "Play.h"
 #include "AlertBox.h"
+#include "Toast.h"
 #import <UIKit/UIKit.h>
 
 extern CGFloat device_screen_width;
 extern CGFloat device_screen_height;
-extern CFRunLoopRef recordRunLoop;
 
 static int windowWidth = 250;
 static int windowHeight = 250;
@@ -34,7 +35,7 @@ static int windowHeight = 250;
             int windowLeftTopCornerX = (int)((screenWidth/scale)/2 - windowWidth/2);
             int windowLeftTopCornerY = (int)((screenHeight/scale)/2 - windowHeight/2);
             _window = [[UIWindow alloc] initWithFrame:CGRectMake(windowLeftTopCornerX, windowLeftTopCornerY, windowWidth, windowHeight)];
-            _window.windowLevel = UIWindowLevelStatusBar;
+            _window.windowLevel = UIWindowLevelAlert;
             [_window setBackgroundColor:[UIColor whiteColor]];
 
             _window.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -89,6 +90,18 @@ static int windowHeight = 250;
 
             recordButton.frame = CGRectMake(30, headerSize.height + 10, 50, 50);
             [_window addSubview:recordButton];
+
+            // add stop script button
+            UIButton *stopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [stopButton addTarget:self 
+                    action:@selector(stopPlaying)
+            forControlEvents:UIControlEventTouchUpInside];
+
+            stopButton.backgroundColor = [UIColor clearColor];
+            [stopButton setImage:[UIImage imageWithContentsOfFile:@"/Library/Application Support/zxtouch/stop-playing.png"] forState:UIControlStateNormal];
+
+            stopButton.frame = CGRectMake(100, headerSize.height + 10, 50, 50);
+            [_window addSubview:stopButton];
         });
         isShown = NO;        
     }
@@ -105,8 +118,21 @@ static int windowHeight = 250;
             showAlertBox(@"Error", [NSString stringWithFormat:@"Unable to start recording. Reason: %@",[err localizedDescription]], 999);
             return;
         }
-        recordRunLoop = CFRunLoopGetCurrent();
-        CFRunLoopRun();
+    });
+}
+
+- (void) stopPlaying {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSError *err = nil;
+        stopScriptPlaying(&err);
+        if (err)
+        {
+            showAlertBox(@"Error", [NSString stringWithFormat:@"Error happens while trying to stop script. %@", err], 999);
+        }
+        else
+        {
+            [Toast showToastWithContent:@"Script has been stopped" type:4 duration:1.0f position:0 fontSize:0];
+        }
     });
 }
 

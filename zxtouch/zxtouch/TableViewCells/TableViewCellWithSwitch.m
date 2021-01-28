@@ -25,7 +25,6 @@
 }
 
 
-
 - (void)setBtnInitStatus:(BOOL)status {
     [_switchBtn setOn:status animated:NO];
 }
