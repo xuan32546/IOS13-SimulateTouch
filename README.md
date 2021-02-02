@@ -10,17 +10,15 @@ Please give me a star!
 
 Read this in other languages（send email to me if you want to help to translate this page）: [简体中文版说明文档](README.zh-cn.md)
 
-## About Open Source
-
-The source code of springboard part has been released! **I am looking for someone writting the GUI part (xcode + objective-c). If you are interested in it, please send a email to jiz176@pitt.edu**
 
 ## Description
 
 This library enables you to simulate touch events on iOS 11.0 - 14 with just one line of code! Currently, the repository is mainly for programmers. In the future, I will make it suitable for people who do not understand how to code.
 
-## Looking For Script Developers
+## Notice
+I am a Computer Science student in University of Pittsburgh, and my spring 2021 term has started. My workload for this semester is pretty heavy. **Although this semester is extremely boring because I didn't enroll in any of the CS courses this semester, I still have to focus on studying. So, I have to reduce the amount of time spending on updating ZXTouch.** But I will still update it when I am free.
 
-Script developers needed for ZXTouch. If you are insterested in it, please contact me on Github or Discord. Although ZXTouch are free & open source, you are allowed to charge users for writing scripts because they are your own work, and you deserve it.
+
 
 ## Features
 
@@ -40,7 +38,9 @@ Script developers needed for ZXTouch. If you are insterested in it, please conta
 	* Device information
 	* Battery information
 	* Toast
-	* More features see the documentation below
+	* Activator support
+	* OCR
+	* Touch indicator
 
 ## Upcoming Feature Updates
 Submit suggestions on discord!
@@ -682,6 +682,41 @@ def stop_touch_recording():
     """
 ```
 
+## OCR 
+
+```python
+def ocr(self, region, custom_words=[], minimum_height="", recognition_level=0, languages=[], auto_correct=0, debug_image_path=""):
+    """Get text from a region
+
+    Args:
+        region: a tuple containing start_x, start_y, width, height of the region to ocr. Format: (x, y, width, height)
+        custom_words: an array of strings to supplement the recognized languages at the word recognition stage.
+        minimum_height: the minimum height of the text expected to be recognized, relative to the image height. The default value is 1/32
+        recognition_level: a value that determines whether the request prioritizes accuracy or speed in text recognition. 0 means accurate. 1 means faster.
+        languages: an array of languages to detect, in priority order.  Default: english. Use get_supported_ocr_languages() to get the language list.
+        auto_correct: whether ocr engine applies language correction during the recognition process. 0 means no, 1 means yes
+        debug_image_path: debug image path. If you DONT want the ocr engine to output the debug image, leave it blank
+
+    Returns:
+        Result tuple: (success?, error_message/return value)
+
+        if the operation successes, the return value will be an array of texts in the region.
+    """
+```
+
+```python
+def get_supported_ocr_languages(self, recognition_level):
+    """Get languages that can be recognized by ocr
+
+    Args:
+        recognition_level: a value that determines whether the request prioritizes accuracy or speed in text recognition. 0 means accurate. 1 means faster.
+
+    Returns:
+        Result tuple: (success?, error_message/return value)
+
+        if the operation successes, the return value will be an array of available languages .
+    """
+```
 
 ## Contact
 
