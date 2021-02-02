@@ -19,6 +19,7 @@ static CGFloat device_screen_height = 0;
 
 UIWindow *_recordIndicator;
 
+
 void startRecording(CFWriteStreamRef requestClient, NSError **error)
 {
    if (isRecording)
@@ -78,8 +79,8 @@ void startRecording(CFWriteStreamRef requestClient, NSError **error)
     }
     else
     {
-        NSLog(@"com.zjx.springboard: bundle identifier of front most application: %@, identifier: %@", frontMostApp, [frontMostApp displayIdentifier]);
-        [infoDict setObject:[frontMostApp displayIdentifier] forKey:@"FrontApp"];
+        NSLog(@"com.zjx.springboard: bundle identifier of front most application: %@", frontMostApp);
+        [infoDict setObject:frontMostApp.bundleIdentifier forKey:@"FrontApp"]; //[frontMostApp displayIdentifier]
     }
 
     // write to plist file in script directory
