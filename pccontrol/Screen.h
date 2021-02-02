@@ -13,6 +13,7 @@
 + (CGFloat)getScale;
 + (NSString*)screenShot;
 + (CGRect)getBounds;
++ (NSString*)screenShotAlwaysUp;
 
 @end
 

@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScriptListViewController.h"
+#import "../ScriptListViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

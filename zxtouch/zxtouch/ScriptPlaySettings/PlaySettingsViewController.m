@@ -198,8 +198,8 @@
 
         TableViewCellWithEntry *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         
-        [cell.title setText:@"Activator"];
-        [cell.subTitle setText:@">"];
+        [cell.title setText:NSLocalizedString(@"setActivatorTrigger", nil)];
+        [cell.subTitle setText:@""];
 
         result = cell;
     }

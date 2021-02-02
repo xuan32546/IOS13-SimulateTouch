@@ -40,6 +40,7 @@
 #include "TouchIndicator/TouchIndicatorWindow.h"
 #include "Activator/ActivatorListener.h"
 
+
 #define DEBUG_MODE
 
 #ifdef DEBUG_MODE

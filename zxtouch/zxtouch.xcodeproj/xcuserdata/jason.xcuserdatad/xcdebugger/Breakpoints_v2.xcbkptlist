@@ -78,8 +78,8 @@
             filePath = "zxtouch/Settings/SettingsPageViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "zxtouch/ScriptPlaySettings/ScriptPlaySettingsActivatorViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +254,8 @@
             filePath = "zxtouch/ScriptPlaySettings/ScriptPlaySettingsActivatorViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "zxtouch/ScriptPlaySettings/ScriptPlaySettingsActivatorViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,25 +318,9 @@
             filePath = "zxtouch/ScriptListViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8A11FDC3-2190-4009-A012-132638734F6D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "zxtouch/AppDelegate.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -350,8 +334,8 @@
             filePath = "zxtouch/ScriptListViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,8 +350,8 @@
             filePath = "zxtouch/ScriptListViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>

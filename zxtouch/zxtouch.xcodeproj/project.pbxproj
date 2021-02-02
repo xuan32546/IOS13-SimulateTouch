@@ -37,6 +37,8 @@
 		966598DC25BD5DF900F18DEB /* PlaySettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966598DA25BD5DF900F18DEB /* PlaySettingsViewController.m */; };
 		966598ED25BD6DF900F18DEB /* TableViewCellWithInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 966598EB25BD6DF900F18DEB /* TableViewCellWithInput.m */; };
 		966598EE25BD6DF900F18DEB /* TableViewCellWithInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966598EC25BD6DF900F18DEB /* TableViewCellWithInput.xib */; };
+		9666347E25C41C000028A5A3 /* ActivatorConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9666347D25C41C000028A5A3 /* ActivatorConfigurationViewController.m */; };
+		9666349925C42E2F0028A5A3 /* ActivatorEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9666349825C42E2F0028A5A3 /* ActivatorEventsTableViewController.m */; };
 		9684FF7525B58A3700549FC8 /* SettingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9684FF7425B58A3700549FC8 /* SettingsPageViewController.m */; };
 		9684FFB425B67DC000549FC8 /* TouchIndicatorConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9684FFB225B67DC000549FC8 /* TouchIndicatorConfigurationViewController.m */; };
 		9684FFC825B6894B00549FC8 /* SettingPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9684FFC725B6894B00549FC8 /* SettingPages.storyboard */; };
@@ -59,6 +61,7 @@
 		96D7E5B42581F99B00B39A81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5B32581F99B00B39A81 /* main.m */; };
 		96D7E5BE2581F99C00B39A81 /* zxtouchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5BD2581F99C00B39A81 /* zxtouchTests.m */; };
 		96D7E5C92581F99C00B39A81 /* zxtouchUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5C82581F99C00B39A81 /* zxtouchUITests.m */; };
+		96EE2C1425C93850005FC8C3 /* ImageViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE2C1325C93850005FC8C3 /* ImageViewerViewController.m */; };
 		96F4696C258B24DA0052D78D /* ScriptEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F4696B258B24DA0052D78D /* ScriptEditorViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +89,6 @@
 		961098FB259E1DE900919CA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9619F9CD25831EE4001D7EA9 /* Socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Socket.h; sourceTree = "<group>"; };
 		9619F9CE25831EE4001D7EA9 /* Socket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
-		961B795425C089980083DC41 /* libactivator.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libactivator.dylib; path = zxtouch/lib/libactivator.dylib; sourceTree = "<group>"; };
 		961B797325C0908A0083DC41 /* LASettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LASettingsViewController.h; sourceTree = "<group>"; };
 		961B797425C0908A0083DC41 /* LAEventDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAEventDataSource.h; sourceTree = "<group>"; };
 		961B797525C0908A0083DC41 /* LAActivator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAActivator.h; sourceTree = "<group>"; };
@@ -150,6 +152,11 @@
 		966598EA25BD6DF900F18DEB /* TableViewCellWithInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellWithInput.h; sourceTree = "<group>"; };
 		966598EB25BD6DF900F18DEB /* TableViewCellWithInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellWithInput.m; sourceTree = "<group>"; };
 		966598EC25BD6DF900F18DEB /* TableViewCellWithInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellWithInput.xib; sourceTree = "<group>"; };
+		9666347C25C41C000028A5A3 /* ActivatorConfigurationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivatorConfigurationViewController.h; sourceTree = "<group>"; };
+		9666347D25C41C000028A5A3 /* ActivatorConfigurationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivatorConfigurationViewController.m; sourceTree = "<group>"; };
+		9666348725C41D7E0028A5A3 /* ZXTouchActivatorTaskTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXTouchActivatorTaskTypes.h; sourceTree = "<group>"; };
+		9666349725C42E2F0028A5A3 /* ActivatorEventsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivatorEventsTableViewController.h; sourceTree = "<group>"; };
+		9666349825C42E2F0028A5A3 /* ActivatorEventsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivatorEventsTableViewController.m; sourceTree = "<group>"; };
 		9684FF7325B58A3700549FC8 /* SettingsPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsPageViewController.h; sourceTree = "<group>"; };
 		9684FF7425B58A3700549FC8 /* SettingsPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsPageViewController.m; sourceTree = "<group>"; };
 		9684FFB125B67DC000549FC8 /* TouchIndicatorConfigurationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchIndicatorConfigurationViewController.h; sourceTree = "<group>"; };
@@ -188,6 +195,8 @@
 		96D7E5C42581F99C00B39A81 /* zxtouchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zxtouchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D7E5C82581F99C00B39A81 /* zxtouchUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zxtouchUITests.m; sourceTree = "<group>"; };
 		96D7E5CA2581F99C00B39A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96EE2C1225C93850005FC8C3 /* ImageViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewerViewController.h; sourceTree = "<group>"; };
+		96EE2C1325C93850005FC8C3 /* ImageViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewerViewController.m; sourceTree = "<group>"; };
 		96F4696A258B24DA0052D78D /* ScriptEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptEditorViewController.h; sourceTree = "<group>"; };
 		96F4696B258B24DA0052D78D /* ScriptEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptEditorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,14 +226,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		961B795325C089970083DC41 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				961B795425C089980083DC41 /* libactivator.dylib */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		961B797225C0908A0083DC41 /* libactivator */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,9 +360,21 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		9666349625C428B30028A5A3 /* ActivatorConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				9666347C25C41C000028A5A3 /* ActivatorConfigurationViewController.h */,
+				9666347D25C41C000028A5A3 /* ActivatorConfigurationViewController.m */,
+				9666349725C42E2F0028A5A3 /* ActivatorEventsTableViewController.h */,
+				9666349825C42E2F0028A5A3 /* ActivatorEventsTableViewController.m */,
+			);
+			path = ActivatorConfiguration;
+			sourceTree = "<group>";
+		};
 		9684FF7225B58A1A00549FC8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				9666349625C428B30028A5A3 /* ActivatorConfiguration */,
 				9684FF7325B58A3700549FC8 /* SettingsPageViewController.h */,
 				9684FF7425B58A3700549FC8 /* SettingsPageViewController.m */,
 				9684FFB125B67DC000549FC8 /* TouchIndicatorConfigurationViewController.h */,
@@ -378,7 +391,6 @@
 				96D7E5BC2581F99C00B39A81 /* zxtouchTests */,
 				96D7E5C72581F99C00B39A81 /* zxtouchUITests */,
 				96D7E59F2581F99900B39A81 /* Products */,
-				961B795325C089970083DC41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -396,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				96D7E5AD2581F99B00B39A81 /* Assets.xcassets */,
+				9666348725C41D7E0028A5A3 /* ZXTouchActivatorTaskTypes.h */,
 				961B79A725C1AC190083DC41 /* ScriptPlaySettings */,
 				961B797225C0908A0083DC41 /* libactivator */,
 				966598CA25BD4DFB00F18DEB /* TableViewCells */,
@@ -422,6 +435,8 @@
 				96A2BC372587C20A008DE91F /* ScriptListTableCell.m */,
 				96F4696A258B24DA0052D78D /* ScriptEditorViewController.h */,
 				96F4696B258B24DA0052D78D /* ScriptEditorViewController.m */,
+				96EE2C1225C93850005FC8C3 /* ImageViewerViewController.h */,
+				96EE2C1325C93850005FC8C3 /* ImageViewerViewController.m */,
 				965E8CBF25B3682C00FDD35C /* LogViewController.h */,
 				965E8CC025B3682C00FDD35C /* LogViewController.m */,
 				965E8CCC25B36A0F00FDD35C /* LogViewController.xib */,
@@ -592,6 +607,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				964DF11025B9D87E006061B4 /* GCDWebServerStreamedResponse.m in Sources */,
+				9666347E25C41C000028A5A3 /* ActivatorConfigurationViewController.m in Sources */,
 				966598CE25BD4E3000F18DEB /* TableViewCellWithSingleButton.m in Sources */,
 				966598ED25BD6DF900F18DEB /* TableViewCellWithInput.m in Sources */,
 				9619F9CF25831EE4001D7EA9 /* Socket.m in Sources */,
@@ -612,9 +628,11 @@
 				964DF10D25B9D87E006061B4 /* GCDWebServerErrorResponse.m in Sources */,
 				9684FFE825B8569A00549FC8 /* TableViewCellWithSlider.m in Sources */,
 				9684FF7525B58A3700549FC8 /* SettingsPageViewController.m in Sources */,
+				9666349925C42E2F0028A5A3 /* ActivatorEventsTableViewController.m in Sources */,
 				964DF11225B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				964DF10925B9D87E006061B4 /* GCDWebServerRequest.m in Sources */,
 				9649DA762587A4AD00CD3ADE /* ScriptListViewController.m in Sources */,
+				96EE2C1425C93850005FC8C3 /* ImageViewerViewController.m in Sources */,
 				964DF10F25B9D87E006061B4 /* GCDWebServerDataResponse.m in Sources */,
 				96D7E5A32581F99900B39A81 /* AppDelegate.m in Sources */,
 				9684FFB425B67DC000549FC8 /* TouchIndicatorConfigurationViewController.m in Sources */,
@@ -837,11 +855,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/zxtouch/lib",
-				);
-				MARKETING_VERSION = "0.0.6-6";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/zxtouch/lib";
+				MARKETING_VERSION = 0.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -863,11 +878,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/zxtouch/lib",
-				);
-				MARKETING_VERSION = "0.0.6-6";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/zxtouch/lib";
+				MARKETING_VERSION = 0.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

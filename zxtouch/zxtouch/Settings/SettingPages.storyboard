@@ -72,6 +72,62 @@
             </objects>
             <point key="canvasLocation" x="-1739" y="121"/>
         </scene>
+        <!--Activator Configuration View Controller-->
+        <scene sceneID="2iV-EJ-8ME">
+            <objects>
+                <viewController storyboardIdentifier="ActivatorConfigurationViewController" id="q7j-aS-JGW" customClass="ActivatorConfigurationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kuw-tQ-hDE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2OL-ut-RZn">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="q7j-aS-JGW" id="hCe-Kf-4Av"/>
+                                    <outlet property="delegate" destination="q7j-aS-JGW" id="wAZ-WN-Zie"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ekq-qL-PXx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ekq-qL-PXx" firstAttribute="bottom" secondItem="2OL-ut-RZn" secondAttribute="bottom" id="Kil-1l-Ho4"/>
+                            <constraint firstItem="2OL-ut-RZn" firstAttribute="top" secondItem="Ekq-qL-PXx" secondAttribute="top" id="ZHy-LE-jJv"/>
+                            <constraint firstItem="2OL-ut-RZn" firstAttribute="leading" secondItem="Ekq-qL-PXx" secondAttribute="leading" id="fon-bh-UWb"/>
+                            <constraint firstItem="Ekq-qL-PXx" firstAttribute="trailing" secondItem="2OL-ut-RZn" secondAttribute="trailing" id="yQi-lW-AvJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="2OL-ut-RZn" id="QRk-nw-0V9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mbn-xl-5q0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2019" y="941"/>
+        </scene>
+        <!--Activator Events Table View Controller-->
+        <scene sceneID="gJS-31-B6x">
+            <objects>
+                <tableViewController storyboardIdentifier="ActivatorEventsTableViewController" id="yXN-AT-bld" customClass="ActivatorEventsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cub-SD-qqd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="yXN-AT-bld" id="pAj-bZ-dY2"/>
+                            <outlet property="delegate" destination="yXN-AT-bld" id="QHf-4d-ueK"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="Cub-SD-qqd" id="ndr-RJ-yTo"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Lg-eU-UZU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1274" y="970"/>
+        </scene>
         <!--Touch Indicator Configuration View Controller-->
         <scene sceneID="AhZ-5Y-lEt">
             <objects>

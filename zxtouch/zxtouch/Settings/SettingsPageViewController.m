@@ -8,7 +8,9 @@
 #import "SettingsPageViewController.h"
 #import "ScriptListTableCell.h"
 #import "TouchIndicatorConfigurationViewController.h"
+#import "ActivatorConfigurationViewController.h"
 #import "Util.h"
+
 
 #import "TableViewCellWithSwitch.h"
 #import "TableViewCellWithSlider.h"
@@ -20,6 +22,7 @@
 #import "libactivator.h"
 #import <dlfcn.h>
 #import <objc/runtime.h>
+#import "Config.h"
 
 #define SETTING_CELL_SWITCH 0
 #define SETTING_CELL_ENTRY 1
@@ -35,13 +38,14 @@
 {
     NSArray *sections;
     NSArray<NSArray*> *cellsForEachSection;
+    NSMutableDictionary *config;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    sections = @[NSLocalizedString(@"remoteManagement", nil), NSLocalizedString(@"control", nil)]; // , @"HELP"
+    
+    sections = @[NSLocalizedString(@"remoteManagement", nil), NSLocalizedString(@"control", nil), NSLocalizedString(@"script", nil)]; // , @"HELP"
     
     // [@{"type": ?, @"title": ?, @"content": ?, ... more depends on the cell type}]
     //
@@ -51,7 +55,11 @@
         ],
         @[
             @{@"type": @(SETTING_CELL_ENTRY), @"title": @"Activator", @"secondary_title": @"", @"row_click_handler": NSStringFromSelector(@selector(handleActivatorWithEntryCellInstance:))},
+            @{@"type": @(SETTING_CELL_ENTRY), @"title": NSLocalizedString(@"configActivatorEvents", nil), @"secondary_title": @"", @"row_click_handler": NSStringFromSelector(@selector(handleConfigActivatorEventsWithEntryCellInstance:))},
             @{@"type": @(SETTING_CELL_ENTRY), @"title": NSLocalizedString(@"touchIndicator", nil), @"secondary_title": @"", @"row_click_handler": NSStringFromSelector(@selector(handleTouchIndicatorWithEntryCellInstance:))}
+        ],
+        @[
+            @{@"type": @(SETTING_CELL_SWITCH), @"title": NSLocalizedString(@"switchAppBeforePlaying", nil), @"switch_click_handler": NSStringFromSelector(@selector(handleSwitchAppBeforePlaying:)), @"switch_init_status": @(YES)}
         ]
     ];
      
@@ -61,46 +69,36 @@
     UINib *entryCellNib = [UINib nibWithNibName:@"TableViewCellWithEntry" bundle:nil];
     [_tableView registerNib:entryCellNib forCellReuseIdentifier:@"EntryCell"];
     
-    
-    /*
-    // Create server
-    _webServer = [[GCDWebServer alloc] init];
-    
-    // Add a handler to respond to GET requests on any URL
-    [_webServer addDefaultHandlerForMethod:@"GET"
-                              requestClass:[GCDWebServerRequest class]
-                              processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"index"
-                                                         ofType:@"html"];
-
-        // 
-        
-        NSError *err = nil;
-
-        NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
-        if (err)
-        {
-            NSLog(@"error: %@", err);
-        }
-        return [GCDWebServerDataResponse responseWithHTML:html];
-      
-    }];
-    
-    [_webServer startWithPort:8080 bonjourName:nil];
-    NSLog(@"Visit %@ in your web browser", _webServer.serverURL);
-     */
-    
     _tableView.backgroundColor = [UIColor colorWithRed:243/255.0f green:242/255.0f blue:248/255.0f alpha:1.0f];
     _tableView.tableFooterView = [[UIView alloc] init];
-    
+}
+
+- (void)handleSwitchAppBeforePlaying:(UISwitch*)s {
+    [Util showAlertBoxWithOneOption:self title:@"ZXTouch" message:NSLocalizedString(@"commonSoon", nil) buttonString:@"OK"];
+    [s setOn:YES];
+}
+
+- (void)handleConfigActivatorEventsWithEntryCellInstance:(TableViewCellWithEntry*)cell {
+    dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
+    Class ac = objc_getClass("LAActivator");
+    if (ac) {
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"SettingPages" bundle:nil];
+        ActivatorConfigurationViewController *vc = [sb instantiateViewControllerWithIdentifier:@"ActivatorConfigurationViewController"];
+        vc.title = NSLocalizedString(@"configActivatorEvents", nil);
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        [Util showAlertBoxWithOneOption:self title:@"Error" message:NSLocalizedString(@"activatorNeedInstall", nil) buttonString:@"OK"];
+    }
 }
 
 - (void)handleWebServerWithSwitchCellInstance:(UISwitch*)s {
     if ([s isOn])
     {
-
-        
-        //[Util showAlertBoxWithOneOption:self title:@"ZXTouch" message:NSLocalizedString(@"webServerCommingSoon", nil) buttonString:@"OK"];
+        [Util showAlertBoxWithOneOption:self title:@"ZXTouch" message:NSLocalizedString(@"commonSoon", nil) buttonString:@"OK"];
+        [s setOn:NO];
     }
     else
     {
@@ -109,13 +107,12 @@
 }
 
 - (void)handleActivatorWithEntryCellInstance:(TableViewCellWithEntry*)cell {
-    
     dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
     Class la = objc_getClass("LAListenerSettingsViewController");
     if (la) {
         LAListenerSettingsViewController *vc = [[la alloc] init];
         [vc setListenerName:@"com.zjx.zxtouch"];
-        vc.title = @"ZXTouch Activator";
+        vc.title = @"Assign Activator Events";
         [self.navigationController pushViewController:vc animated:YES];
     }
     else

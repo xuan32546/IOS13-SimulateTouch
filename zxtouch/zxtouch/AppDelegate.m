@@ -20,6 +20,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    if (@available(iOS 13.0, *)) {
+        _window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
+    
+    if (@available(iOS 13.0, *)) {
+        if ([_window respondsToSelector:NSSelectorFromString(@"overrideUserInterfaceStyle")]) {
+            [_window setValue:@(UIUserInterfaceStyleLight) forKey:@"overrideUserInterfaceStyle"];
+        }
+    }
+    
     return YES;
 }
 

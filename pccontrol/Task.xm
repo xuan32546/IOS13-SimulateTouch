@@ -13,6 +13,7 @@
 #include "TouchIndicator/TouchIndicatorWindow.h"
 #import <mach/mach.h>
 #include <Foundation/NSDistributedNotificationCenter.h>
+#include <TextRecognization/TextRecognizer.h>
 
 extern CFRunLoopRef recordRunLoop;
 
@@ -34,7 +35,7 @@ Process Task
 */
 void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
 {
-    NSLog(@"### com.zjx.springboard: task type: %d. Data: %s", getTaskType(buff), buff);
+    //NSLog(@"### com.zjx.springboard: task type: %d. Data: %s", getTaskType(buff), buff);
 
     UInt8 *eventData = buff + 0x2;
     int taskType = getTaskType(buff);
@@ -228,6 +229,21 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
         {
             notifyClient((UInt8*)"0\r\n", writeStreamRef);
         }
+    }
+    else if (taskType == TASK_TEXT_RECOGNIZER)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSError *err = nil;
+            NSString *deviceInfo = performTextRecognizerTextFromRawData(eventData,  &err);
+            if (err)
+            {
+                notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
+            }
+            else
+            {
+                notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%@\r\n", deviceInfo] UTF8String], writeStreamRef);
+            }
+        });
     }
     else if (taskType == TASK_TEST)
     {

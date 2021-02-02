@@ -33,7 +33,7 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
         *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unknown type. The type ranges from 0-3. Please refer to the documentation on Github.\r\n"}];
         return;
     }
-    if (duration <= 0)
+    if (duration <= 0 && type != 0)
     {
         *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Duration should be a positive float number.\r\n"}];
         return;
@@ -55,11 +55,13 @@ void showToastFromRawData(UInt8 *eventData, NSError **error)
 
 + (void) hideToast
 {
-    if (_window != NULL)
-    {
-        _window.hidden = YES;
-        _window = nil;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_window != NULL)
+        {
+            _window.hidden = YES;
+            _window = nil;
+        }
+    });
 }
 
 + (void) showToastWithContent:(NSString*)content type:(int)type duration:(float)duration position:(int)position fontSize:(int)afontSize // positon: 0 top 1 bottom 2 left(not supported) 3 right (ns)

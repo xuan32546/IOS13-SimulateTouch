@@ -79,13 +79,43 @@ OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
 + (NSString*)screenShot
 {
      UIImage *screenImage = _UICreateScreenUIImage();
-     // For debugging purpose
     // Create path.
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"screenshot.jpg"];
+    NSString *filePath = [getDocumentRoot() stringByAppendingPathComponent:@"screenshot.jpg"];
 
     // Save image.
     [UIImageJPEGRepresentation(screenImage, 0.7) writeToFile:filePath atomically:true];
+
+    return filePath;
+}
+
++ (NSString*)screenShotAlwaysUp
+{
+     UIImage *screenImage = _UICreateScreenUIImage();
+    int orientation = [self getScreenOrientation];
+
+    UIImageOrientation after = UIImageOrientationUp;
+    if (orientation == 4)
+    {
+        after = UIImageOrientationRight;
+    }
+    else if (orientation == 3)
+    {
+        after = UIImageOrientationLeft;
+    }
+    else if (orientation == 2)
+    {
+        after = UIImageOrientationDown;
+    }
+
+    UIImage *result = [UIImage imageWithCGImage:[screenImage CGImage]
+              scale:[screenImage scale]
+              orientation: after];
+
+    // Create path.
+    NSString *filePath = [getDocumentRoot() stringByAppendingPathComponent:@"screenshot.jpg"];
+
+    // Save image.
+    [UIImageJPEGRepresentation(result, 0.7) writeToFile:filePath atomically:true];
 
     return filePath;
 }

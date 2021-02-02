@@ -1,25 +1,27 @@
 //
-//  ScriptPlaySettingsActivatorViewController.m
+//  ActivatorConfigurationViewController.m
 //  zxtouch
 //
-//  Created by Jason on 2021/1/27.
+//  Created by Jason on 2021/1/29.
 //
 
-#import "ScriptPlaySettingsActivatorViewController.h"
-#import "TableViewCellSingleChoice.h"
+#import "ActivatorConfigurationViewController.h"
+#import "TableViewCellWithEntry.h"
 #import "libactivator.h"
 #import <dlfcn.h>
 #import <objc/runtime.h>
 #import "Config.h"
 #import "Util.h"
 #import "PlaySettingsNavigationController.h"
-#import "../ZXTouchActivatorTaskTypes.h"
+#import "ZXTouchActivatorTaskTypes.h"
+#import "ActivatorEventsTableViewController.h"
 
-@interface ScriptPlaySettingsActivatorViewController ()
+
+@interface ActivatorConfigurationViewController ()
 
 @end
 
-@implementation ScriptPlaySettingsActivatorViewController
+@implementation ActivatorConfigurationViewController
 {
     NSMutableDictionary* table;
     NSMutableArray *eventNames;
@@ -29,7 +31,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //[self refreshPage];
     
+    UINib *entryCellNib = [UINib nibWithNibName:@"TableViewCellWithEntry" bundle:nil];
+    [_tableView registerNib:entryCellNib forCellReuseIdentifier:@"entryCell"];
+    
+    _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    _tableView.tableFooterView = [[UIView alloc] init];
+    
+}
+
+- (void)refreshPage {
     Class ac = objc_getClass("LAActivator");
         
     if (ac)
@@ -50,7 +62,7 @@
             NSString *eventName = event.name;
             NSString *groupName = [activator localizedGroupForEventName:eventName];
             NSString *localizedTitle = [activator localizedTitleForEventName:eventName];
-            NSString *localizedDescription = [activator localizedDescriptionForEventName:eventName];
+            //NSString *localizedDescription = [activator localizedDescriptionForEventName:eventName];
             
             BOOL isAdded = false;
             // search in event names
@@ -69,35 +81,45 @@
             
             NSMutableArray *groupEvents = [table objectForKey:groupName];
             
-            BOOL check = false;
-
             NSMutableDictionary *eventConfig = config[eventName];
-            if (eventConfig != nil && [eventConfig[@"type"] intValue] == AUTORUN && [eventConfig[@"user_info"] isEqualToString:((PlaySettingsNavigationController *)self.navigationController).path])
-            {
-                check = true;
-            }
-            
 
+            int eventType = [eventConfig[@"type"] intValue];
+            
+            NSString *eventToPerform = NSLocalizedString(@"unassigned", nil);
+            if (eventType == AUTORUN)
+            {
+                eventToPerform = NSLocalizedString(@"runScript", nil);
+            }
+            else if (eventType == SHOW_POPUP)
+            {
+                eventToPerform = NSLocalizedString(@"showPopup", nil);
+            }
+            else if (eventType == STOP_PLAYING_ALL)
+            {
+                eventToPerform = NSLocalizedString(@"stopScriptPlay", nil);
+            }
             if (groupEvents == nil)
             {
-
-                [table setObject:[[NSMutableArray alloc] initWithObjects:@{@"title": localizedTitle, @"description": localizedDescription, @"event_name": eventName, @"check":[NSNumber numberWithBool:check]}, nil] forKey:groupName];
+                [table setObject:[[NSMutableArray alloc] initWithObjects:@{@"title": localizedTitle, @"eventString": eventToPerform, @"event_name": eventName}, nil] forKey:groupName];
             }
             else
             {
-                [groupEvents addObject:@{@"title": localizedTitle, @"description": localizedDescription, @"event_name": eventName, @"check":[NSNumber numberWithBool:check]}];
+                [groupEvents addObject:@{@"title": localizedTitle, @"eventString": eventToPerform, @"event_name": eventName}];
             }
         }
     }
+    [self.tableView reloadData];
     
-
-    UINib *singleChoiceCellNib = [UINib nibWithNibName:@"TableViewCellSingleChoice" bundle:nil];
-    [_tableView registerNib:singleChoiceCellNib forCellReuseIdentifier:@"singleChoiceCell"];
-    _tableView.backgroundColor = [UIColor colorWithRed:243/255.0f green:242/255.0f blue:248/255.0f alpha:1.0f];
-    _tableView.tableFooterView = [[UIView alloc] init];
+    if ([[table allKeys] count] == 0)
+    {
+        [Util showAlertBoxWithOneOption:self title:NSLocalizedString(@"prompt", nil) message:NSLocalizedString(@"pleaseAssignEvents", nil) buttonString:@"OK"];
+    }
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self refreshPage];
+}
 
 /*
 #pragma mark - Navigation
@@ -109,8 +131,6 @@
 }
 */
 
-//配置每个section(段）有多少row（行） cell
-//默认只有一个section
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [table[[table allKeys][section]] count];
 }
@@ -121,20 +141,18 @@
 
 //每行显示什么东西
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"singleChoiceCell";
+    static NSString *cellID = @"entryCell";
 
-    TableViewCellSingleChoice *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    TableViewCellWithEntry *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     //判断队列里面是否有这个cell 没有自己创建，有直接使用
     if (cell == nil) {
         //没有,创建一个
-        cell = [[TableViewCellSingleChoice alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[TableViewCellWithEntry alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
 
     [cell.title setText:table[[table allKeys][indexPath.section]][indexPath.row][@"title"]];
-    [cell.subtitle setText:table[[table allKeys][indexPath.section]][indexPath.row][@"description"]];
-    [cell setCheck:[table[[table allKeys][indexPath.section]][indexPath.row][@"check"] boolValue]];
-
+    [cell.subTitle setText:table[[table allKeys][indexPath.section]][indexPath.row][@"eventString"]];
     
     return cell;
 }
@@ -162,25 +180,12 @@
     return 60;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    TableViewCellSingleChoice* cell = [_tableView cellForRowAtIndexPath:indexPath];
-    
-    if (!cell.check)
-    {
-        // checked
-        PlaySettingsNavigationController *layer = (PlaySettingsNavigationController *)self.navigationController;
-        [config setObject:[[NSMutableDictionary alloc] initWithObjects:@[@(AUTORUN), [layer.path stringByStandardizingPath]] forKeys:@[@"type", @"user_info"]] forKey:table[[table allKeys][indexPath.section]][indexPath.row][@"event_name"]];
-    }
-    else
-    {
-        // unchecked
-        [config removeObjectForKey:table[[table allKeys][indexPath.section]][indexPath.row][@"event_name"]];
-    }
-    
-    [config writeToFile:ACTIVATOR_CONFIG_PATH atomically:NO];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"SettingPages" bundle:nil];
+    ActivatorEventsTableViewController *vc = [sb instantiateViewControllerWithIdentifier:@"ActivatorEventsTableViewController"];
+    vc.eventName = table[[table allKeys][indexPath.section]][indexPath.row][@"event_name"];
+    vc.config = config;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

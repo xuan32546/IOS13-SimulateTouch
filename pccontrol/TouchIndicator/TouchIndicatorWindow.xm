@@ -5,6 +5,7 @@
 #include "../Common.h"
 
 #import "TouchIndicatorView.h"
+#import "TouchIndicatorCoordinateView.h"
 
 #include "../headers/IOHIDEvent.h"
 #include "../headers/IOHIDEventData.h"
@@ -16,6 +17,9 @@
 #define HIDE 0
 #define SHOW 1
 #define RELOAD 2
+
+//#define COORDINATE_VIEW_WIDTH 100
+#define COORDINATE_VIEW_HEIGHT 20
 
 
 static Boolean isShowing = false;
@@ -260,6 +264,7 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
     UIWindow *_window;
     //TouchIndicatorViewList* indicatorViewList;
     TouchIndicatorView* touchIndicatorViewList[20];
+    TouchIndicatorCoordinateView* coordinateView[20];
     UIColor* indicatorColor;
 }
 
@@ -299,6 +304,9 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
     dispatch_async(dispatch_get_main_queue(), ^{
         [touchIndicatorViewList[index-1] removeFromSuperview];
         touchIndicatorViewList[index-1] = nil;
+
+        [coordinateView[index-1] removeFromSuperview];
+        coordinateView[index-1] = nil;
     });
 }
 
@@ -306,6 +314,10 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
     if (index >= 20)
     {
         return;
+    }
+    if (touchIndicatorViewList[index-1] != nil)
+    {
+        [self hideIndicator:index];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         CGFloat indicatorSize = radius*SIZE_INDIACTOR_TOUCH_RADIUS_RATIO;
@@ -315,10 +327,32 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
         indicator.layer.cornerRadius = halfSize;
         indicator.backgroundColor = indicatorColor;
 
+        // create touch coordinate view
+        NSString *coordinateText = [NSString stringWithFormat:@"(%d, %d)", x*2, y*2];
+        UIFont *font = [UIFont fontWithName: @"Trebuchet MS" size: 11.0f];
+        CGSize stringSize = [coordinateText sizeWithFont:font]; 
+        CGFloat stringWidth = stringSize.width;
+
+        TouchIndicatorCoordinateView *coordinateLabelView = [[TouchIndicatorCoordinateView alloc] initWithFrame:CGRectMake(x + halfSize + 5, y, stringWidth+5, COORDINATE_VIEW_HEIGHT)];
+        coordinateLabelView.backgroundColor = indicatorColor;
+
+
+        UILabel *coordinateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, stringWidth+5, COORDINATE_VIEW_HEIGHT)];
+        coordinateLabel.text = coordinateText;
+        [coordinateLabel setTextColor:[UIColor whiteColor]];
+        [coordinateLabel setBackgroundColor:[UIColor clearColor]];
+        [coordinateLabel setFont:font]; 
+        [coordinateLabelView addSubview:coordinateLabel];
+        coordinateLabelView.coordinateLabel = coordinateLabel;
+
         // add to list
         touchIndicatorViewList[index-1] = indicator;
+        coordinateView[index-1] = coordinateLabelView;
+        
         // add to subview
         [_window addSubview:indicator];
+        [_window addSubview:coordinateLabelView];
+
         //[indicator setHidden:YES];
     });
 }
@@ -350,13 +384,21 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
         if (touchIndicatorViewList[index-1] == NULL)
             return;
 
-
         // update width and height and cornerRadius
         CGFloat indicatorSize = radius*SIZE_INDIACTOR_TOUCH_RADIUS_RATIO;
         CGFloat halfSize = indicatorSize/2;
         touchIndicatorViewList[index-1].frame = CGRectMake(x - halfSize, y - halfSize, indicatorSize, indicatorSize);
         touchIndicatorViewList[index-1].layer.cornerRadius = halfSize;
 
+        NSString *coordinateText = [NSString stringWithFormat:@"(%d, %d)", (int)x*2, (int)y*2];
+        UIFont *font = [UIFont fontWithName: @"Trebuchet MS" size: 11.0f];
+        CGSize stringSize = [coordinateText sizeWithFont:font]; 
+        CGFloat stringWidth = stringSize.width;
+
+        coordinateView[index-1].coordinateLabel.text = coordinateText;
+
+        coordinateView[index-1].coordinateLabel.frame = CGRectMake(0, 0, stringWidth+5, COORDINATE_VIEW_HEIGHT);
+        coordinateView[index-1].frame =  CGRectMake(x + halfSize + 5, y, stringWidth+5, COORDINATE_VIEW_HEIGHT);
     });
 }
 

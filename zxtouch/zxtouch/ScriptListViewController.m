@@ -9,9 +9,10 @@
 #import "ScriptListTableCell.h"
 #import "ScriptEditorViewController.h"
 #import "LogViewController.h"
-#import "AdderPopOverViewController.h"
+#import "ScriptManagement/AdderPopOverViewController.h"
+#import "ImageViewerViewController.h"
 #include "Config.h"
-#import "MoreOptionsPopOverTableViewController.h"
+#import "ScriptManagement/MoreOptionsPopOverTableViewController.h"
 
 @interface ScriptListViewController ()
 
@@ -205,6 +206,7 @@
     NSString *path = scriptList[indexPath.row];
     [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
     
+    
     if (isDir)
     {
         ScriptListViewController *scriptBundleContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"scriptBundleContent"];
@@ -215,6 +217,27 @@
         scriptBundleContentViewController.title = [path lastPathComponent];
 
         [self.navigationController pushViewController:scriptBundleContentViewController animated:YES];
+        return;
+    }
+    
+    NSArray *possibleImageExtension = @[@"jpg", @"png", @"JPG", @"PNG", @"jpeg", @"JPEG", @"GIF", @"gif"];
+
+    BOOL isImage = false;
+    for (NSString* i in possibleImageExtension)
+    {
+        if ([[path pathExtension] isEqualToString:i])
+        {
+            isImage = true;
+        }
+    }
+    
+    if (isImage)
+    {
+        ImageViewerViewController *imageViewerController = [self.storyboard instantiateViewControllerWithIdentifier:@"imageViewer"];
+        
+        imageViewerController.title = [path lastPathComponent];
+        imageViewerController.path = path;
+        [self.navigationController pushViewController:imageViewerController animated:YES];
     }
     else
     {
