@@ -72,6 +72,18 @@ Here is a demo of PUBG Mobile.
 Record touch events and playback
 [![Watch the video](img/record_playback.jpg)](https://youtu.be/WeYMx4z8N2M)
 
+
+Demo #4: [Activator Support](https://youtu.be/BvkTg3LWxUQ)
+
+Demo #5: [OCR](https://youtu.be/xt4BvgsSGkc)
+
+Demo #6: [Touch Indicator](https://youtu.be/AU7zG_-W2tM)
+
+Demo #7: [Text Input](https://youtu.be/UQqoiOBilBY)
+
+Demo #8: [Color Picker](https://youtu.be/tserB05_B9E)
+
+
 ## Usage
 
 See python version of documentation below. But you can also use ANY language to control your iOS device as long as the language supports socket. Here is how it works:
@@ -141,6 +153,8 @@ device = zxtouch("127.0.0.1") # create instance
 [Start Touch Recording](#start-touch-recording)
 
 [Stop Touch Recording](#stop-touch-recording)
+
+[OCR](#OCR )
 
 ## Touch:
 
