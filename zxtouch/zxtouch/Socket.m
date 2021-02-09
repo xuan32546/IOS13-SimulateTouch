@@ -47,6 +47,10 @@
     return 0;
 }
 
+-(BOOL) isConnected {
+    return socketHandle != 0;
+}
+
 -(void) send: (NSString*)msg
 {
     const char *buffer = [msg UTF8String];
@@ -56,6 +60,14 @@
 -(void) sendChar: (char*)msg
 {
     send(socketHandle , msg, strlen(msg) , 0);
+}
+
+-(NSString*) recv:(int)length
+{
+    char buffer[length];
+    memset(buffer, 0, sizeof(buffer));
+    recv(socketHandle, buffer, length, 0);
+    return [NSString stringWithUTF8String:buffer];
 }
 
 -(void)close {

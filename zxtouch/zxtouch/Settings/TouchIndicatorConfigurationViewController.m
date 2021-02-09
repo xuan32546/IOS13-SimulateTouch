@@ -42,11 +42,10 @@
     // change plist
     if (![[NSFileManager defaultManager] fileExistsAtPath:SPRINGBOARD_CONFIG_PATH])
     {
-        [Util showAlertBoxWithOneOption:self title:@"Error" message:@"Error. Configuration file does not exist. Please go to \"settings - fix configuration\" to fix this problem." buttonString:@"OK"];
-        return;
+        config = [[NSMutableDictionary alloc] initWithDictionary:@{@"touch_indicator":@{@"show": @(0), @"color":@{@"alpha": @(0.7), @"r": @(255), @"g": @(0), @"b": @(0)}}}];
+        [config writeToFile:SPRINGBOARD_CONFIG_PATH atomically:NO];
     }
 
-    // read indicator color from the config file
     config = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARD_CONFIG_PATH];
     
     isShowing = [config[@"touch_indicator"][@"show"] boolValue];

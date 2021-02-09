@@ -146,33 +146,36 @@ void startTouchIndicator(NSError **error)
         // check whether config file exist
         NSString *configFilePath = getCommonConfigFilePath();
 
-        if (![[NSFileManager defaultManager] fileExistsAtPath:configFilePath])
+        CGFloat red = 255;
+        CGFloat green = 0;
+        CGFloat blue = 0;
+        CGFloat alpha = 0.7f;
+
+        if ([[NSFileManager defaultManager] fileExistsAtPath:configFilePath])
         {
+            /*
             *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unable to show touch indicator because the configuration file is missing. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.\r\n"}];
             showAlertBox(@"Error", @"Unable to show touch indicator because the configuration file is missing. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", 999);
             return;
-        }
-        // read indicator color from the config file
-        NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:configFilePath];
+            */
+                    // read indicator color from the config file
+            NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:configFilePath];
 
-        CGFloat red = 0;
-        CGFloat green = 0;
-        CGFloat blue = 0;
-        CGFloat alpha = 0.5f;
+            @try {
+                red = [config[@"touch_indicator"][@"color"][@"r"] floatValue];
+                green = [config[@"touch_indicator"][@"color"][@"g"] floatValue];
+                blue = [config[@"touch_indicator"][@"color"][@"b"] floatValue];
+                alpha = [config[@"touch_indicator"][@"color"][@"alpha"] floatValue];
+                NSLog(@"com.zjx.springboard: red: %f, g: %f, b: %f", red, green, blue);
+            }
+            @catch (NSException *exception) {
+                NSLog(@"com.zjx.springboard: 123123");
+                *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"-1;;Unable to show touch indicator because key error in configuration file: %@. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.\r\n", exception]}];
+                showAlertBox(@"Error", [NSString stringWithFormat:@"Unable to show touch indicator because key error in configuration file: %@. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", exception], 999);
+                return;
+            }
+        }
 
-        @try {
-            red = [config[@"touch_indicator"][@"color"][@"r"] floatValue];
-            green = [config[@"touch_indicator"][@"color"][@"g"] floatValue];
-            blue = [config[@"touch_indicator"][@"color"][@"b"] floatValue];
-            alpha = [config[@"touch_indicator"][@"color"][@"alpha"] floatValue];
-            NSLog(@"com.zjx.springboard: red: %f, g: %f, b: %f", red, green, blue);
-        }
-        @catch (NSException *exception) {
-            NSLog(@"com.zjx.springboard: 123123");
-            *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"-1;;Unable to show touch indicator because key error in configuration file: %@. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.\r\n", exception]}];
-            showAlertBox(@"Error", [NSString stringWithFormat:@"Unable to show touch indicator because key error in configuration file: %@. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", exception], 999);
-            return;
-        }
 
         // get screen size
         CGRect bounds = [Screen getBounds];

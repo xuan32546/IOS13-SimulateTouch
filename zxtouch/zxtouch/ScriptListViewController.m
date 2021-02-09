@@ -86,6 +86,10 @@
     BOOL isDir = NO;
     for (NSString *fileName in files)
     {
+        if ([[fileName substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"."])
+        {
+            continue;
+        }
         NSString *filePath = [NSString stringWithFormat:@"%@/%@", path, fileName];
         if (![[fileName pathExtension] isEqualToString:@"bdl"] && [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir] && isDir)
         {
@@ -284,8 +288,8 @@
         UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
            handler:nil];
         
-        [alert addAction:ok];
         [alert addAction:cancel];
+        [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     }
 }

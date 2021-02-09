@@ -35,7 +35,7 @@ CGRect screenMatchFromRawData(UInt8 *eventData, NSError **error)
     [templateMatch setAcceptableValue:av];
     [templateMatch setMaxTryTimes:mtt];
     [templateMatch setScaleRation:sr];
-    return [templateMatch templateMatchWithPath:[Screen screenShot] templatePath:templatePath];
+    return [templateMatch templateMatchWithPath:[Screen screenShot] templatePath:templatePath error:err];
 }
 
 

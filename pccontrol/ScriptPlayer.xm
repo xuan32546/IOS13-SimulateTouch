@@ -250,7 +250,6 @@ static BOOL isPlaying = false;
     //scriptPlayForceStop = true;
     system2([[NSString stringWithFormat:@"sudo zxtouchb -e \"python3 -u \\\"%@\\\" 2>&1 | /var/mobile/Library/ZXTouch/coreutils/ScriptRuntime/add_datetime.sh \\\"%@\\\" | tee -a /var/mobile/Library/ZXTouch/coreutils/ScriptRuntime/output\"", filePath, filePath] UTF8String], NULL, NULL);
     // add force stop
-
     [self playHasStopped];
 }
 
@@ -301,7 +300,7 @@ static BOOL isPlaying = false;
     scriptBundlePath = nil;
     isPlaying = false;
     currentScriptType = -1;
-    scriptPlayForceStop = false;
+    //scriptPlayForceStop = false;
 
     // remove indicator
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -330,7 +329,6 @@ static BOOL isPlaying = false;
     else if (currentScriptType == 1)
     {
         // make stop to be true
-
         scriptPlayForceStop = true;
         [self clear];
     }

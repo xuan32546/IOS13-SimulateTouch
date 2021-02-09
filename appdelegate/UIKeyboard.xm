@@ -12,6 +12,9 @@
 #define VIRTUAL_KEYBOARD 2
 #define MOVE_CURSOR 3
 #define DELETE_CHARACTER 4
+#define PASTE_FROM_CLIPBOARD 5
+
+#define TEST 99
 
 #define VIRTUAL_KEYBOARD_HIDE 1
 #define VIRTUAL_KEYBOARD_SHOW 2
@@ -31,6 +34,12 @@
 	- (void)clearSelection;
     - (void)deleteBackward;
  	- (void)setSelectionWithPoint:(struct CGPoint)arg1;
+    - (id)markedText;
+    - (void)unmarkText;
+    - (void)clearSelection;
+    - (void)setInputPoint:(struct CGPoint)arg1;
+    - (_Bool)hasMarkedText;
+
  	@property (readonly, assign, nonatomic) UIResponder <UITextInput> *inputDelegate;
 @end
 
@@ -98,6 +107,11 @@
                 [self deleteBackward];
             }
             NSLog(@"com.zjx.appdelegate: delete characters by amount: %d", numOfCharacterToDel);
+        }
+        else if (taskId == PASTE_FROM_CLIPBOARD)
+        {
+            UIPasteboard *pb = [UIPasteboard generalPasteboard];
+            [self insertText:[pb string]];
         }
 	}
 

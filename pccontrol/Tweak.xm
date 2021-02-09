@@ -107,6 +107,7 @@ void crazyTapTimeUpCallback();
 void stopCrazyTap();
 void processTask(UInt8 *buff);
 
+BOOL openPopUpByDoubleVolumnDown = true;
 
 // -------------
 IOHIDEventSystemClientRef ioHIDEventSystemForPopupDectect = NULL;
@@ -160,6 +161,8 @@ static CFTimeInterval startTime = 0;
 // perform some action
 static void popupWindowCallBack(void* target, void* refcon, IOHIDServiceRef service, IOHIDEventRef event)
 {
+    if (!openPopUpByDoubleVolumnDown)
+        return;
     if (IOHIDEventGetType(event) == kIOHIDEventTypeKeyboard)
     {
         if (IOHIDEventGetIntegerValue(event, kIOHIDEventFieldKeyboardUsage) == 234 && IOHIDEventGetIntegerValue(event, kIOHIDEventFieldKeyboardDown) == 0)
@@ -204,6 +207,21 @@ void startPopupListeningCallBack()
 
 Boolean initActivatorInstance()
 {
+    dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
+    Class la = objc_getClass("LAActivator");
+    if (la) { //libactivator is installed
+        activatorInstance = [[ActivatorListener alloc] init];
+        
+        LAActivator* activator = [la sharedInstance];
+        if (activator.isRunningInsideSpringBoard)
+        {
+            //[activator unregisterListenerWithName:@"com.zjx.zxtouch"];
+            [activator registerListener:activatorInstance 
+                                            forName:@"com.zjx.zxtouch"];
+        }
+
+    }
+
 
     return true;
 }
@@ -214,10 +232,10 @@ Boolean init()
     // check whether config file exist
     NSString *configFilePath = getCommonConfigFilePath();
 
-    if (![[NSFileManager defaultManager] fileExistsAtPath:configFilePath])
+    if (![[NSFileManager defaultManager] fileExistsAtPath:configFilePath]) // if missing, then use the default value
     {
-        showAlertBox(@"Error", @"Unable to initiate zxtouch tweak. Config file is missing. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", 999);
-        return false;
+        //showAlertBox(@"Error", @"Unable to initiate zxtouch tweak. Config file is missing. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", 999);
+        return true;
     }
     // read indicator color from the config file
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:configFilePath];
@@ -232,27 +250,17 @@ Boolean init()
         }
     }
 
+    if (config[@"double_click_volume_show_popup"])
+    {
+        openPopUpByDoubleVolumnDown = [config[@"double_click_volume_show_popup"] boolValue];
+    }
+
     initScriptPlayer();
     initActivatorInstance();
     return true;
 }
 
 %ctor{
-    
-    dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
-    Class la = objc_getClass("LAActivator");
-    if (la) { //libactivator is installed
-        activatorInstance = [[ActivatorListener alloc] init];
-        
-        LAActivator* activator = [la sharedInstance];
-        if (activator.isRunningInsideSpringBoard)
-        {
-            [activator unregisterListenerWithName:@"com.zjx.zxtouch"];
-            [activator registerListener:activatorInstance 
-                                            forName:@"com.zjx.zxtouch"];
-        }
-
-    }
     
 }
 

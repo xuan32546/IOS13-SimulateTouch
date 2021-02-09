@@ -28,7 +28,7 @@
 
 //在Buffer中匹配预设的模板，如果成功则返回位置以及区域大小。
 //这里返回的Rect基于AVCapture Metadata的坐标系统，即值在0.0-1.0之间，方便AVCaptureVideoPreviewLayer类进行转换。
-- (CGRect)templateMatchWithPath:(NSString*)imgPath templatePath:(NSString*)templatePath;
+- (CGRect)templateMatchWithPath:(NSString*)imgPath templatePath:(NSString*)templatePath error:(NSError**)err;
 - (CGRect)templateMatchWithUIImage:(UIImage*)img template:(UIImage*)templ;
 
 - (void)setScaleRation:(float)sr;

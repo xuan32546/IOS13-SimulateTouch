@@ -17,10 +17,45 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ShowAlertBoxIntentHandler handleShowAlertBox:completion:]:ShowAlertBoxIntentHandler.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "returnData.length">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[PlayScriptIntentHandler handlePlayScript:completion:]:PlayScriptIntentHandler.m">
+      </ContextState>
+      <ContextState
          contextName = "-[ScriptPlaySettingsActivatorViewController tableView:numberOfRowsInSection:]:ScriptPlaySettingsActivatorViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "[table allKeys][section] ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[StartTouchRecordingIntentHandler handleStartTouchRecording:completion:]:StartTouchRecordingIntentHandler.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[returnDataArr subarrayWithRange:(NSRange){1, count-1}]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ImageMatchingIntentHandler resolveScaleRationForImageMatching:withCompletion:]:ImageMatchingIntentHandler.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "intent.scaleRation">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SwitchAppIntentHandler handleSwitchApp:completion:]:SwitchAppIntentHandler.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "intent.bundleIdentifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

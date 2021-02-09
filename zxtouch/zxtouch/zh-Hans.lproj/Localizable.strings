@@ -60,3 +60,4 @@
 "switchAppBeforePlaying" = "运行脚本前切换App";
 
 "script" = "脚本";
+"doubleClickShowPopup" = "双击下音量键打开控制面板";

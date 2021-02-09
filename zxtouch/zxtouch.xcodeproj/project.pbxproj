@@ -25,6 +25,9 @@
 		964DF11325B9D87E006061B4 /* GCDWebServerDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF10525B9D87E006061B4 /* GCDWebServerDataRequest.m */; };
 		964DF11425B9D87E006061B4 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 964DF10625B9D87E006061B4 /* GCDWebServerFileRequest.m */; };
 		964DF11D25B9E9AC006061B4 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 964DF11C25B9E9AC006061B4 /* index.html */; };
+		965DEB9F25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DEB9E25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m */; };
+		965DEBFA25D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DEBF925D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m */; };
+		965DEC2025D288ED005BF7B9 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DEC1F25D288ED005BF7B9 /* ConfigManager.m */; };
 		965E8C8E25B2BEFD00FDD35C /* AdderPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */; };
 		965E8C9525B31DD100FDD35C /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C9425B31DD100FDD35C /* Util.m */; };
 		965E8CC225B3682C00FDD35C /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8CC025B3682C00FDD35C /* LogViewController.m */; };
@@ -61,6 +64,35 @@
 		96D7E5B42581F99B00B39A81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5B32581F99B00B39A81 /* main.m */; };
 		96D7E5BE2581F99C00B39A81 /* zxtouchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5BD2581F99C00B39A81 /* zxtouchTests.m */; };
 		96D7E5C92581F99C00B39A81 /* zxtouchUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7E5C82581F99C00B39A81 /* zxtouchUITests.m */; };
+		96D9877825D100450000B7AE /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9619F9CE25831EE4001D7EA9 /* Socket.m */; };
+		96D9878025D115A90000B7AE /* SocketDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9877F25D115A90000B7AE /* SocketDataHandler.m */; };
+		96D9887725D127C20000B7AE /* SwitchAppIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9887625D127C20000B7AE /* SwitchAppIntentHandler.m */; };
+		96D988CA25D13B790000B7AE /* ShowAlertBoxIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D988C925D13B790000B7AE /* ShowAlertBoxIntentHandler.m */; };
+		96D98AA825D15E6E0000B7AE /* RunShellCommandIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98AA725D15E6E0000B7AE /* RunShellCommandIntentHandler.m */; };
+		96D98AD325D1614A0000B7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96D98AD525D1614A0000B7AE /* Localizable.strings */; };
+		96D98B2925D165820000B7AE /* StartTouchRecordingIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98B2825D165820000B7AE /* StartTouchRecordingIntentHandler.m */; };
+		96D98B7725D1A1C20000B7AE /* StopTouchRecordingIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98B7625D1A1C20000B7AE /* StopTouchRecordingIntentHandler.m */; };
+		96D98BB625D1A41D0000B7AE /* PlayScriptIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98BB525D1A41D0000B7AE /* PlayScriptIntentHandler.m */; };
+		96D98BF025D1AA500000B7AE /* StopScriptPlayingIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98BEF25D1AA500000B7AE /* StopScriptPlayingIntentHandler.m */; };
+		96D98CE825D1B0550000B7AE /* ImageMatchingIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98CE725D1B0550000B7AE /* ImageMatchingIntentHandler.m */; };
+		96D98D0C25D236F50000B7AE /* ShowToastIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98D0B25D236F50000B7AE /* ShowToastIntentHandler.m */; };
+		96D98DD225D23B360000B7AE /* PickColorIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98DD125D23B360000B7AE /* PickColorIntentHandler.m */; };
+		96D98F7B25D2730F0000B7AE /* SearchColorIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D98F7A25D2730F0000B7AE /* SearchColorIntentHandler.m */; };
+		96D9902325D27A9E0000B7AE /* OCRIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9902225D27A9E0000B7AE /* OCRIntentHandler.m */; };
+		96D9906C25D27EC30000B7AE /* PasteFromClipboardIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9906B25D27EC30000B7AE /* PasteFromClipboardIntentHandler.m */; };
+		96D9907425D27FE10000B7AE /* InsertTextIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9907325D27FE10000B7AE /* InsertTextIntentHandler.m */; };
+		96D9911C25D281C40000B7AE /* MoveCursorIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9911B25D281C40000B7AE /* MoveCursorIntentHandler.m */; };
+		96E18E2B25CF04B3003635F1 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E18E2A25CF04B3003635F1 /* Intents.framework */; };
+		96E18E2F25CF04B3003635F1 /* IntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E2E25CF04B3003635F1 /* IntentHandler.m */; };
+		96E18E3725CF04B3003635F1 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E18E3625CF04B3003635F1 /* IntentsUI.framework */; };
+		96E18E3B25CF04B3003635F1 /* IntentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E3A25CF04B3003635F1 /* IntentViewController.m */; };
+		96E18E3E25CF04B3003635F1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E18E3C25CF04B3003635F1 /* MainInterface.storyboard */; };
+		96E18E4225CF04B3003635F1 /* shortcutextUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96E18E3525CF04B3003635F1 /* shortcutextUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		96E18E4525CF04B3003635F1 /* shortcutext.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96E18E2825CF04B3003635F1 /* shortcutext.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		96E18E5825CF053B003635F1 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E5725CF053B003635F1 /* Intents.intentdefinition */; };
+		96E18E8125D04A13003635F1 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E5725CF053B003635F1 /* Intents.intentdefinition */; };
+		96E18E8725D04A14003635F1 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E5725CF053B003635F1 /* Intents.intentdefinition */; };
+		96E18F7625D0533A003635F1 /* PerformTouchIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E18F7525D0533A003635F1 /* PerformTouchIntentHandler.m */; };
 		96EE2C1425C93850005FC8C3 /* ImageViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE2C1325C93850005FC8C3 /* ImageViewerViewController.m */; };
 		96F4696C258B24DA0052D78D /* ScriptEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F4696B258B24DA0052D78D /* ScriptEditorViewController.m */; };
 /* End PBXBuildFile section */
@@ -80,7 +112,36 @@
 			remoteGlobalIDString = 96D7E59D2581F99900B39A81;
 			remoteInfo = zxtouch;
 		};
+		96E18E4025CF04B3003635F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96D7E5962581F99900B39A81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96E18E3425CF04B3003635F1;
+			remoteInfo = shortcutextUI;
+		};
+		96E18E4325CF04B3003635F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96D7E5962581F99900B39A81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96E18E2725CF04B3003635F1;
+			remoteInfo = shortcutext;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		96E18E4625CF04B3003635F1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				96E18E4525CF04B3003635F1 /* shortcutext.appex in Embed App Extensions */,
+				96E18E4225CF04B3003635F1 /* shortcutextUI.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		961098E8259E199700919CA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -130,6 +191,12 @@
 		964DF10625B9D87E006061B4 /* GCDWebServerFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileRequest.m; sourceTree = "<group>"; };
 		964DF10725B9D87E006061B4 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerURLEncodedFormRequest.h; sourceTree = "<group>"; };
 		964DF11C25B9E9AC006061B4 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		965DEB9D25D283A5005BF7B9 /* GetScreenSizeIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetScreenSizeIntentHandler.h; sourceTree = "<group>"; };
+		965DEB9E25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetScreenSizeIntentHandler.m; sourceTree = "<group>"; };
+		965DEBF825D2863C005BF7B9 /* GetScreenOrientationIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetScreenOrientationIntentHandler.h; sourceTree = "<group>"; };
+		965DEBF925D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetScreenOrientationIntentHandler.m; sourceTree = "<group>"; };
+		965DEC1E25D288ED005BF7B9 /* ConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
+		965DEC1F25D288ED005BF7B9 /* ConfigManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		965E8C6D25B2A9DA00FDD35C /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		965E8C8B25B2BEFD00FDD35C /* AdderPopOverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdderPopOverViewController.h; sourceTree = "<group>"; };
 		965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdderPopOverViewController.m; sourceTree = "<group>"; };
@@ -195,6 +262,57 @@
 		96D7E5C42581F99C00B39A81 /* zxtouchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zxtouchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D7E5C82581F99C00B39A81 /* zxtouchUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zxtouchUITests.m; sourceTree = "<group>"; };
 		96D7E5CA2581F99C00B39A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96D9877E25D115A90000B7AE /* SocketDataHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketDataHandler.h; sourceTree = "<group>"; };
+		96D9877F25D115A90000B7AE /* SocketDataHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketDataHandler.m; sourceTree = "<group>"; };
+		96D9878B25D11A5C0000B7AE /* SpringBoardSocketClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringBoardSocketClient.h; sourceTree = "<group>"; };
+		96D9879D25D11D350000B7AE /* Task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		96D9887525D127C20000B7AE /* SwitchAppIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchAppIntentHandler.h; sourceTree = "<group>"; };
+		96D9887625D127C20000B7AE /* SwitchAppIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchAppIntentHandler.m; sourceTree = "<group>"; };
+		96D988C825D13B790000B7AE /* ShowAlertBoxIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowAlertBoxIntentHandler.h; sourceTree = "<group>"; };
+		96D988C925D13B790000B7AE /* ShowAlertBoxIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowAlertBoxIntentHandler.m; sourceTree = "<group>"; };
+		96D98AA625D15E6E0000B7AE /* RunShellCommandIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunShellCommandIntentHandler.h; sourceTree = "<group>"; };
+		96D98AA725D15E6E0000B7AE /* RunShellCommandIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunShellCommandIntentHandler.m; sourceTree = "<group>"; };
+		96D98AD425D1614A0000B7AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96D98ADB25D1614F0000B7AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		96D98B2725D165820000B7AE /* StartTouchRecordingIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartTouchRecordingIntentHandler.h; sourceTree = "<group>"; };
+		96D98B2825D165820000B7AE /* StartTouchRecordingIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartTouchRecordingIntentHandler.m; sourceTree = "<group>"; };
+		96D98B7525D1A1C20000B7AE /* StopTouchRecordingIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopTouchRecordingIntentHandler.h; sourceTree = "<group>"; };
+		96D98B7625D1A1C20000B7AE /* StopTouchRecordingIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopTouchRecordingIntentHandler.m; sourceTree = "<group>"; };
+		96D98BB425D1A41D0000B7AE /* PlayScriptIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayScriptIntentHandler.h; sourceTree = "<group>"; };
+		96D98BB525D1A41D0000B7AE /* PlayScriptIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayScriptIntentHandler.m; sourceTree = "<group>"; };
+		96D98BEE25D1AA500000B7AE /* StopScriptPlayingIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopScriptPlayingIntentHandler.h; sourceTree = "<group>"; };
+		96D98BEF25D1AA500000B7AE /* StopScriptPlayingIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopScriptPlayingIntentHandler.m; sourceTree = "<group>"; };
+		96D98CE625D1B0550000B7AE /* ImageMatchingIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageMatchingIntentHandler.h; sourceTree = "<group>"; };
+		96D98CE725D1B0550000B7AE /* ImageMatchingIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageMatchingIntentHandler.m; sourceTree = "<group>"; };
+		96D98D0A25D236F50000B7AE /* ShowToastIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowToastIntentHandler.h; sourceTree = "<group>"; };
+		96D98D0B25D236F50000B7AE /* ShowToastIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowToastIntentHandler.m; sourceTree = "<group>"; };
+		96D98DD025D23B360000B7AE /* PickColorIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickColorIntentHandler.h; sourceTree = "<group>"; };
+		96D98DD125D23B360000B7AE /* PickColorIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickColorIntentHandler.m; sourceTree = "<group>"; };
+		96D98E6025D242EE0000B7AE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		96D98F7925D2730F0000B7AE /* SearchColorIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchColorIntentHandler.h; sourceTree = "<group>"; };
+		96D98F7A25D2730F0000B7AE /* SearchColorIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchColorIntentHandler.m; sourceTree = "<group>"; };
+		96D9902125D27A9E0000B7AE /* OCRIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCRIntentHandler.h; sourceTree = "<group>"; };
+		96D9902225D27A9E0000B7AE /* OCRIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCRIntentHandler.m; sourceTree = "<group>"; };
+		96D9906A25D27EC30000B7AE /* PasteFromClipboardIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasteFromClipboardIntentHandler.h; sourceTree = "<group>"; };
+		96D9906B25D27EC30000B7AE /* PasteFromClipboardIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasteFromClipboardIntentHandler.m; sourceTree = "<group>"; };
+		96D9907225D27FE10000B7AE /* InsertTextIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertTextIntentHandler.h; sourceTree = "<group>"; };
+		96D9907325D27FE10000B7AE /* InsertTextIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertTextIntentHandler.m; sourceTree = "<group>"; };
+		96D9911A25D281C40000B7AE /* MoveCursorIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoveCursorIntentHandler.h; sourceTree = "<group>"; };
+		96D9911B25D281C40000B7AE /* MoveCursorIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoveCursorIntentHandler.m; sourceTree = "<group>"; };
+		96E18E2825CF04B3003635F1 /* shortcutext.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = shortcutext.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E18E2A25CF04B3003635F1 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		96E18E2D25CF04B3003635F1 /* IntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentHandler.h; sourceTree = "<group>"; };
+		96E18E2E25CF04B3003635F1 /* IntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentHandler.m; sourceTree = "<group>"; };
+		96E18E3025CF04B3003635F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96E18E3525CF04B3003635F1 /* shortcutextUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = shortcutextUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E18E3625CF04B3003635F1 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		96E18E3925CF04B3003635F1 /* IntentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentViewController.h; sourceTree = "<group>"; };
+		96E18E3A25CF04B3003635F1 /* IntentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentViewController.m; sourceTree = "<group>"; };
+		96E18E3D25CF04B3003635F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		96E18E3F25CF04B3003635F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96E18E5725CF053B003635F1 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		96E18F7425D0533A003635F1 /* PerformTouchIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformTouchIntentHandler.h; sourceTree = "<group>"; };
+		96E18F7525D0533A003635F1 /* PerformTouchIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformTouchIntentHandler.m; sourceTree = "<group>"; };
 		96EE2C1225C93850005FC8C3 /* ImageViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewerViewController.h; sourceTree = "<group>"; };
 		96EE2C1325C93850005FC8C3 /* ImageViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewerViewController.m; sourceTree = "<group>"; };
 		96F4696A258B24DA0052D78D /* ScriptEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptEditorViewController.h; sourceTree = "<group>"; };
@@ -220,6 +338,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96E18E2525CF04B3003635F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96E18E2B25CF04B3003635F1 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96E18E3225CF04B3003635F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96E18E3725CF04B3003635F1 /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +524,9 @@
 				96D7E5A02581F99900B39A81 /* zxtouch */,
 				96D7E5BC2581F99C00B39A81 /* zxtouchTests */,
 				96D7E5C72581F99C00B39A81 /* zxtouchUITests */,
+				96E18E2C25CF04B3003635F1 /* shortcutext */,
+				96E18E3825CF04B3003635F1 /* shortcutextUI */,
+				96E18E2925CF04B3003635F1 /* Frameworks */,
 				96D7E59F2581F99900B39A81 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -400,6 +537,8 @@
 				96D7E59E2581F99900B39A81 /* zxtouch.app */,
 				96D7E5B92581F99C00B39A81 /* zxtouchTests.xctest */,
 				96D7E5C42581F99C00B39A81 /* zxtouchUITests.xctest */,
+				96E18E2825CF04B3003635F1 /* shortcutext.appex */,
+				96E18E3525CF04B3003635F1 /* shortcutextUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -408,7 +547,6 @@
 			isa = PBXGroup;
 			children = (
 				96D7E5AD2581F99B00B39A81 /* Assets.xcassets */,
-				9666348725C41D7E0028A5A3 /* ZXTouchActivatorTaskTypes.h */,
 				961B79A725C1AC190083DC41 /* ScriptPlaySettings */,
 				961B797225C0908A0083DC41 /* libactivator */,
 				966598CA25BD4DFB00F18DEB /* TableViewCells */,
@@ -417,6 +555,7 @@
 				9684FF7225B58A1A00549FC8 /* Settings */,
 				965E8C8725B2BEB000FDD35C /* ScriptManagement */,
 				965E8C6D25B2A9DA00FDD35C /* Config.h */,
+				9666348725C41D7E0028A5A3 /* ZXTouchActivatorTaskTypes.h */,
 				965E8C9325B31DD100FDD35C /* Util.h */,
 				965E8C9425B31DD100FDD35C /* Util.m */,
 				96D7E5A12581F99900B39A81 /* AppDelegate.h */,
@@ -429,6 +568,8 @@
 				96D7E5AF2581F99B00B39A81 /* LaunchScreen.storyboard */,
 				96D7E5B22581F99B00B39A81 /* Info.plist */,
 				96D7E5B32581F99B00B39A81 /* main.m */,
+				965DEC1E25D288ED005BF7B9 /* ConfigManager.h */,
+				965DEC1F25D288ED005BF7B9 /* ConfigManager.m */,
 				9619F9CD25831EE4001D7EA9 /* Socket.h */,
 				9619F9CE25831EE4001D7EA9 /* Socket.m */,
 				96A2BC362587C20A008DE91F /* ScriptListTableCell.h */,
@@ -463,6 +604,87 @@
 			path = zxtouchUITests;
 			sourceTree = "<group>";
 		};
+		96E18E2925CF04B3003635F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96E18E2A25CF04B3003635F1 /* Intents.framework */,
+				96E18E3625CF04B3003635F1 /* IntentsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		96E18E2C25CF04B3003635F1 /* shortcutext */ = {
+			isa = PBXGroup;
+			children = (
+				96E18F7325D0531C003635F1 /* IntentHandler */,
+				96E18E2D25CF04B3003635F1 /* IntentHandler.h */,
+				96E18E2E25CF04B3003635F1 /* IntentHandler.m */,
+				96D9877E25D115A90000B7AE /* SocketDataHandler.h */,
+				96D9877F25D115A90000B7AE /* SocketDataHandler.m */,
+				96D9878B25D11A5C0000B7AE /* SpringBoardSocketClient.h */,
+				96D9879D25D11D350000B7AE /* Task.h */,
+				96D98E6025D242EE0000B7AE /* PrefixHeader.pch */,
+				96E18E3025CF04B3003635F1 /* Info.plist */,
+				96E18E5725CF053B003635F1 /* Intents.intentdefinition */,
+				96D98AD525D1614A0000B7AE /* Localizable.strings */,
+			);
+			path = shortcutext;
+			sourceTree = "<group>";
+		};
+		96E18E3825CF04B3003635F1 /* shortcutextUI */ = {
+			isa = PBXGroup;
+			children = (
+				96E18E3925CF04B3003635F1 /* IntentViewController.h */,
+				96E18E3A25CF04B3003635F1 /* IntentViewController.m */,
+				96E18E3C25CF04B3003635F1 /* MainInterface.storyboard */,
+				96E18E3F25CF04B3003635F1 /* Info.plist */,
+			);
+			path = shortcutextUI;
+			sourceTree = "<group>";
+		};
+		96E18F7325D0531C003635F1 /* IntentHandler */ = {
+			isa = PBXGroup;
+			children = (
+				96E18F7425D0533A003635F1 /* PerformTouchIntentHandler.h */,
+				96E18F7525D0533A003635F1 /* PerformTouchIntentHandler.m */,
+				96D9887525D127C20000B7AE /* SwitchAppIntentHandler.h */,
+				96D9887625D127C20000B7AE /* SwitchAppIntentHandler.m */,
+				96D988C825D13B790000B7AE /* ShowAlertBoxIntentHandler.h */,
+				96D988C925D13B790000B7AE /* ShowAlertBoxIntentHandler.m */,
+				96D98AA625D15E6E0000B7AE /* RunShellCommandIntentHandler.h */,
+				96D98AA725D15E6E0000B7AE /* RunShellCommandIntentHandler.m */,
+				96D98B2725D165820000B7AE /* StartTouchRecordingIntentHandler.h */,
+				96D98B2825D165820000B7AE /* StartTouchRecordingIntentHandler.m */,
+				96D98B7525D1A1C20000B7AE /* StopTouchRecordingIntentHandler.h */,
+				96D98B7625D1A1C20000B7AE /* StopTouchRecordingIntentHandler.m */,
+				96D98BB425D1A41D0000B7AE /* PlayScriptIntentHandler.h */,
+				96D98BB525D1A41D0000B7AE /* PlayScriptIntentHandler.m */,
+				96D98BEE25D1AA500000B7AE /* StopScriptPlayingIntentHandler.h */,
+				96D98BEF25D1AA500000B7AE /* StopScriptPlayingIntentHandler.m */,
+				96D98CE625D1B0550000B7AE /* ImageMatchingIntentHandler.h */,
+				96D98CE725D1B0550000B7AE /* ImageMatchingIntentHandler.m */,
+				96D98D0A25D236F50000B7AE /* ShowToastIntentHandler.h */,
+				96D98D0B25D236F50000B7AE /* ShowToastIntentHandler.m */,
+				96D98DD025D23B360000B7AE /* PickColorIntentHandler.h */,
+				96D98DD125D23B360000B7AE /* PickColorIntentHandler.m */,
+				96D98F7925D2730F0000B7AE /* SearchColorIntentHandler.h */,
+				96D98F7A25D2730F0000B7AE /* SearchColorIntentHandler.m */,
+				96D9902125D27A9E0000B7AE /* OCRIntentHandler.h */,
+				96D9902225D27A9E0000B7AE /* OCRIntentHandler.m */,
+				96D9906A25D27EC30000B7AE /* PasteFromClipboardIntentHandler.h */,
+				96D9906B25D27EC30000B7AE /* PasteFromClipboardIntentHandler.m */,
+				96D9907225D27FE10000B7AE /* InsertTextIntentHandler.h */,
+				96D9907325D27FE10000B7AE /* InsertTextIntentHandler.m */,
+				96D9911A25D281C40000B7AE /* MoveCursorIntentHandler.h */,
+				96D9911B25D281C40000B7AE /* MoveCursorIntentHandler.m */,
+				965DEB9D25D283A5005BF7B9 /* GetScreenSizeIntentHandler.h */,
+				965DEB9E25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m */,
+				965DEBF825D2863C005BF7B9 /* GetScreenOrientationIntentHandler.h */,
+				965DEBF925D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m */,
+			);
+			path = IntentHandler;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -473,10 +695,13 @@
 				96D7E59A2581F99900B39A81 /* Sources */,
 				96D7E59B2581F99900B39A81 /* Frameworks */,
 				96D7E59C2581F99900B39A81 /* Resources */,
+				96E18E4625CF04B3003635F1 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				96E18E4125CF04B3003635F1 /* PBXTargetDependency */,
+				96E18E4425CF04B3003635F1 /* PBXTargetDependency */,
 			);
 			name = zxtouch;
 			productName = zxtouch;
@@ -519,6 +744,40 @@
 			productReference = 96D7E5C42581F99C00B39A81 /* zxtouchUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		96E18E2725CF04B3003635F1 /* shortcutext */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96E18E4C25CF04B3003635F1 /* Build configuration list for PBXNativeTarget "shortcutext" */;
+			buildPhases = (
+				96E18E2425CF04B3003635F1 /* Sources */,
+				96E18E2525CF04B3003635F1 /* Frameworks */,
+				96E18E2625CF04B3003635F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = shortcutext;
+			productName = shortcutext;
+			productReference = 96E18E2825CF04B3003635F1 /* shortcutext.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		96E18E3425CF04B3003635F1 /* shortcutextUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96E18E4B25CF04B3003635F1 /* Build configuration list for PBXNativeTarget "shortcutextUI" */;
+			buildPhases = (
+				96E18E3125CF04B3003635F1 /* Sources */,
+				96E18E3225CF04B3003635F1 /* Frameworks */,
+				96E18E3325CF04B3003635F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = shortcutextUI;
+			productName = shortcutextUI;
+			productReference = 96E18E3525CF04B3003635F1 /* shortcutextUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -529,6 +788,7 @@
 				TargetAttributes = {
 					96D7E59D2581F99900B39A81 = {
 						CreatedOnToolsVersion = 12.0.1;
+						LastSwiftMigration = 1230;
 					};
 					96D7E5B82581F99C00B39A81 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -537,6 +797,12 @@
 					96D7E5C32581F99C00B39A81 = {
 						CreatedOnToolsVersion = 12.0.1;
 						TestTargetID = 96D7E59D2581F99900B39A81;
+					};
+					96E18E2725CF04B3003635F1 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					96E18E3425CF04B3003635F1 = {
+						CreatedOnToolsVersion = 12.3;
 					};
 				};
 			};
@@ -557,6 +823,8 @@
 				96D7E59D2581F99900B39A81 /* zxtouch */,
 				96D7E5B82581F99C00B39A81 /* zxtouchTests */,
 				96D7E5C32581F99C00B39A81 /* zxtouchUITests */,
+				96E18E2725CF04B3003635F1 /* shortcutext */,
+				96E18E3425CF04B3003635F1 /* shortcutextUI */,
 			);
 		};
 /* End PBXProject section */
@@ -599,6 +867,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96E18E2625CF04B3003635F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96D98AD325D1614A0000B7AE /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96E18E3325CF04B3003635F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96E18E3E25CF04B3003635F1 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -630,6 +914,7 @@
 				9684FF7525B58A3700549FC8 /* SettingsPageViewController.m in Sources */,
 				9666349925C42E2F0028A5A3 /* ActivatorEventsTableViewController.m in Sources */,
 				964DF11225B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m in Sources */,
+				96E18E8125D04A13003635F1 /* Intents.intentdefinition in Sources */,
 				964DF10925B9D87E006061B4 /* GCDWebServerRequest.m in Sources */,
 				9649DA762587A4AD00CD3ADE /* ScriptListViewController.m in Sources */,
 				96EE2C1425C93850005FC8C3 /* ImageViewerViewController.m in Sources */,
@@ -640,6 +925,7 @@
 				964DF10A25B9D87E006061B4 /* GCDWebServerFunctions.m in Sources */,
 				964DF11425B9D87E006061B4 /* GCDWebServerFileRequest.m in Sources */,
 				96A2BC382587C20A008DE91F /* ScriptListTableCell.m in Sources */,
+				965DEC2025D288ED005BF7B9 /* ConfigManager.m in Sources */,
 				961B79AA25C1ACC20083DC41 /* PlaySettingsNavigationController.m in Sources */,
 				966598C525BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.m in Sources */,
 				96D7E5B42581F99B00B39A81 /* main.m in Sources */,
@@ -663,6 +949,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96E18E2425CF04B3003635F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96D9878025D115A90000B7AE /* SocketDataHandler.m in Sources */,
+				96D9911C25D281C40000B7AE /* MoveCursorIntentHandler.m in Sources */,
+				965DEBFA25D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m in Sources */,
+				96D9907425D27FE10000B7AE /* InsertTextIntentHandler.m in Sources */,
+				96D98D0C25D236F50000B7AE /* ShowToastIntentHandler.m in Sources */,
+				96D98DD225D23B360000B7AE /* PickColorIntentHandler.m in Sources */,
+				96D9877825D100450000B7AE /* Socket.m in Sources */,
+				96D98B7725D1A1C20000B7AE /* StopTouchRecordingIntentHandler.m in Sources */,
+				965DEB9F25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m in Sources */,
+				96D9887725D127C20000B7AE /* SwitchAppIntentHandler.m in Sources */,
+				96D988CA25D13B790000B7AE /* ShowAlertBoxIntentHandler.m in Sources */,
+				96D9906C25D27EC30000B7AE /* PasteFromClipboardIntentHandler.m in Sources */,
+				96E18E5825CF053B003635F1 /* Intents.intentdefinition in Sources */,
+				96D98B2925D165820000B7AE /* StartTouchRecordingIntentHandler.m in Sources */,
+				96D98BB625D1A41D0000B7AE /* PlayScriptIntentHandler.m in Sources */,
+				96D98F7B25D2730F0000B7AE /* SearchColorIntentHandler.m in Sources */,
+				96D98BF025D1AA500000B7AE /* StopScriptPlayingIntentHandler.m in Sources */,
+				96D98CE825D1B0550000B7AE /* ImageMatchingIntentHandler.m in Sources */,
+				96D98AA825D15E6E0000B7AE /* RunShellCommandIntentHandler.m in Sources */,
+				96E18E2F25CF04B3003635F1 /* IntentHandler.m in Sources */,
+				96D9902325D27A9E0000B7AE /* OCRIntentHandler.m in Sources */,
+				96E18F7625D0533A003635F1 /* PerformTouchIntentHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96E18E3125CF04B3003635F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96E18E8725D04A14003635F1 /* Intents.intentdefinition in Sources */,
+				96E18E3B25CF04B3003635F1 /* IntentViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -675,6 +999,16 @@
 			isa = PBXTargetDependency;
 			target = 96D7E59D2581F99900B39A81 /* zxtouch */;
 			targetProxy = 96D7E5C52581F99C00B39A81 /* PBXContainerItemProxy */;
+		};
+		96E18E4125CF04B3003635F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96E18E3425CF04B3003635F1 /* shortcutextUI */;
+			targetProxy = 96E18E4025CF04B3003635F1 /* PBXContainerItemProxy */;
+		};
+		96E18E4425CF04B3003635F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96E18E2725CF04B3003635F1 /* shortcutext */;
+			targetProxy = 96E18E4325CF04B3003635F1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -724,6 +1058,23 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		96D98AD525D1614A0000B7AE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96D98AD425D1614A0000B7AE /* zh-Hans */,
+				96D98ADB25D1614F0000B7AE /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		96E18E3C25CF04B3003635F1 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96E18E3D25CF04B3003635F1 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -769,6 +1120,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -827,6 +1179,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -846,6 +1199,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HV4X93VAHU;
@@ -869,6 +1223,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HV4X93VAHU;
@@ -959,6 +1314,92 @@
 			};
 			name = Release;
 		};
+		96E18E4725CF04B3003635F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HV4X93VAHU;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/shortcutext/PrefixHeader.pch";
+				INFOPLIST_FILE = shortcutext/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch.shortcutext;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96E18E4825CF04B3003635F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HV4X93VAHU;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/shortcutext/PrefixHeader.pch";
+				INFOPLIST_FILE = shortcutext/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch.shortcutext;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		96E18E4925CF04B3003635F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HV4X93VAHU;
+				INFOPLIST_FILE = shortcutextUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch1123.shortcutextUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96E18E4A25CF04B3003635F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HV4X93VAHU;
+				INFOPLIST_FILE = shortcutextUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch1123.shortcutextUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -994,6 +1435,24 @@
 			buildConfigurations = (
 				96D7E5D42581F99C00B39A81 /* Debug */,
 				96D7E5D52581F99C00B39A81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96E18E4B25CF04B3003635F1 /* Build configuration list for PBXNativeTarget "shortcutextUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96E18E4925CF04B3003635F1 /* Debug */,
+				96E18E4A25CF04B3003635F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96E18E4C25CF04B3003635F1 /* Build configuration list for PBXNativeTarget "shortcutext" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96E18E4725CF04B3003635F1 /* Debug */,
+				96E18E4825CF04B3003635F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

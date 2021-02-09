@@ -20,6 +20,28 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>GetScreenOrientationIntent</string>
+		<string>GetScreenSizeIntent</string>
+		<string>ImageMatchingIntent</string>
+		<string>InsertTextIntent</string>
+		<string>Intent1Intent</string>
+		<string>MoveCursorIntent</string>
+		<string>OCRIntent</string>
+		<string>PasteFromClipBoardIntent</string>
+		<string>PerformTouchIntent</string>
+		<string>PickColorIntent</string>
+		<string>PlayScriptIntent</string>
+		<string>RunShellCommandIntent</string>
+		<string>SearchColorIntent</string>
+		<string>ShowAlertBoxIntent</string>
+		<string>ShowToastIntent</string>
+		<string>StartTouchRecordingIntent</string>
+		<string>StopScriptPlayingIntent</string>
+		<string>StopTouchRecordingIntent</string>
+		<string>SwitchAppIntent</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

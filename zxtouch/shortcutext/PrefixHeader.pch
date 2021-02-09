@@ -1,0 +1,16 @@
+//
+//  PrefixHeader.pch
+//  zxtouch
+//
+//  Created by Jason on 2021/2/9.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define NSLocalizedFormatString(fmt, ...) [NSString stringWithFormat:NSLocalizedString(fmt, nil), __VA_ARGS__]
+
+#endif /* PrefixHeader_pch */

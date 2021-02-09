@@ -50,7 +50,7 @@ int playScript(UInt8* path, NSError **error)
     
     if (err)
     {
-
+        *error = err;
     }
 
     return 0;

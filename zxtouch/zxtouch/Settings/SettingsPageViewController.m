@@ -10,7 +10,7 @@
 #import "TouchIndicatorConfigurationViewController.h"
 #import "ActivatorConfigurationViewController.h"
 #import "Util.h"
-
+#import "Socket.h"
 
 #import "TableViewCellWithSwitch.h"
 #import "TableViewCellWithSlider.h"
@@ -23,6 +23,7 @@
 #import <dlfcn.h>
 #import <objc/runtime.h>
 #import "Config.h"
+#import "ConfigManager.h"
 
 #define SETTING_CELL_SWITCH 0
 #define SETTING_CELL_ENTRY 1
@@ -38,7 +39,7 @@
 {
     NSArray *sections;
     NSArray<NSArray*> *cellsForEachSection;
-    NSMutableDictionary *config;
+    ConfigManager *configManager;
 }
 
 - (void)viewDidLoad {
@@ -46,6 +47,12 @@
     // Do any additional setup after loading the view.
     
     sections = @[NSLocalizedString(@"remoteManagement", nil), NSLocalizedString(@"control", nil), NSLocalizedString(@"script", nil)]; // , @"HELP"
+    configManager = [[ConfigManager alloc] initWithPath:SPRINGBOARD_CONFIG_PATH];
+    BOOL doubleClickPopup = YES;
+    if ([configManager getValueFromKey:@"double_click_volume_show_popup"])
+    {
+        doubleClickPopup = [[configManager getValueFromKey:@"double_click_volume_show_popup"] boolValue];
+    }
     
     // [@{"type": ?, @"title": ?, @"content": ?, ... more depends on the cell type}]
     //
@@ -56,7 +63,8 @@
         @[
             @{@"type": @(SETTING_CELL_ENTRY), @"title": @"Activator", @"secondary_title": @"", @"row_click_handler": NSStringFromSelector(@selector(handleActivatorWithEntryCellInstance:))},
             @{@"type": @(SETTING_CELL_ENTRY), @"title": NSLocalizedString(@"configActivatorEvents", nil), @"secondary_title": @"", @"row_click_handler": NSStringFromSelector(@selector(handleConfigActivatorEventsWithEntryCellInstance:))},
-            @{@"type": @(SETTING_CELL_ENTRY), @"title": NSLocalizedString(@"touchIndicator", nil), @"secondary_title": @"", @"row_click_handler": NSStringFromSelector(@selector(handleTouchIndicatorWithEntryCellInstance:))}
+            @{@"type": @(SETTING_CELL_ENTRY), @"title": NSLocalizedString(@"touchIndicator", nil), @"secondary_title": @"", @"row_click_handler": NSStringFromSelector(@selector(handleTouchIndicatorWithEntryCellInstance:))},
+            @{@"type": @(SETTING_CELL_SWITCH), @"title": NSLocalizedString(@"doubleClickShowPopup", nil), @"switch_click_handler": NSStringFromSelector(@selector(handlePopupWindowDoubleClick:)), @"switch_init_status": @(doubleClickPopup)}
         ],
         @[
             @{@"type": @(SETTING_CELL_SWITCH), @"title": NSLocalizedString(@"switchAppBeforePlaying", nil), @"switch_click_handler": NSStringFromSelector(@selector(handleSwitchAppBeforePlaying:)), @"switch_init_status": @(YES)}
@@ -76,6 +84,24 @@
 - (void)handleSwitchAppBeforePlaying:(UISwitch*)s {
     [Util showAlertBoxWithOneOption:self title:@"ZXTouch" message:NSLocalizedString(@"commonSoon", nil) buttonString:@"OK"];
     [s setOn:YES];
+}
+
+- (void)handlePopupWindowDoubleClick:(UISwitch*)s {
+    if ([s isOn])
+    {
+        [configManager updateKey:@"double_click_volume_show_popup" forValue:@(true)];
+        [configManager save];
+    }
+    else
+    {
+        [configManager updateKey:@"double_click_volume_show_popup" forValue:@(false)];
+        [configManager save];
+    }
+    Socket *socket = [[Socket alloc] init];
+    [socket connect:@"127.0.0.1" byPort:6000];
+    [socket send:@"901"];
+    [socket recv:1024];
+    [socket close];
 }
 
 - (void)handleConfigActivatorEventsWithEntryCellInstance:(TableViewCellWithEntry*)cell {

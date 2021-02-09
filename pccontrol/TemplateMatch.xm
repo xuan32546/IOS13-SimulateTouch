@@ -49,9 +49,21 @@ using namespace std;
     maxTryTimes = mtt;
 }
 
-- (CGRect)templateMatchWithPath:(NSString*)imgPath templatePath:(NSString*)templatePath {
+- (CGRect)templateMatchWithPath:(NSString*)imgPath templatePath:(NSString*)templatePath error:(NSError**)err {
     Mat image = imread([imgPath UTF8String], CV_LOAD_IMAGE_GRAYSCALE); //[imgPath UTF8String]
     Mat templ = imread([templatePath UTF8String], CV_LOAD_IMAGE_GRAYSCALE); //[templatePath UTF8String]
+    
+    if (image.cols == 0 && image.rows == 0)
+    {
+        *err = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"-1;;Read failed! Check permission or file existance. The height and width of the screenshot photo is 0! Screenshot path: %@\r\n", imgPath]}];
+        return CGRect();    
+    }
+    if (templ.cols == 0 && templ.rows == 0)
+    {
+        *err = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"-1;;Read failed! Check permission or file existance. The height and width of the template image is 0! Template path: %@\r\n", templatePath]}];
+        return CGRect();    
+    }
+
     return [self matchWithMat:image andTemplate:templ];
 }
 
@@ -79,11 +91,13 @@ using namespace std;
         float powIncreaRation = pow(2 - scaleRation, i+1);
         resize(templ, templResized, cv::Size(0, 0), powIncreaRation, powIncreaRation);
         _scaledTempls.push_back(templResized); //由于push_back方法执行值拷贝，所以可以复用templResized变量。
-        
+
         //缩小模板图
         float powReduceRation = pow(scaleRation, i+1);
+        NSLog(@"powReduceRation: %f", powReduceRation);
         resize(templ, templResized, cv::Size(0, 0), powReduceRation, powReduceRation);
         _scaledTempls.push_back(templResized);
+
     }
 
     //匹配不同大小的模板图
@@ -97,6 +111,7 @@ using namespace std;
         int result_rows = img.rows - currentTemplate.rows + 1;
         Mat result;
         result.create(result_rows, result_cols, CV_32FC1);
+    NSLog(@"com.zjx.springboard: 4");
 
         //OpenCV匹配
         matchTemplate(img, currentTemplate, result, TM_CCOEFF_NORMED);
@@ -106,6 +121,7 @@ using namespace std;
         
         //TM_CCOEFF_NORMED算法，取最大值为最佳匹配
         //当最大值符合要求，认为匹配成功
+
         if (maxVal >= acceptableValue) {
             //NSLog(@"matched point:%d,%d maxVal:%f, tried times:%d",maxLoc.x,maxLoc.y,maxVal,i + 1);
             NSLog(@"com.zjx.springboard: match success. x: %d, y: %d. width: %d, height: %d", maxLoc.x, maxLoc.y, currentTemplate.rows, currentTemplate.cols);

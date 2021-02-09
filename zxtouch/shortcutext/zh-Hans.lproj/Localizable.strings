@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  zxtouch
+
+  Created by Jason on 2021/2/8.
+  
+*/
+"taskResultDisplayString" = "To view the result, select the \"success\" field or the \"info\" field. If the success is NO, then the info field should contain the error message from springboard. Else, the info field should contain the return value from springboard.";
+"RGBResultDisplayString" = "成功: %d. 红: %d, 绿: %d, 蓝: %d. 如果成功为0，在info项中查看错误信息";
+"RGBXYResultDisplayString" = "成功: %d. x: %d, y: %d, 红: %d, 绿: %d, 蓝: %d. 如果成功为0，在info项中查看错误信息";
+"IntentSizeResultDisplayString" = "成功: %d. 宽: %d, 高: %d. 如果成功为0，在info项中查看错误信息";

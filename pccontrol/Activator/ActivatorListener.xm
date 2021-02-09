@@ -84,9 +84,28 @@ extern PopupWindow *popupWindow;
 }
 
 + (void)load {
+    /*
+    dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY)
+
+    Class la = objc_getClass("LAActivator");
+    if (la) { //libactivator is installed
+        activatorInstance = [[ActivatorListener alloc] init];
+        
+        LAActivator* activator = [la sharedInstance];
+        if (activator.isRunningInsideSpringBoard)
+        {
+            [activator unregisterListenerWithName:@"com.zjx.zxtouch"];
+            [activator registerListener:activatorInstance 
+                                            forName:@"com.zjx.zxtouch"];
+        }
+
+    }
+    
+
 	if ([LASharedActivator isRunningInsideSpringBoard]) {
 		[LASharedActivator registerListener:[self new] forName:@"com.zjx.zxtouch"];
 	}
+    */
 }
 
 @end
