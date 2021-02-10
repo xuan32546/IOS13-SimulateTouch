@@ -28,6 +28,8 @@
 		965DEB9F25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DEB9E25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m */; };
 		965DEBFA25D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DEBF925D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m */; };
 		965DEC2025D288ED005BF7B9 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DEC1F25D288ED005BF7B9 /* ConfigManager.m */; };
+		965DECD725D3BCA1005BF7B9 /* WaitIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DECD625D3BCA1005BF7B9 /* WaitIntentHandler.m */; };
+		965DECDF25D3BD5E005BF7B9 /* UsleepIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 965DECDE25D3BD5E005BF7B9 /* UsleepIntentHandler.m */; };
 		965E8C8E25B2BEFD00FDD35C /* AdderPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */; };
 		965E8C9525B31DD100FDD35C /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8C9425B31DD100FDD35C /* Util.m */; };
 		965E8CC225B3682C00FDD35C /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E8CC025B3682C00FDD35C /* LogViewController.m */; };
@@ -84,16 +86,11 @@
 		96D9911C25D281C40000B7AE /* MoveCursorIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9911B25D281C40000B7AE /* MoveCursorIntentHandler.m */; };
 		96E18E2B25CF04B3003635F1 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E18E2A25CF04B3003635F1 /* Intents.framework */; };
 		96E18E2F25CF04B3003635F1 /* IntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E2E25CF04B3003635F1 /* IntentHandler.m */; };
-		96E18E3725CF04B3003635F1 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E18E3625CF04B3003635F1 /* IntentsUI.framework */; };
-		96E18E3B25CF04B3003635F1 /* IntentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E3A25CF04B3003635F1 /* IntentViewController.m */; };
-		96E18E3E25CF04B3003635F1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E18E3C25CF04B3003635F1 /* MainInterface.storyboard */; };
-		96E18E4225CF04B3003635F1 /* shortcutextUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96E18E3525CF04B3003635F1 /* shortcutextUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		96E18E4525CF04B3003635F1 /* shortcutext.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96E18E2825CF04B3003635F1 /* shortcutext.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		96E18E5825CF053B003635F1 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E5725CF053B003635F1 /* Intents.intentdefinition */; };
-		96E18E8125D04A13003635F1 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E5725CF053B003635F1 /* Intents.intentdefinition */; };
-		96E18E8725D04A14003635F1 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96E18E5725CF053B003635F1 /* Intents.intentdefinition */; };
 		96E18F7625D0533A003635F1 /* PerformTouchIntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E18F7525D0533A003635F1 /* PerformTouchIntentHandler.m */; };
 		96EE2C1425C93850005FC8C3 /* ImageViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE2C1325C93850005FC8C3 /* ImageViewerViewController.m */; };
+		96EE99C925D3C67D006B1243 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96EE99C825D3C67D006B1243 /* Intents.intentdefinition */; };
+		96EE9A4225D3C787006B1243 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96EE99C825D3C67D006B1243 /* Intents.intentdefinition */; };
 		96F4696C258B24DA0052D78D /* ScriptEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F4696B258B24DA0052D78D /* ScriptEditorViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -112,13 +109,6 @@
 			remoteGlobalIDString = 96D7E59D2581F99900B39A81;
 			remoteInfo = zxtouch;
 		};
-		96E18E4025CF04B3003635F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96D7E5962581F99900B39A81 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96E18E3425CF04B3003635F1;
-			remoteInfo = shortcutextUI;
-		};
 		96E18E4325CF04B3003635F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 96D7E5962581F99900B39A81 /* Project object */;
@@ -136,7 +126,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				96E18E4525CF04B3003635F1 /* shortcutext.appex in Embed App Extensions */,
-				96E18E4225CF04B3003635F1 /* shortcutextUI.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +186,10 @@
 		965DEBF925D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetScreenOrientationIntentHandler.m; sourceTree = "<group>"; };
 		965DEC1E25D288ED005BF7B9 /* ConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		965DEC1F25D288ED005BF7B9 /* ConfigManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		965DECD525D3BCA1005BF7B9 /* WaitIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitIntentHandler.h; sourceTree = "<group>"; };
+		965DECD625D3BCA1005BF7B9 /* WaitIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitIntentHandler.m; sourceTree = "<group>"; };
+		965DECDD25D3BD5E005BF7B9 /* UsleepIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsleepIntentHandler.h; sourceTree = "<group>"; };
+		965DECDE25D3BD5E005BF7B9 /* UsleepIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UsleepIntentHandler.m; sourceTree = "<group>"; };
 		965E8C6D25B2A9DA00FDD35C /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		965E8C8B25B2BEFD00FDD35C /* AdderPopOverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdderPopOverViewController.h; sourceTree = "<group>"; };
 		965E8C8C25B2BEFD00FDD35C /* AdderPopOverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdderPopOverViewController.m; sourceTree = "<group>"; };
@@ -304,17 +297,16 @@
 		96E18E2D25CF04B3003635F1 /* IntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentHandler.h; sourceTree = "<group>"; };
 		96E18E2E25CF04B3003635F1 /* IntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentHandler.m; sourceTree = "<group>"; };
 		96E18E3025CF04B3003635F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96E18E3525CF04B3003635F1 /* shortcutextUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = shortcutextUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E18E3625CF04B3003635F1 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		96E18E3925CF04B3003635F1 /* IntentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentViewController.h; sourceTree = "<group>"; };
 		96E18E3A25CF04B3003635F1 /* IntentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentViewController.m; sourceTree = "<group>"; };
 		96E18E3D25CF04B3003635F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		96E18E3F25CF04B3003635F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96E18E5725CF053B003635F1 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		96E18F7425D0533A003635F1 /* PerformTouchIntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformTouchIntentHandler.h; sourceTree = "<group>"; };
 		96E18F7525D0533A003635F1 /* PerformTouchIntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformTouchIntentHandler.m; sourceTree = "<group>"; };
 		96EE2C1225C93850005FC8C3 /* ImageViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewerViewController.h; sourceTree = "<group>"; };
 		96EE2C1325C93850005FC8C3 /* ImageViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewerViewController.m; sourceTree = "<group>"; };
+		96EE99C825D3C67D006B1243 /* Intents.intentdefinition */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		96F4696A258B24DA0052D78D /* ScriptEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptEditorViewController.h; sourceTree = "<group>"; };
 		96F4696B258B24DA0052D78D /* ScriptEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptEditorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -346,14 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				96E18E2B25CF04B3003635F1 /* Intents.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96E18E3225CF04B3003635F1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96E18E3725CF04B3003635F1 /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +522,6 @@
 				96D7E5B92581F99C00B39A81 /* zxtouchTests.xctest */,
 				96D7E5C42581F99C00B39A81 /* zxtouchUITests.xctest */,
 				96E18E2825CF04B3003635F1 /* shortcutext.appex */,
-				96E18E3525CF04B3003635F1 /* shortcutextUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -625,7 +608,7 @@
 				96D9879D25D11D350000B7AE /* Task.h */,
 				96D98E6025D242EE0000B7AE /* PrefixHeader.pch */,
 				96E18E3025CF04B3003635F1 /* Info.plist */,
-				96E18E5725CF053B003635F1 /* Intents.intentdefinition */,
+				96EE99C825D3C67D006B1243 /* Intents.intentdefinition */,
 				96D98AD525D1614A0000B7AE /* Localizable.strings */,
 			);
 			path = shortcutext;
@@ -681,6 +664,10 @@
 				965DEB9E25D283A5005BF7B9 /* GetScreenSizeIntentHandler.m */,
 				965DEBF825D2863C005BF7B9 /* GetScreenOrientationIntentHandler.h */,
 				965DEBF925D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m */,
+				965DECD525D3BCA1005BF7B9 /* WaitIntentHandler.h */,
+				965DECD625D3BCA1005BF7B9 /* WaitIntentHandler.m */,
+				965DECDD25D3BD5E005BF7B9 /* UsleepIntentHandler.h */,
+				965DECDE25D3BD5E005BF7B9 /* UsleepIntentHandler.m */,
 			);
 			path = IntentHandler;
 			sourceTree = "<group>";
@@ -700,7 +687,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				96E18E4125CF04B3003635F1 /* PBXTargetDependency */,
 				96E18E4425CF04B3003635F1 /* PBXTargetDependency */,
 			);
 			name = zxtouch;
@@ -761,23 +747,6 @@
 			productReference = 96E18E2825CF04B3003635F1 /* shortcutext.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		96E18E3425CF04B3003635F1 /* shortcutextUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 96E18E4B25CF04B3003635F1 /* Build configuration list for PBXNativeTarget "shortcutextUI" */;
-			buildPhases = (
-				96E18E3125CF04B3003635F1 /* Sources */,
-				96E18E3225CF04B3003635F1 /* Frameworks */,
-				96E18E3325CF04B3003635F1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = shortcutextUI;
-			productName = shortcutextUI;
-			productReference = 96E18E3525CF04B3003635F1 /* shortcutextUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -801,9 +770,6 @@
 					96E18E2725CF04B3003635F1 = {
 						CreatedOnToolsVersion = 12.3;
 					};
-					96E18E3425CF04B3003635F1 = {
-						CreatedOnToolsVersion = 12.3;
-					};
 				};
 			};
 			buildConfigurationList = 96D7E5992581F99900B39A81 /* Build configuration list for PBXProject "zxtouch" */;
@@ -824,7 +790,6 @@
 				96D7E5B82581F99C00B39A81 /* zxtouchTests */,
 				96D7E5C32581F99C00B39A81 /* zxtouchUITests */,
 				96E18E2725CF04B3003635F1 /* shortcutext */,
-				96E18E3425CF04B3003635F1 /* shortcutextUI */,
 			);
 		};
 /* End PBXProject section */
@@ -875,14 +840,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96E18E3325CF04B3003635F1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96E18E3E25CF04B3003635F1 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -914,7 +871,6 @@
 				9684FF7525B58A3700549FC8 /* SettingsPageViewController.m in Sources */,
 				9666349925C42E2F0028A5A3 /* ActivatorEventsTableViewController.m in Sources */,
 				964DF11225B9D87E006061B4 /* GCDWebServerMultiPartFormRequest.m in Sources */,
-				96E18E8125D04A13003635F1 /* Intents.intentdefinition in Sources */,
 				964DF10925B9D87E006061B4 /* GCDWebServerRequest.m in Sources */,
 				9649DA762587A4AD00CD3ADE /* ScriptListViewController.m in Sources */,
 				96EE2C1425C93850005FC8C3 /* ImageViewerViewController.m in Sources */,
@@ -929,6 +885,7 @@
 				961B79AA25C1ACC20083DC41 /* PlaySettingsNavigationController.m in Sources */,
 				966598C525BD4CD400F18DEB /* MoreOptionsPopOverTableViewController.m in Sources */,
 				96D7E5B42581F99B00B39A81 /* main.m in Sources */,
+				96EE9A4225D3C787006B1243 /* Intents.intentdefinition in Sources */,
 				96D7E5A62581F99900B39A81 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -953,11 +910,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				965DECD725D3BCA1005BF7B9 /* WaitIntentHandler.m in Sources */,
 				96D9878025D115A90000B7AE /* SocketDataHandler.m in Sources */,
 				96D9911C25D281C40000B7AE /* MoveCursorIntentHandler.m in Sources */,
 				965DEBFA25D2863C005BF7B9 /* GetScreenOrientationIntentHandler.m in Sources */,
 				96D9907425D27FE10000B7AE /* InsertTextIntentHandler.m in Sources */,
 				96D98D0C25D236F50000B7AE /* ShowToastIntentHandler.m in Sources */,
+				96EE99C925D3C67D006B1243 /* Intents.intentdefinition in Sources */,
+				965DECDF25D3BD5E005BF7B9 /* UsleepIntentHandler.m in Sources */,
 				96D98DD225D23B360000B7AE /* PickColorIntentHandler.m in Sources */,
 				96D9877825D100450000B7AE /* Socket.m in Sources */,
 				96D98B7725D1A1C20000B7AE /* StopTouchRecordingIntentHandler.m in Sources */,
@@ -965,7 +925,6 @@
 				96D9887725D127C20000B7AE /* SwitchAppIntentHandler.m in Sources */,
 				96D988CA25D13B790000B7AE /* ShowAlertBoxIntentHandler.m in Sources */,
 				96D9906C25D27EC30000B7AE /* PasteFromClipboardIntentHandler.m in Sources */,
-				96E18E5825CF053B003635F1 /* Intents.intentdefinition in Sources */,
 				96D98B2925D165820000B7AE /* StartTouchRecordingIntentHandler.m in Sources */,
 				96D98BB625D1A41D0000B7AE /* PlayScriptIntentHandler.m in Sources */,
 				96D98F7B25D2730F0000B7AE /* SearchColorIntentHandler.m in Sources */,
@@ -975,15 +934,6 @@
 				96E18E2F25CF04B3003635F1 /* IntentHandler.m in Sources */,
 				96D9902325D27A9E0000B7AE /* OCRIntentHandler.m in Sources */,
 				96E18F7625D0533A003635F1 /* PerformTouchIntentHandler.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96E18E3125CF04B3003635F1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96E18E8725D04A14003635F1 /* Intents.intentdefinition in Sources */,
-				96E18E3B25CF04B3003635F1 /* IntentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,11 +949,6 @@
 			isa = PBXTargetDependency;
 			target = 96D7E59D2581F99900B39A81 /* zxtouch */;
 			targetProxy = 96D7E5C52581F99C00B39A81 /* PBXContainerItemProxy */;
-		};
-		96E18E4125CF04B3003635F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 96E18E3425CF04B3003635F1 /* shortcutextUI */;
-			targetProxy = 96E18E4025CF04B3003635F1 /* PBXContainerItemProxy */;
 		};
 		96E18E4425CF04B3003635F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1360,46 +1305,6 @@
 			};
 			name = Release;
 		};
-		96E18E4925CF04B3003635F1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HV4X93VAHU;
-				INFOPLIST_FILE = shortcutextUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch1123.shortcutextUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		96E18E4A25CF04B3003635F1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HV4X93VAHU;
-				INFOPLIST_FILE = shortcutextUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zjx.zxtouch1123.shortcutextUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1435,15 +1340,6 @@
 			buildConfigurations = (
 				96D7E5D42581F99C00B39A81 /* Debug */,
 				96D7E5D52581F99C00B39A81 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		96E18E4B25CF04B3003635F1 /* Build configuration list for PBXNativeTarget "shortcutextUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				96E18E4925CF04B3003635F1 /* Debug */,
-				96E18E4A25CF04B3003635F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

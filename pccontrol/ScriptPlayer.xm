@@ -20,6 +20,7 @@ static BOOL isPlaying = false;
     NSTimer *replayTimer;
     UIView *circleView;
     Boolean scriptPlayForceStop;
+    Boolean switchAppBeforePlaying;
 }
 
 - (BOOL)isPlaying {
@@ -70,6 +71,16 @@ static BOOL isPlaying = false;
     speed = sp;
 }
 
+- (void)setSwitchApp:(BOOL)value {
+    if (isPlaying)
+    {
+        NSLog(@"com.zjx.springboard: cannot change speed because a script is playing.");
+        return;
+    }
+    switchAppBeforePlaying = value;
+}
+
+
 - (id)init {
     self = [super init];
     if (self)
@@ -104,6 +115,7 @@ static BOOL isPlaying = false;
         *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unable to run the script. Path not found or it is not a directory.\r\n"}];
         return -1;
     }
+
     // read info.plist into dictionary
     NSString *infoFilePath = [NSString stringWithFormat:@"%@/info.plist", scriptBundlePath];
     if (![[NSFileManager defaultManager] fileExistsAtPath:infoFilePath isDirectory:&isDir])
@@ -152,8 +164,8 @@ static BOOL isPlaying = false;
     {
         currentScriptType = 2;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSError *err = nil;
-                [self playFromPythonFile:entryFilePath foregroundApp:foregroundApp err:&err];
+            NSError *err = nil;
+            [self playFromPythonFile:entryFilePath foregroundApp:foregroundApp err:&err];
         });
         
     }
@@ -168,7 +180,6 @@ static BOOL isPlaying = false;
         *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unable to run the script. Another script is currently running.\r\n"}];
         return -1;
     }
-
    [self runScript:error];
 }
 
@@ -176,8 +187,11 @@ static BOOL isPlaying = false;
 -(void)playFromRawFile:(NSString*) filePath foregroundApp:(NSString*)foregroundApp err:(NSError**)err
 {
     isPlaying = true;
+    if (switchAppBeforePlaying)
+    {
+        bringAppForeground(foregroundApp);
+    }
 
-    bringAppForeground(foregroundApp);
     FILE *file = fopen([filePath UTF8String], "r");
 
     if (!file)
@@ -228,8 +242,11 @@ static BOOL isPlaying = false;
 {
     isPlaying = true;
 
-    bringAppForeground(foregroundApp);
-
+    if (switchAppBeforePlaying)
+    {
+        bringAppForeground(foregroundApp);
+    }
+    
     // check python exists
     if (![[NSFileManager defaultManager] fileExistsAtPath:@"/bin/python3"])
     {

@@ -54,6 +54,12 @@
         doubleClickPopup = [[configManager getValueFromKey:@"double_click_volume_show_popup"] boolValue];
     }
     
+    BOOL switchAppBeforeRunScript = YES;
+    if ([configManager getValueFromKey:@"switch_app_before_run_script"])
+    {
+        switchAppBeforeRunScript = [[configManager getValueFromKey:@"switch_app_before_run_script"] boolValue];
+    }
+    
     // [@{"type": ?, @"title": ?, @"content": ?, ... more depends on the cell type}]
     //
     cellsForEachSection = @[
@@ -67,7 +73,7 @@
             @{@"type": @(SETTING_CELL_SWITCH), @"title": NSLocalizedString(@"doubleClickShowPopup", nil), @"switch_click_handler": NSStringFromSelector(@selector(handlePopupWindowDoubleClick:)), @"switch_init_status": @(doubleClickPopup)}
         ],
         @[
-            @{@"type": @(SETTING_CELL_SWITCH), @"title": NSLocalizedString(@"switchAppBeforePlaying", nil), @"switch_click_handler": NSStringFromSelector(@selector(handleSwitchAppBeforePlaying:)), @"switch_init_status": @(YES)}
+            @{@"type": @(SETTING_CELL_SWITCH), @"title": NSLocalizedString(@"switchAppBeforePlaying", nil), @"switch_click_handler": NSStringFromSelector(@selector(handleSwitchAppBeforePlaying:)), @"switch_init_status": @(switchAppBeforeRunScript)}
         ]
     ];
      
@@ -82,8 +88,22 @@
 }
 
 - (void)handleSwitchAppBeforePlaying:(UISwitch*)s {
-    [Util showAlertBoxWithOneOption:self title:@"ZXTouch" message:NSLocalizedString(@"commonSoon", nil) buttonString:@"OK"];
-    [s setOn:YES];
+    if ([s isOn])
+    {
+        [configManager updateKey:@"switch_app_before_run_script" forValue:@(true)];
+        [configManager save];
+    }
+    else
+    {
+        [configManager updateKey:@"switch_app_before_run_script" forValue:@(false)];
+        [configManager save];
+    }
+    
+    Socket *socket = [[Socket alloc] init];
+    [socket connect:@"127.0.0.1" byPort:6000];
+    [socket send:@"902"];
+    [socket recv:1024];
+    [socket close];
 }
 
 - (void)handlePopupWindowDoubleClick:(UISwitch*)s {

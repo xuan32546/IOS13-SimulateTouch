@@ -7,6 +7,7 @@
 #import "ScriptPlayer.h"
 #include "Common.h"
 
+static BOOL switchAppBeforeRunScript = true;
 ScriptPlayer *scriptPlayer;
 
 void initScriptPlayer()
@@ -14,8 +15,19 @@ void initScriptPlayer()
     scriptPlayer = [[ScriptPlayer alloc] init];
 }
 
+void updateSwtichAppBeforeRunScript(BOOL value)
+{
+    switchAppBeforeRunScript = value;
+}
+
 int playScript(UInt8* path, NSError **error)
 {
+    if (!scriptPlayer)
+    {
+        NSLog(@"com.zjx.springboard: Unable to run the script. Internal error. scriptPlayer is null.");
+        *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unable to run the script. Internal error. scriptPlayer is null.\r\n"}];
+        return -1;
+    }
     // read config file to get repeat time etc
     int repeatTime = 0;
     float sleepBetweenRun = 0;
@@ -44,13 +56,15 @@ int playScript(UInt8* path, NSError **error)
     [scriptPlayer setRepeatTime:repeatTime];
     [scriptPlayer setSpeed:playSpeed];
     [scriptPlayer setInterval:sleepBetweenRun];
+    [scriptPlayer setSwitchApp:switchAppBeforeRunScript];
+
 
     NSError *err = nil;
     [scriptPlayer play:&err];
-    
+
     if (err)
     {
-        *error = err;
+        
     }
 
     return 0;

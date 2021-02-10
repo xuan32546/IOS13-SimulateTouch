@@ -42,6 +42,10 @@
 #import "GetScreenSizeIntentHandler.h"
 #import "GetScreenOrientationIntent.h"
 #import "GetScreenOrientationIntentHandler.h"
+#import "WaitIntent.h"
+#import "WaitIntentHandler.h"
+#import "UsleepIntent.h"
+#import "UsleepIntentHandler.h"
 
 #import "Socket.h"
 
@@ -146,6 +150,15 @@ Socket *springBoardSocket;
     {
         return [[GetScreenOrientationIntentHandler alloc] initWithSocketInstance:springBoardSocket];
     }
+    else if ([intent class] == [WaitIntent class])
+    {
+        return [[WaitIntentHandler alloc] initWithSocketInstance:springBoardSocket];
+    }
+    else if ([intent class] == [UsleepIntent class])
+    {
+        return [[UsleepIntentHandler alloc] initWithSocketInstance:springBoardSocket];
+    }
+
     /*
     else if ([intent class] == [OCRIntent class])
     {

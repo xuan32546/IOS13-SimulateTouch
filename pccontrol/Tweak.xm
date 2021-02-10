@@ -107,6 +107,7 @@ void crazyTapTimeUpCallback();
 void stopCrazyTap();
 void processTask(UInt8 *buff);
 
+void updateSwtichAppBeforeRunScript(BOOL value);
 BOOL openPopUpByDoubleVolumnDown = true;
 
 // -------------
@@ -226,13 +227,12 @@ Boolean initActivatorInstance()
     return true;
 }
 
-Boolean init()
+Boolean initConfig()
 {
     // read config file
     // check whether config file exist
     NSString *configFilePath = getCommonConfigFilePath();
-
-    if (![[NSFileManager defaultManager] fileExistsAtPath:configFilePath]) // if missing, then use the default value
+    if ([[NSFileManager defaultManager] fileExistsAtPath:configFilePath]) // if missing, then use the default value
     {
         //showAlertBox(@"Error", @"Unable to initiate zxtouch tweak. Config file is missing. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", 999);
         return true;
@@ -255,8 +255,18 @@ Boolean init()
         openPopUpByDoubleVolumnDown = [config[@"double_click_volume_show_popup"] boolValue];
     }
 
+    if (config[@"switch_app_before_run_script"])
+    {
+        updateSwtichAppBeforeRunScript([config[@"switch_app_before_run_script"] boolValue]);
+    }
+}
+
+Boolean init()
+{
     initScriptPlayer();
     initActivatorInstance();
+    initConfig();
+
     return true;
 }
 

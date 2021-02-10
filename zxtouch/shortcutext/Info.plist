@@ -51,6 +51,8 @@
 				<string>StopScriptPlayingIntent</string>
 				<string>StopTouchRecordingIntent</string>
 				<string>SwitchAppIntent</string>
+				<string>UsleepIntent</string>
+				<string>WaitIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
