@@ -14,6 +14,7 @@
 + (NSString*)screenShot;
 + (CGRect)getBounds;
 + (NSString*)screenShotAlwaysUp;
++ (UIImage*)screenShotUIImage;
 
 @end
 

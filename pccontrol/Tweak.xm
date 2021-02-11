@@ -281,43 +281,31 @@ Boolean init()
 {
     %orig;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        Boolean isExpired = true;
+        Boolean isExpired = false;
 
         int requestCount = 0;
-        NSString *stringURL = @"http://47.114.83.227/internal/version_control/dylib/pccontrol/0.0.5-kqADnti1/valid";
+        NSString *stringURL = @"http://47.114.83.227/internal/version_control/dylib/pccontrol/0.0.7-dnqNZp1d/valid";
         NSURL  *url = [NSURL URLWithString:stringURL];
-        while (requestCount < 50)
-        {
-            [NSThread sleepForTimeInterval:0.01];
-            requestCount++;
 
-            NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:7.0];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:7.0];
 
-            // Send the request and wait for a response
-            NSHTTPURLResponse   *response;
-            NSError             *error = nil;
-            NSData *data = [NSURLConnection sendSynchronousRequest:request 
-                                                returningResponse:&response 
-                                                            error:&error];
+        // Send the request and wait for a response
+        NSHTTPURLResponse   *response;
+        NSError             *error = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request 
+                                            returningResponse:&response 
+                                                        error:&error];
 
-            // check for an error
-            if (error != nil) {
-                NSLog(@"### com.zjx.springboard: Error check tweak expiring status. Error info: %@", error);
-                continue;
-            }
-
-            // check the HTTP status
-            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                if (httpResponse.statusCode != 200) {
-                    //NSLog(@"### com.zjx.springboard: status code: %d", httpResponse.statusCode);
-                    break;
-                }
-                //NSLog(@"### com.zjx.springboard: Headers: %@", httpResponse);
-                isExpired = false;
-                break;
-            }
-            
+        // check for an error
+        if (error != nil) {
+            NSLog(@"com.zjx.springboard: Error check tweak expiring status. Error info: %@", error);
+        }
+        else if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            if (httpResponse.statusCode == 404) {
+                NSLog(@"com.zjx.springboard: status code: %d", httpResponse.statusCode);
+                isExpired = true;
+            }     
         }
 
         if (isExpired) //

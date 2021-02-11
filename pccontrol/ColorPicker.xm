@@ -1,6 +1,8 @@
 #include "ColorPicker.h"
 #include "Screen.h"
 #include "Image.h"
+#import <opencv2/imgcodecs/ios.h>
+
 
 #define COLOR_SEARCHER_SEARCH_SINGLE_POINT 1
 
@@ -130,21 +132,21 @@ NSString* searchRGBFromRawData(UInt8 *eventData, NSError **error)
 }
 
 + (NSDictionary*) getRgbFromMat:(Mat)img x:(int)x y:(int)y {
-    NSLog(@"com.zjx.springboard: height: %d, width: %d, channels: %d. scale: %f", img.rows, img.cols, img.channels(), [Screen getScale]);
+    //NSLog(@"com.zjx.springboard: height: %d, width: %d, channels: %d. scale: %f", img.rows, img.cols, img.channels(), [Screen getScale]);
 
     Vec3b intensity = img.at<Vec3b>(y, x);
     // Don't know why. This version of opencv stores read at [0] rather than [2]
     uchar blue = intensity.val[0];
     uchar green = intensity.val[1];
     uchar red = intensity.val[2];
-    NSLog(@"com.zjx.springboard: blue: %u, green: %u, red: %u.", blue, green, red);
+    //NSLog(@"com.zjx.springboard: blue: %u, green: %u, red: %u.", blue, green, red);
 
     NSDictionary *result = @{@"blue": @(blue), @"red": @(red), @"green": @(green)};
     return result;
 }
 
 + (NSString*) searchRGBFromMat:(Mat)img region:(CGRect)region redMin:(int)redMin redMax:(int)redMax greenMin:(int)greenMin greenMax:(int)greenMax blueMin:(int)blueMin blueMax:(int)blueMax skip:(int)skip {
-    NSLog(@"com.zjx.springboard: image height: %d, width: %d, channels: %d. scale: %f. Rect: %@. skip: %d. redSearch: (%d, %d), greenSearch: (%d, %d), blueSearch: (%d, %d)", img.rows, img.cols, img.channels(), [Screen getScale], NSStringFromCGRect(region), skip, redMin, redMax, greenMin, greenMax, blueMin, blueMax);
+    //NSLog(@"com.zjx.springboard: image height: %d, width: %d, channels: %d. scale: %f. Rect: %@. skip: %d. redSearch: (%d, %d), greenSearch: (%d, %d), blueSearch: (%d, %d)", img.rows, img.cols, img.channels(), [Screen getScale], NSStringFromCGRect(region), skip, redMin, redMax, greenMin, greenMax, blueMin, blueMax);
     
     int x = region.origin.x;
     int y = region.origin.y;

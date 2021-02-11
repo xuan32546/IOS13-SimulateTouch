@@ -75,17 +75,22 @@ Get the size of the screen and set them.
     return [UIScreen mainScreen].bounds;
 }
 
+
 OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
 + (NSString*)screenShot
 {
-     UIImage *screenImage = _UICreateScreenUIImage();
+    UIImage *screenImage = _UICreateScreenUIImage();
     // Create path.
-    NSString *filePath = [getDocumentRoot() stringByAppendingPathComponent:@"screenshot.jpg"];
+    NSString *filePath = [getDocumentRoot() stringByAppendingPathComponent:@"screenshot.png"];
 
     // Save image.
-    [UIImageJPEGRepresentation(screenImage, 0.7) writeToFile:filePath atomically:true];
-
+    [UIImagePNGRepresentation(screenImage) writeToFile:filePath atomically:NO];
     return filePath;
+}
+
++ (UIImage*)screenShotUIImage
+{
+    return _UICreateScreenUIImage();
 }
 
 + (NSString*)screenShotAlwaysUp
@@ -112,11 +117,10 @@ OBJC_EXTERN UIImage *_UICreateScreenUIImage(void);
               orientation: after];
 
     // Create path.
-    NSString *filePath = [getDocumentRoot() stringByAppendingPathComponent:@"screenshot.jpg"];
+    NSString *filePath = [getDocumentRoot() stringByAppendingPathComponent:@"screenshot.png"];
 
     // Save image.
-    [UIImageJPEGRepresentation(result, 0.7) writeToFile:filePath atomically:true];
-
+    [UIImagePNGRepresentation(result) writeToFile:filePath atomically:NO];
     return filePath;
 }
 @end

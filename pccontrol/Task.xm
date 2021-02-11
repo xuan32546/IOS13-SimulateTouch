@@ -36,7 +36,7 @@ Process Task
 */
 void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
 {
-    NSLog(@"### com.zjx.springboard: task type: %d. Data: %s", getTaskType(buff), buff);
+    //NSLog(@"### com.zjx.springboard: task type: %d. Data: %s", getTaskType(buff), buff);
 
     UInt8 *eventData = buff + 0x2;
     int taskType = getTaskType(buff);
@@ -195,14 +195,14 @@ void processTask(UInt8 *buff, CFWriteStreamRef writeStreamRef)
     else if (taskType == TASK_TEXT_INPUT)
     {
         NSError *err = nil;
-        inputTextFromRawData(eventData,  &err);
+        NSString *result = inputTextFromRawData(eventData,  &err);
         if (err)
         {
             notifyClient((UInt8*)[[err localizedDescription] UTF8String], writeStreamRef);
         }
         else
         {
-            notifyClient((UInt8*)"0;;Successfully notify the appdelegate tweak. But not sure whether it works...\r\n", writeStreamRef);
+            notifyClient((UInt8*)[[NSString stringWithFormat:@"0;;%@\r\n", result] UTF8String], writeStreamRef);
         }
     }
     else if (taskType == TASK_GET_DEVICE_INFO)

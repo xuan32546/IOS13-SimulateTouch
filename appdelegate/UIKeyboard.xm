@@ -46,19 +46,32 @@
 
 %hook UIKeyboardImpl
 
-	- (id)initWithFrame:(CGRect)arg1 {
-
-        //CFNotificationCenterRemoveObserver([NSDistributedNotificationCenter defaultCenter], NULL, CFSTR("com.zjx.zxtouch.textinput"), NULL);
-
-		
-		// 处理Mac不同的进程之间的通知
+    - (id)initWithFrame:(CGRect)arg1 forCustomInputView:(UIView*)view
+    {
 		NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 		[center addObserver: self
 					selector: @selector(handleKeyboardNotification:)
 					name: @"com.zjx.zxtouch.keyboardcontrol"
 					object: nil];
 
-		NSLog(@"com.zjx.appdelegate: UIKeyboardImpl instance allocated");
+		//NSLog(@"com.zjx.appdelegate: UIKeyboardImpl instance allocated");
+		return %orig;
+    }
+
+	- (id)initWithFrame:(CGRect)arg1 {
+		NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+		[center addObserver: self
+					selector: @selector(handleKeyboardNotification:)
+					name: @"com.zjx.zxtouch.keyboardcontrol"
+					object: nil];
+
+		//NSLog(@"com.zjx.appdelegate: UIKeyboardImpl instance allocated");
+		return %orig;
+	}
+
+	- (void)dealloc {
+        [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:@"com.zjx.zxtouch.textinput" object:nil];
+		//NSLog(@"com.zjx.appdelegate: UIKeyboardImpl instance deallocated");
 		return %orig;
 	}
 
