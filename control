@@ -1,0 +1,11 @@
+Package: com.zjx.ioscontrol
+Name: ZXTouch
+Version: 0.0.7-5
+Depends: sudo, mobilesubstrate
+Architecture: iphoneos-arm
+Description: ZXTouch Main Application
+Maintainer: Jason Z
+Author: Jason Z
+Section: Utilities
+Conflicts: zxtouch-python3.7, libpython3.7, libactivator (<< 1.8.3)
+Tag: role::developer
