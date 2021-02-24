@@ -9,6 +9,7 @@
 using namespace cv;
 using namespace std;
 
+
 NSDictionary* getRGBFromRawData(UInt8 *eventData, NSError **error)
 {
     NSArray *data = [[NSString stringWithFormat:@"%s", eventData] componentsSeparatedByString:@";;"];
@@ -17,6 +18,12 @@ NSDictionary* getRGBFromRawData(UInt8 *eventData, NSError **error)
         *error = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Unable to pick color. The data format should be \"x;;y\"\r\n"}];
         return @{@"blue": @(-1), @"red": @(-1), @"green": @(-1)};
     }
+    UIImage *screen = [Screen screenShotUIImage];
+        int x = [data[0] intValue];
+    int y = [data[1] intValue];
+    
+    [ColorPicker getRgbFromUIImage:screen x:x y:y];
+    /*
     NSString *screenShotPath = [Screen screenShot];
     Mat screen = imread([screenShotPath UTF8String], IMREAD_COLOR);
     if (screen.rows == 0 && screen.cols == 0)
@@ -39,6 +46,7 @@ NSDictionary* getRGBFromRawData(UInt8 *eventData, NSError **error)
     }
 
     return [ColorPicker getRgbFromMat:screen x:x y:y];
+    */
 }
 
 NSString* searchRGBFromRawData(UInt8 *eventData, NSError **error)
@@ -129,6 +137,16 @@ NSString* searchRGBFromRawData(UInt8 *eventData, NSError **error)
 @implementation ColorPicker
 {
 
+}
++ (NSDictionary*) getRgbFromUIImage:(UIImage*)img x:(int)x y:(int)y {
+    CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(img.CGImage));
+    UInt8 *data = (UInt8*)CFDataGetBytePtr(pixelData);
+
+    int pixelInfo = (img.size.width * y + x) * 4;
+
+    CGFloat r = (CGFloat)data[pixelInfo];
+
+    return @{@"r": @(r)};
 }
 
 + (NSDictionary*) getRgbFromMat:(Mat)img x:(int)x y:(int)y {
