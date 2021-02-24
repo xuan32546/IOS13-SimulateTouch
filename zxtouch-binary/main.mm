@@ -51,6 +51,10 @@ int main(int argc, char *argv[], char *envp[]) {
     if (equal(argv[1], "-e"))
     {
         executeCommand();
+        // notify tweak that the task has been finished
+        //int spSocket = getSpringboardSocket();
+        //send(spSocket, "90\r\n", strlen("90\r\n"), 0);
+        //NSLog(@"com.zjx.zxtouchb: 90 has been sent");
     }
     else if (equal(argv[1], "-pr")) // play back from raw file
     {
