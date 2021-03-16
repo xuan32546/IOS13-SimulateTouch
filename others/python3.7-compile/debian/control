@@ -1,9 +1,0 @@
-Package: zxtouch-python3.7
-Version: 3.7.3-1
-Architecture: iphoneos-arm
-Maintainer: Mac C. <MCApollo@protonmail.com>
-Pre-Depends: dpkg (>= 1.14.25-8)
-Depends: ncurses, readline, expat, xz, libssl1.0, libffi
-Section: System
-Priority: optional
-Description: Shared Python runtime libraries (version 3.7)
