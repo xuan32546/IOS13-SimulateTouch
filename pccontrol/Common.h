@@ -30,5 +30,6 @@ void swapCGFloat(CGFloat *a, CGFloat *b);
 NSString *getConfigFilePath();
 NSString *getCommonConfigFilePath();
 pid_t system2(const char * command, int * infp, int * outfp);
+int roundUp(int numToRound, int multiple);
 
 #endif

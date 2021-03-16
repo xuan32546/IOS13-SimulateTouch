@@ -33,7 +33,7 @@ int playScript(UInt8* path, NSError **error)
     float sleepBetweenRun = 0;
     float playSpeed = 1.0f;
     
-
+    NSLog(@"com.zjx.springboard: path: %s", path);
     NSMutableDictionary *config;
     if ([[NSFileManager defaultManager] fileExistsAtPath:SCRIPT_PLAY_CONFIG_PATH])
     {
@@ -58,14 +58,7 @@ int playScript(UInt8* path, NSError **error)
     [scriptPlayer setInterval:sleepBetweenRun];
     [scriptPlayer setSwitchApp:switchAppBeforeRunScript];
 
-
-    NSError *err = nil;
-    [scriptPlayer play:&err];
-
-    if (err)
-    {
-        
-    }
+    [scriptPlayer play:error];
 
     return 0;
 }

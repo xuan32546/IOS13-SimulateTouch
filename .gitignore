@@ -1,0 +1,11 @@
+pccontrol/test-control.py
+pccontrol/test.py
+pccontrol/Podfile.lock
+pccontrol/backups
+**/.DS_Store
+**/.theos
+**/.idea
+**/logs
+**/packages
+**/__pycache__
+layout/usr/lib/python3.7/test

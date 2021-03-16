@@ -1,6 +1,7 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+
 @interface Screen :NSObject
 {
     
@@ -15,6 +16,8 @@
 + (CGRect)getBounds;
 + (NSString*)screenShotAlwaysUp;
 + (UIImage*)screenShotUIImage;
++ (void)releaseUIImage:(UIImage**)img;
++ (CGImageRef)createScreenShotCGImageRef;
 
 @end
 

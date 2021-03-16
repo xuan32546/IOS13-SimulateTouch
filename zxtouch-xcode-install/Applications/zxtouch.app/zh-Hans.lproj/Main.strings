@@ -1,0 +1,18 @@
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "78e-iB-1fm"; */
+"78e-iB-1fm.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "Play"; ObjectID = "8uv-BC-Bsb"; */
+"8uv-BC-Bsb.normalTitle" = "运行";
+
+/* Class = "UINavigationItem"; title = "Scripts"; ObjectID = "GBn-9Q-Fvw"; */
+"GBn-9Q-Fvw.title" = "脚本列表";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "IRD-wc-3dP"; */
+"IRD-wc-3dP.title" = "设置";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "MXX-sD-5Vi"; */
+"MXX-sD-5Vi.text" = "Title";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "VoC-cu-PEt"; */
+"VoC-cu-PEt.title" = "Item";

@@ -42,11 +42,17 @@
     // change plist
     if (![[NSFileManager defaultManager] fileExistsAtPath:SPRINGBOARD_CONFIG_PATH])
     {
-        config = [[NSMutableDictionary alloc] initWithDictionary:@{@"touch_indicator":@{@"show": @(0), @"color":@{@"alpha": @(0.7), @"r": @(255), @"g": @(0), @"b": @(0)}}}];
+        config = [[NSMutableDictionary alloc] initWithDictionary:@{@"touch_indicator":@{@"show": @(0), @"color":@{@"alpha": @(TOUCH_INDICATOR_DEFAULT_ALPHA), @"r": @(255), @"g": @(0), @"b": @(0)}}}];
         [config writeToFile:SPRINGBOARD_CONFIG_PATH atomically:NO];
     }
 
     config = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARD_CONFIG_PATH];
+    
+    if (!config[@"touch_indicator"])
+    {
+        [config setValue:@{@"show": @(0), @"color":@{@"alpha": @(TOUCH_INDICATOR_DEFAULT_ALPHA), @"r": @(255), @"g": @(0), @"b": @(0)}} forKey:@"touch_indicator"];
+        [config writeToFile:SPRINGBOARD_CONFIG_PATH atomically:NO];
+    }
     
     isShowing = [config[@"touch_indicator"][@"show"] boolValue];
     
@@ -85,8 +91,9 @@
     if ([s isOn])
     {
         if (config)
-            config[@"touch_indicator"][@"show"] = @(true);
-        
+            //config[@"touch_indicator"][@"show"] = @(true);
+            [config[@"touch_indicator"] setObject:@(true) forKey:@"show"];
+
         // turn on
         [springBoardSocket send:@"261\r\n"];
         
@@ -95,7 +102,7 @@
     else
     {
         if (config)
-            config[@"touch_indicator"][@"show"] = @(false);
+            [config[@"touch_indicator"] setObject:@(false) forKey:@"show"];
 
         // turn off
         [springBoardSocket send:@"260\r\n"];

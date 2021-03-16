@@ -30,6 +30,7 @@
 //这里返回的Rect基于AVCapture Metadata的坐标系统，即值在0.0-1.0之间，方便AVCaptureVideoPreviewLayer类进行转换。
 - (CGRect)templateMatchWithPath:(NSString*)imgPath templatePath:(NSString*)templatePath error:(NSError**)err;
 - (CGRect)templateMatchWithUIImage:(UIImage*)img template:(UIImage*)templ;
+- (CGRect)templateMatchWithCGImage:(CGImageRef)img templatePath:(NSString*)templatePath error:(NSError**)err;
 
 - (void)setScaleRation:(float)sr;
 - (void)setAcceptableValue:(float)av;

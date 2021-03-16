@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *scriptTitle;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (weak, nonatomic) UIViewController* parentViewController;
 
 - (void) setTitle:(NSString*)title;
 - (void) setPropertyWithPath:(NSString*)path;

@@ -232,14 +232,15 @@ Boolean initConfig()
     // read config file
     // check whether config file exist
     NSString *configFilePath = getCommonConfigFilePath();
-    if ([[NSFileManager defaultManager] fileExistsAtPath:configFilePath]) // if missing, then use the default value
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:configFilePath]) // if missing, then use the default value
     {
-        //showAlertBox(@"Error", @"Unable to initiate zxtouch tweak. Config file is missing. Please go to \"zxtouch - settings - fix configuration\" to fix this problem.", 999);
+        //showAlertBox(@"Error", configFilePath, 999);
+        NSLog(@"com.zjx.springboard: unable to get config file. File not found. Using default value. Path: %@", configFilePath);
         return true;
     }
     // read indicator color from the config file
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:configFilePath];
-
     if ([config[@"touch_indicator"][@"show"] boolValue])
     {
         NSError *err = nil;
@@ -252,6 +253,7 @@ Boolean initConfig()
 
     if (config[@"double_click_volume_show_popup"])
     {
+        NSLog(@"com.zjx.springboard: show popup %d", [config[@"double_click_volume_show_popup"] boolValue]);
         openPopUpByDoubleVolumnDown = [config[@"double_click_volume_show_popup"] boolValue];
     }
 
@@ -259,19 +261,27 @@ Boolean initConfig()
     {
         updateSwtichAppBeforeRunScript([config[@"switch_app_before_run_script"] boolValue]);
     }
+
+    return true;
 }
 
 Boolean init()
 {
+                    NSLog(@"com.zjx.springboard: 1");
+
     initScriptPlayer();
+                    NSLog(@"com.zjx.springboard: 2");
+
     initActivatorInstance();
+                    NSLog(@"com.zjx.springboard: 3");
+
     initConfig();
 
     return true;
 }
 
 %ctor{
-    
+
 }
 
 %hook SpringBoard
@@ -280,6 +290,7 @@ Boolean init()
 - (void)applicationDidFinishLaunching:(id)arg1
 {
     %orig;
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         Boolean isExpired = false;
 
@@ -326,7 +337,7 @@ Boolean init()
 
         //CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)stopCrazyTapCallback, CFSTR("com.zjx.crazytap.stop"), NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
         popupWindow = [[PopupWindow alloc] init];
-        
+
         initSenderId();
         startPopupListeningCallBack();
 
@@ -339,7 +350,6 @@ Boolean init()
             return;
         }
 
-       
      /*
         
         // Add a handler to respond to GET requests on any URL

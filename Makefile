@@ -1,6 +1,6 @@
 # lipoplastic setup for armv6 + arm64 compilation
 export ARCHS = arm64e arm64 armv7
-export THEOS_DEVICE_IP = 192.168.0.14
+export THEOS_DEVICE_IP = 192.168.0.5
 
 SUBPROJECTS = appdelegate zxtouch-binary pccontrol
 

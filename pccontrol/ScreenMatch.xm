@@ -35,7 +35,17 @@ CGRect screenMatchFromRawData(UInt8 *eventData, NSError **error)
     [templateMatch setAcceptableValue:av];
     [templateMatch setMaxTryTimes:mtt];
     [templateMatch setScaleRation:sr];
-    return [templateMatch templateMatchWithPath:[Screen screenShot] templatePath:templatePath error:err];
+    CGImageRef screen = [Screen createScreenShotCGImageRef];
+    if (!screen)
+    {
+        *err = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:@"-1;;Error happens when template matching. Screenshot is nil.\r\n"}];
+        NSLog(@"com.zjx.springboard: -1;;Error happens when template matching. Screenshot is nil.\r\n");
+        return CGRect();
+    }
+
+    CGRect result = [templateMatch templateMatchWithCGImage:screen templatePath:templatePath error:err];
+    CGImageRelease(screen);
+    return result;
 }
 
 

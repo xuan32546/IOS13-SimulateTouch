@@ -9,6 +9,8 @@ CFSocketRef socketRef;
 CFWriteStreamRef writeStreamRef = NULL;
 CFReadStreamRef readStreamRef = NULL;
 static NSMutableDictionary *socketClients = NULL;
+void report_memory(void);
+
 // Reference: https://www.jianshu.com/p/9353105a9129
 
 void socketServer()
@@ -62,39 +64,40 @@ void socketServer()
 
 static void readStream(CFReadStreamRef readStream, CFStreamEventType eventype, void * clientCallBackInfo) 
 {
-    UInt8 readDataBuff[2048];
-	memset(readDataBuff, 0, sizeof(readDataBuff));
-    
-    CFIndex hasRead = CFReadStreamRead(readStream, readDataBuff, sizeof(readDataBuff));
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @autoreleasepool{
+            UInt8 readDataBuff[2048];
+            memset(readDataBuff, 0, sizeof(readDataBuff));
+            
+            CFIndex hasRead = CFReadStreamRead(readStream, readDataBuff, sizeof(readDataBuff));
 
-    if (hasRead > 0) {
-        //don't know how it works, copied from https://www.educative.io/edpresso/splitting-a-string-using-strtok-in-c
-        
-        for(char * charSep = strtok((char*)readDataBuff, "\r\n"); charSep != NULL; charSep = strtok(NULL, "\r\n")) {
-            UInt8 *buff = (UInt8*)charSep;
-            id temp = [socketClients objectForKey:@((long)readStream)];
-            if (temp != nil)
-                processTask(buff, (CFWriteStreamRef)[temp longValue]);
-            else
-                processTask(buff);
-            //NSLog(@"com.zjx.springboard: get data: %s", buff);
+            if (hasRead > 0) {
+                //don't know how it works, copied from https://www.educative.io/edpresso/splitting-a-string-using-strtok-in-c
+                for(char * charSep = strtok((char*)readDataBuff, "\r\n"); charSep != NULL; charSep = strtok(NULL, "\r\n")) {
+                    UInt8 *buff = (UInt8*)charSep;
+                    id temp = [socketClients objectForKey:@((long)readStream)];
+                    if (temp != nil)
+                        processTask(buff, (CFWriteStreamRef)[temp longValue]);
+                    else
+                        processTask(buff);
+                }
+            }
         }
-        //NSLog(@"com.zjx.springboard: return value: %d, ref: %d", CFWriteStreamWrite(writeStreamRef, (UInt8 *)"str", 3), writeStreamRef);
+    });
 
-		//countsss++;
-    }
 }
+
 int notifyClient(UInt8* msg, CFWriteStreamRef client)
 {
-    __block int result;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    int result;
+    //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //NSLog(@"com.zjx.springboard: client: %x", client);
         if (client != 0)
         {
             result = CFWriteStreamWrite(client, msg, strlen((char*)msg));
         }
         result = -1;
-    });
+    //});
     return result;
 }
 

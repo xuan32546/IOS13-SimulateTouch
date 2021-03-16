@@ -49,6 +49,40 @@ using namespace std;
     maxTryTimes = mtt;
 }
 
+- (CGRect)templateMatchWithCGImage:(CGImageRef)img templatePath:(NSString*)templatePath error:(NSError**)err {
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(img);
+    CGFloat cols = CGImageGetWidth(img);
+    CGFloat rows = CGImageGetHeight(img);
+
+    cv::Mat screenMat(rows, cols, CV_8UC4); // 8 bits per component, 4 channels
+
+    
+    CGContextRef contextRef = CGBitmapContextCreate(screenMat.data,                 // Pointer to backing data
+                                                    cols,                      // Width of bitmap
+                                                    rows,                     // Height of bitmap
+                                                    8,                          // Bits per component
+                                                    screenMat.step[0],              // Bytes per row
+                                                    colorSpace,                 // Colorspace
+                                                    kCGImageAlphaNoneSkipLast |
+                                                    kCGBitmapByteOrderDefault); // Bitmap info flags
+
+    CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), img);
+
+    CGContextRelease(contextRef);
+    CGColorSpaceRelease(colorSpace);
+    
+    Mat templ = imread([templatePath UTF8String], CV_LOAD_IMAGE_GRAYSCALE); //[templatePath UTF8String]
+    if (templ.cols == 0 && templ.rows == 0)
+    {
+        *err = [NSError errorWithDomain:@"com.zjx.zxtouchsp" code:999 userInfo:@{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"-1;;Read failed! Check permission or file existance. The height and width of the template image is 0! Template path: %@\r\n", templatePath]}];
+        return CGRect();    
+    }
+    cv::Mat greyMat;
+    cv::cvtColor(screenMat, greyMat, COLOR_RGBA2GRAY);
+
+    return [self matchWithMat:greyMat andTemplate:templ];
+}
+
 - (CGRect)templateMatchWithPath:(NSString*)imgPath templatePath:(NSString*)templatePath error:(NSError**)err {
     Mat image = imread([imgPath UTF8String], CV_LOAD_IMAGE_GRAYSCALE); //[imgPath UTF8String]
     Mat templ = imread([templatePath UTF8String], CV_LOAD_IMAGE_GRAYSCALE); //[templatePath UTF8String]
@@ -111,23 +145,21 @@ using namespace std;
         int result_rows = img.rows - currentTemplate.rows + 1;
         Mat result;
         result.create(result_rows, result_cols, CV_32FC1);
-    NSLog(@"com.zjx.springboard: 4");
 
         //OpenCV匹配
         matchTemplate(img, currentTemplate, result, TM_CCOEFF_NORMED);
 
         //整理出本次匹配的最大最小值
         minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
-        
+
         //TM_CCOEFF_NORMED算法，取最大值为最佳匹配
         //当最大值符合要求，认为匹配成功
 
         if (maxVal >= acceptableValue) {
             //NSLog(@"matched point:%d,%d maxVal:%f, tried times:%d",maxLoc.x,maxLoc.y,maxVal,i + 1);
-            NSLog(@"com.zjx.springboard: match success. x: %d, y: %d. width: %d, height: %d", maxLoc.x, maxLoc.y, currentTemplate.rows, currentTemplate.cols);
-            return CGRectMake(maxLoc.x, maxLoc.y, currentTemplate.rows, currentTemplate.cols);
+            NSLog(@"com.zjx.springboard: match success. x: %d, y: %d. width: %d, height: %d", maxLoc.x, maxLoc.y, currentTemplate.cols, currentTemplate.rows);
+            return CGRectMake(maxLoc.x, maxLoc.y, currentTemplate.cols, currentTemplate.rows);
         }
-        NSLog(@"com.zjx.springboard: match failed for template index: %d", i);
     }
     
     //未匹配到，则返回空区域

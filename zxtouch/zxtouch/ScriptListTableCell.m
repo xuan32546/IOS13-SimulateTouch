@@ -7,6 +7,7 @@
 
 #import "ScriptListTableCell.h"
 #import "Socket.h"
+#import "Util.h"
 
 @implementation ScriptListTableCell
 {
@@ -23,6 +24,12 @@
     [springBoardSocket connect:@"127.0.0.1" byPort:6000];
     
     [springBoardSocket send:[NSString stringWithFormat:@"19%@", filePath]];
+    NSString* result = [springBoardSocket recv:1024];
+    if ([result characterAtIndex:0] != '0')
+    {
+        [Util showAlertBoxWithOneOption:_parentViewController title:@"Error" message:[NSString stringWithFormat:@"Cannot play script. Error: %@", result] buttonString:@"OK"];
+    }
+    [springBoardSocket close];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

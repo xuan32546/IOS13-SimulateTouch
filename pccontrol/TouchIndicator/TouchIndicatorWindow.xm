@@ -33,6 +33,7 @@ static CFRunLoopRef runLoopRef = NULL;
 
 static CGFloat screenBoundsWidth = 0;
 static CGFloat screenBoundsHeight = 0;
+static CGFloat scale = 0;
 
 static TouchIndicatorWindow *touchIndicatorWindow;
 
@@ -179,6 +180,7 @@ void startTouchIndicator(NSError **error)
 
         // get screen size
         CGRect bounds = [Screen getBounds];
+        scale = [Screen getScale];
         screenBoundsWidth = CGRectGetWidth(bounds);
         screenBoundsHeight = CGRectGetHeight(bounds);
 
@@ -242,8 +244,8 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
 
             IOHIDFloat majorRadius = IOHIDEventGetFloatValue(event, 0xb0014);
 
-            CGFloat xOnScreen = x*screenBoundsWidth;
-            CGFloat yOnScreen = y*screenBoundsHeight;
+            CGFloat xOnScreen = x * screenBoundsWidth;
+            CGFloat yOnScreen = y * screenBoundsHeight;
 
             if ( touch == 1 && eventMask & 2 )
                 // touch down
@@ -331,7 +333,7 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
         indicator.backgroundColor = indicatorColor;
 
         // create touch coordinate view
-        NSString *coordinateText = [NSString stringWithFormat:@"(%d, %d)", x*2, y*2];
+        NSString *coordinateText = [NSString stringWithFormat:@"(%d, %d)", (int)(x * scale), (int)(y * scale)];
         UIFont *font = [UIFont fontWithName: @"Trebuchet MS" size: 11.0f];
         CGSize stringSize = [coordinateText sizeWithFont:font]; 
         CGFloat stringWidth = stringSize.width;
@@ -393,7 +395,7 @@ static void IOHIDEventCallbackForTouchIndicator(void* target, void* refcon, IOHI
         touchIndicatorViewList[index-1].frame = CGRectMake(x - halfSize, y - halfSize, indicatorSize, indicatorSize);
         touchIndicatorViewList[index-1].layer.cornerRadius = halfSize;
 
-        NSString *coordinateText = [NSString stringWithFormat:@"(%d, %d)", (int)x*2, (int)y*2];
+        NSString *coordinateText = [NSString stringWithFormat:@"(%d, %d)", (int)(x*scale), (int)(y*scale)];
         UIFont *font = [UIFont fontWithName: @"Trebuchet MS" size: 11.0f];
         CGSize stringSize = [coordinateText sizeWithFont:font]; 
         CGFloat stringWidth = stringSize.width;

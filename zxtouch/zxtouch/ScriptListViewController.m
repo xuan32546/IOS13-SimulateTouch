@@ -13,6 +13,8 @@
 #import "ImageViewerViewController.h"
 #include "Config.h"
 #import "ScriptManagement/MoreOptionsPopOverTableViewController.h"
+#import "Socket.h"
+#import "Util.h"
 
 @interface ScriptListViewController ()
 
@@ -24,6 +26,7 @@
     NSString *currentFolder;
     UIRefreshControl *refreshControl;
 }
+
 
 - (void) setFolder:(NSString*)folder {
     currentFolder = [folder stringByStandardizingPath];
@@ -199,7 +202,7 @@
         //没有,创建一个
         cell = [[ScriptListTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-
+    cell.parentViewController = self;
     [cell setPropertyWithPath:scriptList[indexPath.row]];
     return cell;
 }
@@ -252,6 +255,7 @@
         [self.navigationController pushViewController:scriptEditorViewController animated:YES];
     }
 }
+
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
