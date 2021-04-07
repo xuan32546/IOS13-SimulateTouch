@@ -99,6 +99,11 @@
     return [self initWithCIImage:image area:aarea orientation:orientation];
 }
 
+- (id)initWithCGImage:(CGImageRef)cgimage area:(CGRect)aarea orientation:(int)orientation {
+    CIImage *image = [[CIImage alloc] initWithCGImage:cgimage];
+    return [self initWithCIImage:image area:aarea orientation:orientation];
+}
+
 /*
 Return the string from a area
 */
@@ -125,7 +130,21 @@ Return the string from a area
 
     for (VNRecognizedTextObservation* i in requestResult.results)
     {
-        [stringList addObject:[[i topCandidates:1][0] string]];
+        VNRecognizedText* text = [i topCandidates:1][0];
+        NSString* textString = [text string];
+
+        VNRectangleObservation* boundingBox = [text boundingBoxForRange:NSMakeRange(0, [textString length]) error:nil];
+
+        //test = [self drawTextRectangle:CGRectMake(100, 100, 100, 100) andText:@"test"];
+
+        float rectWidth = (boundingBox.topRight.x - boundingBox.topLeft.x) * recognizeRect.size.width;
+        float rectHeight = abs(boundingBox.topLeft.y - boundingBox.bottomLeft.y) * recognizeRect.size.height;
+        float rectx = boundingBox.topLeft.x * recognizeRect.size.width + recognizeRect.origin.x;
+        float recty = (1 - boundingBox.topLeft.y) * recognizeRect.size.height + recognizeRect.origin.y;
+
+        NSString* outputString = [NSString stringWithFormat:@"%@,,%d,,%d,,%d,,%d", textString, (int)rectx, (int)recty, (int)rectWidth, (int)rectHeight];
+
+        [stringList addObject:outputString];
     }
 
     inProgress = false;

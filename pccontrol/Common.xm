@@ -1,5 +1,19 @@
 #include "Common.h"
 #include "Config.h"
+#import <sys/utsname.h>
+
+
+/*
+Get device model name
+*/
+NSString* getDeviceName()
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+
+    return [NSString stringWithCString:systemInfo.machine
+                                encoding:NSUTF8StringEncoding];
+}
 
 /*
 round up number by multiple of another number
@@ -14,6 +28,18 @@ int roundUp(int numToRound, int multiple)
         return numToRound;
 
     return numToRound + multiple - remainder;
+}
+
+/*
+Check whether current device is an iPad
+*/
+Boolean isIpad()
+{
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        return YES;
+    }
+    return NO;
 }
 
 /*

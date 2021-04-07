@@ -9,3 +9,6 @@ pccontrol/backups
 **/packages
 **/__pycache__
 layout/usr/lib/python3.7/test
+zxtouch-xcode-install/
+others/
+

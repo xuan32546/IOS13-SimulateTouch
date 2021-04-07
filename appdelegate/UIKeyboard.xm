@@ -77,7 +77,7 @@
 
     %new
 	- (void)handleKeyboardNotification:(NSNotification *)notification {
-		NSLog(@"com.zjx.appdelegate: keyboard related notification received. %@", notification);
+		//NSLog(@"com.zjx.appdelegate: keyboard related notification received. %@", notification);
 		NSDictionary *data = (NSDictionary*)notification.userInfo;
 
         int taskId = [data[@"task_id"] intValue];

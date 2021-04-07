@@ -267,14 +267,8 @@ Boolean initConfig()
 
 Boolean init()
 {
-                    NSLog(@"com.zjx.springboard: 1");
-
     initScriptPlayer();
-                    NSLog(@"com.zjx.springboard: 2");
-
     initActivatorInstance();
-                    NSLog(@"com.zjx.springboard: 3");
-
     initConfig();
 
     return true;

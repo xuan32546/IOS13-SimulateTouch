@@ -13,8 +13,6 @@ void report_memory(void);
 using namespace cv;
 using namespace std;
 
-
-
 NSDictionary* getRGBFromRawData(UInt8 *eventData, NSError **error)
 {
     NSArray *data = [[NSString stringWithFormat:@"%s", eventData] componentsSeparatedByString:@";;"];
@@ -156,7 +154,6 @@ NSString* searchRGBFromRawData(UInt8 *eventData, NSError **error)
     uchar b = buffer[2];
 
     free(buffer);
-    
     return @{@"blue": @(b), @"red": @(r), @"green": @(g)};
 }
 

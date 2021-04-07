@@ -70,12 +70,12 @@ NSString* performTextRecognizerTextFromRawData(UInt8* eventData, NSError** error
         NSArray *languages = [languagesData componentsSeparatedByString:@",,"];
 
         // screen shot
-        NSString* screenShotPath = [Screen screenShot];
+        CGImageRef screenshot = [Screen createScreenShotCGImageRef];
 
         int orientation = [Screen getScreenOrientation];
 
         // init
-        VKOcrManager* ocrManager = [[VKOcrManager alloc] initWithImagePath:screenShotPath area:recognizeRect orientation:orientation];
+        VKOcrManager* ocrManager = [[VKOcrManager alloc] initWithCGImage:screenshot area:recognizeRect orientation:orientation];
 
         // set properties
         if ([customWords count] > 1 || ![customWords[0] isEqualToString:@""])
@@ -99,6 +99,8 @@ NSString* performTextRecognizerTextFromRawData(UInt8* eventData, NSError** error
             [ocrManager outputDebugImage:debugPath error:error];
         }
 
+        CFRelease(screenshot);
+        
         return result;
     }
     else if (task == TASK_GET_SUPPORTED_LANGUAGE_LIST)
