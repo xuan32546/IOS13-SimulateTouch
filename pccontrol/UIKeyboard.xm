@@ -6,7 +6,7 @@
 
 NSString* inputTextFromRawData(UInt8 *eventData, NSError **error)
 {
-    NSArray *data = [[NSString stringWithFormat:@"%s", eventData] componentsSeparatedByString:@";;"];
+    NSArray *data = [[NSString stringWithUTF8String:(char*)eventData] componentsSeparatedByString:@";;"];
 
     NSString *taskContent = @"";
     if ([data count] < 1)

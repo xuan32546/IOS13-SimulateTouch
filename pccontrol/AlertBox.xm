@@ -3,7 +3,7 @@
 
 void showAlertBoxFromRawData(UInt8 *eventData, NSError **error)
 {
-    NSString *alertData = [NSString stringWithFormat:@"%s", eventData];
+    NSString *alertData = [NSString stringWithUTF8String:(char*)eventData];
     NSArray *alertDataArray = [alertData componentsSeparatedByString:@";;"];
     if ([alertDataArray count] < 3)
     {
