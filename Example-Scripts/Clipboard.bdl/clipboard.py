@@ -3,7 +3,7 @@ from zxtouch.toasttypes import *
 import time
 
 # from keyboard-test.py
-device = zxtouch("192.168.0.19")
+device = zxtouch("127.0.0.1")
 device.show_toast(TOAST_MESSAGE, "Opening Notes...", 2)
 time.sleep(2)
 device.show_toast(TOAST_MESSAGE, "Please select an input field! 3...", 1)
