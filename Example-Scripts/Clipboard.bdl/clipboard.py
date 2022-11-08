@@ -18,7 +18,7 @@ time.sleep(1)
 # clipboard test
 clipboard = "Clipboard Test"
 device.set_clipboard_text(clipboard)
-device.show_toast(TOAST_MESSAGE, "Copied {} to your clipboard!".format(clipboard), 2)
+device.show_toast(TOAST_SUCCESS, "Copied {} to your clipboard!".format(clipboard), 2)
 time.sleep(2)
 
 device.show_toast(TOAST_MESSAGE, "Pasting clipboard...", 2)
@@ -27,11 +27,11 @@ time.sleep(2)
 
 clipboard = "Hello"
 device.set_clipboard_text(clipboard)
-device.show_toast(TOAST_MESSAGE, "Copied {} to your clipboard!".format(clipboard), 2)
+device.show_toast(TOAST_SUCCESS, "Copied {} to your clipboard!".format(clipboard), 2)
 time.sleep(2)
 
 current_clipboard = device.get_text_from_clipboard()
-device.show_toast(TOAST_WARNING, "Your clipboard content is: {}".format(current_clipboard), 2)
+device.show_toast(TOAST_MESSAGE, "Your clipboard content is: {}".format(current_clipboard), 2)
 time.sleep(2)
 
 device.disconnect()
